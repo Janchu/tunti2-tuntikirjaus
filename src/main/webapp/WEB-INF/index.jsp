@@ -9,8 +9,8 @@
 <body>
 <fieldset>
 <legend>Tuntikirjanpito</legend>
-<p><label>Nimi: </label><input type="text"></p>
-<p><label>Pvm: </label><p>8.9.2016</p>
+<p><label>Etunimi: </label><input type="text"><label>Sukunimi: </label><input type="text"></p>
+<p><label>Pvm: </label>8.9.2016</p>
 <p><label>Tunnit: </label><input type="text"></p>
 <p><label>Kuvaus: </label><input type="text"></p>
 <button type="submit">Tallenna</button>
