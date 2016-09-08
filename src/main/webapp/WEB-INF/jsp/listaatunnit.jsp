@@ -4,17 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Kirjaa tunnit</title>
+<title>Insert title here</title>
 </head>
 <body>
-<fieldset>
-<legend>Tuntikirjanpito</legend>
-<p><label>Nimi: </label><input type="text"></p>
-<p><label>Pvm: </label><p>8.9.2016</p>
-<p><label>Tunnit: </label><input type="text"></p>
-<p><label>Kuvaus: </label><input type="text"></p>
-<button type="submit">Tallenna</button>
-</fieldset>
 
 </body>
 </html>
