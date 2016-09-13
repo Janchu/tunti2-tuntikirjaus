@@ -1,0 +1,7 @@
+git pull
+
+git add tiedosto1 tiedosto2
+
+git commit -m "1. tiedosto1 2. tiedosto2 - muutokset"
+
+git push

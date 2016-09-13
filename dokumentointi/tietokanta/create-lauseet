@@ -1,0 +1,20 @@
+CREATE TABLE Kayttajat (
+	id INTEGER NOT NULL AUTO_INCREMENT,
+	kayttajatunnus VARCHAR (50) NOT NULL,
+	email VARCHAR (50) NOT NULL,
+	etunimi VARCHAR (50) NOT NULL,
+	sukunimi VARCHAR (50) NOT NULL,
+	salasana VARCHAR (50) NOT NULL,
+	enabled BOOLEAN NOT NULL,
+	PRIMARY KEY (id)
+)ENGINE=InnoDB;
+
+CREATE TABLE Tunnit (
+	id INTEGER NOT NULL AUTO_INCREMENT,
+	tuntien_maara DECIMAL (5,2) NOT NULL,
+	paivamaara TIMESTAMP NOT NULL,
+	kuvaus VARCHAR (1000) NOT NULL,
+	kayttaja_id INTEGER NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (kayttaja_id) REFERENCES Kayttajat(id)
+)ENGINE=InnoDB;
