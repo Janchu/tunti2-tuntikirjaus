@@ -5,4 +5,15 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>tunti2-tuntikirjaus</name>
+  
+  <dependencies>
+  
+  	<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+  
+  	</dependencies>
+  
 </project>
