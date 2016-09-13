@@ -18,3 +18,4 @@ CREATE TABLE Tunnit (
 	PRIMARY KEY (id),
 	FOREIGN KEY (kayttaja_id) REFERENCES Kayttajat(id)
 )ENGINE=InnoDB;
+

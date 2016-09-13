@@ -1,7 +1,9 @@
-git pull
+git status - repon status
 
-git add tiedosto1 tiedosto2
+git pull - pullaa viimeiset muutokset
 
-git commit -m "1. tiedosto1 2. tiedosto2 - muutokset"
+git add .../nönnönnnöö/tiedosto1 tiedosto2 - lisää muutetut tiedostot stagelle
 
-git push
+git commit -m "1. tiedosto1 2. tiedosto2 - muutokset" - lisää muutetut tiedostot lokaaliin repoon ja lisää commit-viesti
+
+git push - puske tiedostot lokaalista reposta julkiseen repoon

@@ -1,0 +1,5 @@
+SELECT * FROM Tunnit;
+
+SELECT * FROM Kayttajat;
+
+SELECT * FROM Tunnit WHERE ID = '1'

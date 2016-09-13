@@ -1,0 +1,3 @@
+INSERT INTO Tunnit (tuntien_maara, paivamaara, kuvaus, kayttaja_id)
+VALUES ('2', NOW(), 'Tietokantalauseiden luonti', '1');
+
