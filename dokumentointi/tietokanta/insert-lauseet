@@ -1,3 +1,4 @@
 INSERT INTO Tunnit (tuntien_maara, paivamaara, kuvaus, kayttaja_id)
 VALUES ('2', NOW(), 'Tietokantalauseiden luonti', '1');
 
+UPDATE Tunnit SET kayttaja_id='4' WHERE id='16';    - esimerkki, kuinka v‰‰r‰ id oikeaksi
