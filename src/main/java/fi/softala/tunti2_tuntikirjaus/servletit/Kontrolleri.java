@@ -14,7 +14,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import fi.softala.tunti2_tuntikirjaus.dao.TunnitDAO;
 import fi.softala.tunti2_tuntikirjaus.luokat.Kayttaja;
+import fi.softala.tunti2_tuntikirjaus.luokat.KayttajaImpl;
 import fi.softala.tunti2_tuntikirjaus.luokat.Tunnit;
+import fi.softala.tunti2_tuntikirjaus.luokat.TunnitImpl;
 
 /**
  * 
@@ -47,8 +49,8 @@ public class Kontrolleri extends HttpServlet {
 		int Tunnit = new Integer(strTunnit);
 		String Kuvaus = request.getParameter("kuvaus");
 		
-		Tunnit uusitunti = new Tunnit();
-		Kayttaja kayttaja = new Kayttaja();
+		TunnitImpl uusitunti = new TunnitImpl();
+		KayttajaImpl kayttaja = new KayttajaImpl();
 		
 
 		uusitunti.setKuvaus(Kuvaus);
@@ -68,6 +70,9 @@ public class Kontrolleri extends HttpServlet {
 			kayttaja.addTunnit(uusitunti);
 		} else if (Etunimi.equalsIgnoreCase("Mira")) {
 			kayttaja.setId(5);
+			kayttaja.addTunnit(uusitunti);
+		}else if(Etunimi.equalsIgnoreCase("Testaaja")) {
+			kayttaja.setId(6);
 			kayttaja.addTunnit(uusitunti);
 		}
 		
