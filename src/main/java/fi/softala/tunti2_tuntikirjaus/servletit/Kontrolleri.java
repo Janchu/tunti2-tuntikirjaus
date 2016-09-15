@@ -3,17 +3,21 @@ package fi.softala.tunti2_tuntikirjaus.servletit;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.omg.CORBA.Request;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+
+
+
+
 import fi.softala.tunti2_tuntikirjaus.dao.TunnitDAO;
-import fi.softala.tunti2_tuntikirjaus.luokat.Kayttaja;
 import fi.softala.tunti2_tuntikirjaus.luokat.KayttajaImpl;
 import fi.softala.tunti2_tuntikirjaus.luokat.Tunnit;
 import fi.softala.tunti2_tuntikirjaus.luokat.TunnitImpl;
@@ -21,10 +25,10 @@ import fi.softala.tunti2_tuntikirjaus.luokat.TunnitImpl;
 /**
  * 
  * @author Tommi Ilvonen
- * 
+ * @author Niko Kaartinen
  *
  */
-
+@WebServlet("/Kontrolleri")
 public class Kontrolleri extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -32,7 +36,8 @@ public class Kontrolleri extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-	
+		RequestDispatcher disp = request.getRequestDispatcher("index.jsp");
+		disp.forward(request, response);
 	}
 
 	
@@ -76,7 +81,7 @@ public class Kontrolleri extends HttpServlet {
 			kayttaja.addTunnit(uusitunti);
 		}
 		
-		dao.tallenna(uusitunti);
+		dao.tallenna(uusitunti, kayttaja);
 		doGet(request, response);
 		
 		
