@@ -1,5 +1,7 @@
 package fi.softala.tunti2_tuntikirjaus.luokat;
 
+import java.util.ArrayList;
+
 public class Kayttaja {
 	
 	// Muuttujat
@@ -10,6 +12,7 @@ public class Kayttaja {
 	private String etunimi;
 	private String sukunimi;
 	private String salasana;
+	private ArrayList<Tunnit> tunnit;
 	
 	
 	// Tyhjä constructor
@@ -21,19 +24,20 @@ public class Kayttaja {
 		this.etunimi = "";
 		this.sukunimi = "";
 		this.salasana = "";		
-		
+		this.tunnit = new ArrayList<Tunnit>();
 	}
 	
 	// Constructor joka vaatii kaikki muuttujat
 	
-	public Kayttaja(int id, String kayttajatunnus, String sahkoposti, String etunimi, String sukunimi, String salasana){
+	public Kayttaja(int id, String kayttajatunnus, String sahkoposti, String etunimi, String sukunimi, String salasana, ArrayList<Tunnit> tunnit){
 		
 		this.id = id;
 		this.kayttajatunnus = kayttajatunnus;
 		this.sahkoposti = sahkoposti;
 		this.etunimi = etunimi;
 		this.sukunimi = sukunimi;
-		this.salasana = salasana;		
+		this.salasana = salasana;
+		this.tunnit = tunnit;
 	}
 	
 	// Constructor id:lle ja salasanalle
@@ -110,6 +114,17 @@ public class Kayttaja {
 		this.salasana = salasana;
 	}
 	
+	public ArrayList<Tunnit> getTunnit() {
+		return tunnit;
+	}
+
+	public void addTunnit(Tunnit uusiTunnit) {
+		this.tunnit.add(uusiTunnit);
+	}
+	
+	public void setTunnit(ArrayList<Tunnit> tunnit) {
+		this.tunnit = tunnit;
+}
 	
 	
 
