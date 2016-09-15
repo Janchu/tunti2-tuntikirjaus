@@ -2,130 +2,36 @@ package fi.softala.tunti2_tuntikirjaus.luokat;
 
 import java.util.ArrayList;
 
-public class Kayttaja {
+public interface Kayttaja {
+
+	public abstract int getId();
 	
-	// Muuttujat
+	public abstract void setId(int id);
 	
-	private int id;
-	private String kayttajatunnus;
-	private String sahkoposti;
-	private String etunimi;
-	private String sukunimi;
-	private String salasana;
-	private ArrayList<Tunnit> tunnit;
+	public abstract String getKayttajatunnus();
 	
+	public abstract void setKayttajatunnus(String kayttajatunnus);
 	
-	// Tyhjä constructor
+	public abstract String getSahkoposti();
 	
-	public Kayttaja(){
-		this.id = -1;
-		this.kayttajatunnus = "";
-		this.sahkoposti = "";
-		this.etunimi = "";
-		this.sukunimi = "";
-		this.salasana = "";		
-		this.tunnit = new ArrayList<Tunnit>();
-	}
+	public abstract void setSahkoposti(String sahkoposti);
 	
-	// Constructor joka vaatii kaikki muuttujat
+	public abstract String getEtunimi();
 	
-	public Kayttaja(int id, String kayttajatunnus, String sahkoposti, String etunimi, String sukunimi, String salasana, ArrayList<Tunnit> tunnit){
-		
-		this.id = id;
-		this.kayttajatunnus = kayttajatunnus;
-		this.sahkoposti = sahkoposti;
-		this.etunimi = etunimi;
-		this.sukunimi = sukunimi;
-		this.salasana = salasana;
-		this.tunnit = tunnit;
-	}
+	public abstract void setEtunimi(String etunimi);
 	
-	// Constructor id:lle ja salasanalle
+	public abstract String getSukunimi();
 	
-	public Kayttaja(int id, String salasana){
-		this.id = id;
-		this.salasana = salasana;	
-		
-		this.kayttajatunnus = "";
-		this.sahkoposti = "";
-		this.etunimi = "";
-		this.sukunimi = "";
-	}
-
-	// Getterit ja setterit
+	public abstract void setSukunimi(String sukunimi);
 	
-
-	public int getId() {
-		return id;
-	}
-
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-
-	public String getKayttajatunnus() {
-		return kayttajatunnus;
-	}
-
-
-	public void setKayttajatunnus(String kayttajatunnus) {
-		this.kayttajatunnus = kayttajatunnus;
-	}
-
-
-	public String getSahkoposti() {
-		return sahkoposti;
-	}
-
-
-	public void setSahkoposti(String sahkoposti) {
-		this.sahkoposti = sahkoposti;
-	}
-
-
-	public String getEtunimi() {
-		return etunimi;
-	}
-
-
-	public void setEtunimi(String etunimi) {
-		this.etunimi = etunimi;
-	}
-
-
-	public String getSukunimi() {
-		return sukunimi;
-	}
-
-
-	public void setSukunimi(String sukunimi) {
-		this.sukunimi = sukunimi;
-	}
-
-
-	public String getSalasana() {
-		return salasana;
-	}
-
-
-	public void setSalasana(String salasana) {
-		this.salasana = salasana;
-	}
+	public abstract String getSalasana();
 	
-	public ArrayList<Tunnit> getTunnit() {
-		return tunnit;
-	}
+	public abstract void setSalasana(String salasana);
 
-	public void addTunnit(Tunnit uusiTunnit) {
-		this.tunnit.add(uusiTunnit);
-	}
+	public abstract ArrayList<Tunnit> getTunnit();
 	
-	public void setTunnit(ArrayList<Tunnit> tunnit) {
-		this.tunnit = tunnit;
-}
+	public abstract void addTunnit(Tunnit uusiTunnit);
 	
+	public abstract void setTunnit(ArrayList<Tunnit> tunnit);
 	
-
 }
