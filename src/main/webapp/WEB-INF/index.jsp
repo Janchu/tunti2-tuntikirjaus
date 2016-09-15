@@ -8,15 +8,36 @@
 <link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<fieldset>
-<legend>Tuntikirjanpito</legend>
-<p><label>Etunimi: </label><input type="text"></p>
-<p><label>Sukunimi: </label><input type="text"></p>
+<div class="container">
+<form class="form-horizontal">
+  <div class="form-group">
+    <label for="syotaEtunimi" class="col-sm-2 control-label">Etunimi</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="syotaEtunimi" placeholder="Etunimi">
+    </div>
+  </div>
+    <div class="form-group">
+    <label for="syotaSukunimi" class="col-sm-2 control-label">Sukunimi</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="syotaSukunimi" placeholder="Sukunimi">
+    </div>
+  </div>
 <p><label>Pvm: </label>8.9.2016</p>
-<p><label>Tunnit: </label><input type="text"></p>
-<p><label>Kuvaus: </label><input type="text"></p>
-<button type="submit">Tallenna</button>
-</fieldset>
+<div class="form-group">
+    <label for="syotaTunnit" class="col-sm-2 control-label">Tunnit</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="syotaTunnit" placeholder="Tunnit">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="syotaTunnit" class="col-sm-2 control-label">Tunnit</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" rows="3"></textarea>
+    </div>
+  </div>
+<button class="btn btn-success" type="submit">Tallenna</button>
+</form>
+</div>
 <script src="webjars/jquery/1.11.1/jquery.min.js"></script>
 <script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
