@@ -13,9 +13,8 @@ import fi.softala.tunti2_tuntikirjaus.luokat.Tunnit;
 
 public interface TunnitDAO {
 	
-	public abstract void tallenna (Tunnit tunnit);
+	public abstract void tallenna (Tunnit tunnit, Kayttaja kayttaja);
 	
-	public abstract Kayttaja etsi(String etunimi, String sukunimi, int id);
 	
 	public abstract List<Kayttaja> haeKaikki();
 	
