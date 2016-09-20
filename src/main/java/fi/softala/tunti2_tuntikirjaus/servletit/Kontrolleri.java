@@ -15,13 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-
-
-
-
-
-
 import fi.softala.tunti2_tuntikirjaus.dao.TunnitDAO;
+import fi.softala.tunti2_tuntikirjaus.luokat.Kayttaja;
 import fi.softala.tunti2_tuntikirjaus.luokat.KayttajaImpl;
 import fi.softala.tunti2_tuntikirjaus.luokat.Tunnit;
 import fi.softala.tunti2_tuntikirjaus.luokat.TunnitImpl;
@@ -41,6 +36,16 @@ public class Kontrolleri extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		ApplicationContext context = new ClassPathXmlApplicationContext(
+				"spring-config.xml");
+		TunnitDAO dao = (TunnitDAO) context.getBean("daoLuokka");
+		ArrayList<Kayttaja> kayttajat = (ArrayList<Kayttaja>) dao.haeKaikki();
+		for (int i = 0; i < kayttajat.size(); i++) {
+			kayttajat.get(i).setTunnit((ArrayList<Tunnit>) dao.haeKayttajanTunnit(kayttajat.get(i).getId()));
+		}
+		
+		request.setAttribute("kayttajat", kayttajat);
+	
 		RequestDispatcher disp = request.getRequestDispatcher("index.jsp");
 		disp.forward(request, response);
 	}
