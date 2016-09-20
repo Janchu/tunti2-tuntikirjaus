@@ -20,4 +20,6 @@ public interface TunnitDAO {
 	
 	public abstract List<Tunnit> haeKayttajanTunnit(int kayttaja_id);
 	
+	public abstract void poista(int id);
+	
 }

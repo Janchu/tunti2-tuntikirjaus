@@ -54,5 +54,13 @@ public class TunnitDAOSpringJdbcImpl implements TunnitDAO {
 		
 	}
 	
+	public void poista(int id) {		
+		String sql = "delete from Tunnit where id=(?)";
+		Object[] parametrit = new Object[] {id};
+
+	    jdbcTemplate.update(sql , parametrit);
+	    
+	}
+	
 	
 }
