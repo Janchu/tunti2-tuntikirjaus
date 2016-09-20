@@ -9,17 +9,20 @@
 </head>
 <body>
 <div class="container">
+<div class="col-sm-offset-1">
+<h1>Tuntikirjanpito<button class="btn btn-default" type="button">Tuntikatselmointiin</button></h1>
+</div>
 <form class="form-horizontal">
   <div class="form-group">
     <label for="syotaEtunimi" class="col-sm-2 control-label">Etunimi: </label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" id="syotaEtunimi" placeholder="Etunimi">
+      <input type="text" class="form-control" name="etunimi" id="syotaEtunimi" placeholder="Etunimi">
     </div>
   </div>
     <div class="form-group">
     <label for="syotaSukunimi" class="col-sm-2 control-label">Sukunimi: </label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" id="syotaSukunimi" placeholder="Sukunimi">
+      <input type="text" class="form-control" name="sukunimi" id="syotaSukunimi" placeholder="Sukunimi">
     </div>
   </div>
 <div class="form-group">
@@ -30,13 +33,13 @@
 <div class="form-group">
     <label for="syotaTunnit" class="col-sm-2 control-label">Tunnit: </label>
     <div class="col-sm-1">
-      <input type="number" class="form-control" id="syotaTunnit" placeholder="Tunnit">
+      <input type="number" class="form-control" name="tunnit" id="syotaTunnit" placeholder="Tunnit">
     </div>
   </div>
   <div class="form-group">
     <label for="syotaTunnit" class="col-sm-2 control-label">Kuvaus: </label>
     <div class="col-sm-4">
-      <textarea class="form-control" rows="4"></textarea>
+      <textarea class="form-control" name="kuvaus" rows="4"></textarea>
     </div>
   </div>
 <div class="form-group">
