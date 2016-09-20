@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -11,31 +11,39 @@
 <div class="container">
 <form class="form-horizontal">
   <div class="form-group">
-    <label for="syotaEtunimi" class="col-sm-2 control-label">Etunimi</label>
-    <div class="col-sm-10">
+    <label for="syotaEtunimi" class="col-sm-2 control-label">Etunimi: </label>
+    <div class="col-sm-4">
       <input type="text" class="form-control" id="syotaEtunimi" placeholder="Etunimi">
     </div>
   </div>
     <div class="form-group">
-    <label for="syotaSukunimi" class="col-sm-2 control-label">Sukunimi</label>
-    <div class="col-sm-10">
+    <label for="syotaSukunimi" class="col-sm-2 control-label">Sukunimi: </label>
+    <div class="col-sm-4">
       <input type="text" class="form-control" id="syotaSukunimi" placeholder="Sukunimi">
     </div>
   </div>
-<p><label>Pvm: </label>8.9.2016</p>
 <div class="form-group">
-    <label for="syotaTunnit" class="col-sm-2 control-label">Tunnit</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="syotaTunnit" placeholder="Tunnit">
+    <label for="syotaTunnit" class="col-sm-2 control-label">Pvm: </label>
+    <div class="col-sm-10">20.9.2016
+    </div>
+  </div>
+<div class="form-group">
+    <label for="syotaTunnit" class="col-sm-2 control-label">Tunnit: </label>
+    <div class="col-sm-1">
+      <input type="number" class="form-control" id="syotaTunnit" placeholder="Tunnit">
     </div>
   </div>
   <div class="form-group">
-    <label for="syotaTunnit" class="col-sm-2 control-label">Tunnit</label>
-    <div class="col-sm-10">
-      <textarea class="form-control" rows="3"></textarea>
+    <label for="syotaTunnit" class="col-sm-2 control-label">Kuvaus: </label>
+    <div class="col-sm-4">
+      <textarea class="form-control" rows="4"></textarea>
     </div>
   </div>
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
 <button class="btn btn-success" type="submit">Tallenna</button>
+</div>
+</div>
 </form>
 </div>
 <script src="webjars/jquery/1.11.1/jquery.min.js"></script>
