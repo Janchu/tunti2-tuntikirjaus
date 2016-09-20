@@ -35,7 +35,7 @@ public class TunnitDAOSpringJdbcImpl implements TunnitDAO {
 
 	public List<Kayttaja> haeKaikki() {
 		
-		String sql = "select id, etunimi, sukunimi from Kayttaja";
+		String sql = "select id, etunimi, sukunimi from Kayttajat";
 		RowMapper<Kayttaja> mapper = new KayttajaRowMapper();
 		List<Kayttaja> kayttajat = jdbcTemplate.query(sql,mapper);
 

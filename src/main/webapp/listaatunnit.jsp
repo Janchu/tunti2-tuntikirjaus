@@ -39,12 +39,16 @@
     <tbody>
     <tr>
     <th scope="row">1</th>
-    <td><c:out value="${kayttajat.paivamaara}"/></td>
-    <td><c:out value="${kayttajat.tunnit}"/></td>
-    <td><c:out value="${kayttajat.kuvaus}"/></td>
+    <c:forEach items="${kayttajat}" var="klista">
+    <c:forEach items="${klista.tunnit}" var="tunnit">
+    <td><c:out value="${tunnit.paivamaara}"/></td>
+    <td><c:out value="${tunnit.tuntien_maara}"/></td>
+    <td><c:out value="${tunnit.kuvaus}"/></td>
     <td><button type="button" class="btn btn-default" aria-label="Left Align">
  		<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 		</button>
+		</c:forEach>
+		</c:forEach> 
 	</td>
     </tr>
      <tr>
