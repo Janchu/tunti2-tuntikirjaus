@@ -52,6 +52,7 @@ public class Kontrolleri extends HttpServlet {
 		String Etunimi = request.getParameter("etunimi");
 		String Sukunimi = request.getParameter("sukunimi");
 		String strTunnit = request.getParameter("tunnit");
+		String paivamaara = "NOW()";
 		int Tunnit = new Integer(strTunnit);
 		String Kuvaus = request.getParameter("kuvaus");
 		
@@ -82,7 +83,10 @@ public class Kontrolleri extends HttpServlet {
 			kayttaja.addTunnit(uusitunti);
 		}
 		
-		dao.tallenna(uusitunti, kayttaja);
+		dao.tallenna(uusitunti, kayttaja, paivamaara);
+		
+		System.out.println(uusitunti);
+		System.out.println(kayttaja);
 		doGet(request, response);
 		
 		

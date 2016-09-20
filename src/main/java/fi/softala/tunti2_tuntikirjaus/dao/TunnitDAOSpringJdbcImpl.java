@@ -19,18 +19,23 @@ public class TunnitDAOSpringJdbcImpl implements TunnitDAO {
 	public JdbcTemplate getJdbcTemplate() {
 		return jdbcTemplate;
 	}
-	
-	public void tallenna(Tunnit t, Kayttaja k) {
-		String sql = "insert into tunnit(tuntien_maara, paivamaara, kuvaus, kayttaja_id) values(?,?,?,?)";
-		Object[] parametrit = new Object[] {t.getTuntien_maara(), t.getPaivamaara(), t.getKuvaus(),k.getId()};
 
+	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
+
+	public void tallenna(Tunnit t, Kayttaja k, String paivamaara) {
+		t.setPaivamaara(paivamaara);
+		String sql = "insert into Tunnit(tuntien_maara, paivamaara, kuvaus, kayttaja_id) values(?,?,?,?)";
+		Object[] parametrit = new Object[] {t.getTuntien_maara(), t.getPaivamaara(), t.getKuvaus(),k.getId()};
+		System.out.println(t.getPaivamaara());
 	    jdbcTemplate.update(sql , parametrit);
 	    
 	}
 
 	public List<Kayttaja> haeKaikki() {
 		
-		String sql = "select id, etunimi, sukunimi from kayttaja";
+		String sql = "select id, etunimi, sukunimi from Kayttaja";
 		RowMapper<Kayttaja> mapper = new KayttajaRowMapper();
 		List<Kayttaja> kayttajat = jdbcTemplate.query(sql,mapper);
 
