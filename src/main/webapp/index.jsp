@@ -12,7 +12,7 @@
 <div class="col-sm-offset-1">
 <h1>Tuntikirjanpito<button class="btn btn-default" type="button">Tuntikatselmointiin</button></h1>
 </div>
-<form class="form-horizontal">
+<form class="form-horizontal" action="Kontrolleri" method="post">
   <div class="form-group">
     <label for="syotaEtunimi" class="col-sm-2 control-label">Etunimi: </label>
     <div class="col-sm-4">
