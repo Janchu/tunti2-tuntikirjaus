@@ -21,8 +21,8 @@ public class TunnitDAOSpringJdbcImpl implements TunnitDAO {
 	}
 	
 	public void tallenna(Tunnit t, Kayttaja k) {
-		String sql = "insert into tunnit(kuvaus, paivamaara, tuntien_maara, kayttaja_id) values(?,?,?,?)";
-		Object[] parametrit = new Object[] { t.getKuvaus(), t.getPaivamaara(), t.getTuntien_maara(), k.getId()};
+		String sql = "insert into tunnit(tuntien_maara, paivamaara, kuvaus, kayttaja_id) values(?,?,?,?)";
+		Object[] parametrit = new Object[] {t.getTuntien_maara(), t.getPaivamaara(), t.getKuvaus(),k.getId()};
 
 	    jdbcTemplate.update(sql , parametrit);
 	    
