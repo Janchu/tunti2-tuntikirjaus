@@ -1,7 +1,9 @@
 package fi.softala.tunti2_tuntikirjaus.servletit;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+
 
 
 
@@ -52,7 +56,9 @@ public class Kontrolleri extends HttpServlet {
 		String Etunimi = request.getParameter("etunimi");
 		String Sukunimi = request.getParameter("sukunimi");
 		String strTunnit = request.getParameter("tunnit");
-		String paivamaara = "NOW()";
+		Date pvm = new Date();
+		SimpleDateFormat simppeli = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String paivamaara = simppeli.format(pvm);
 		int Tunnit = new Integer(strTunnit);
 		String Kuvaus = request.getParameter("kuvaus");
 		
