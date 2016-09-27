@@ -22,7 +22,7 @@
 <div class="col-sm-offset-1">
 <h1>Tuntikirjanpito<button class="btn btn-default" type="button">Tuntikatselmointiin</button></h1>
 </div>
-<form class="form-horizontal">
+
 
 
  <div class="table-responsive"> 
@@ -35,20 +35,23 @@
    <th class="col-sm-1">Poista</th>
    </tr>
   </thead>
-    <tbody>    
+    <tbody>
+   
     <c:forEach items="${kayttajat}" var="klista">
     <c:set var="yhteensa" value="${0}" /> 
        
     <tr><td><c:out value="${klista.etunimi}" /> <c:out value="${klista.sukunimi}" />     
     <c:forEach items="${klista.tunnit}" var="tunnit">
+    <c:set var="id" value="${tunnit.id}" /> 
     <tr> <td><c:out value="${tunnit.paivamaara}"/></td>
     <td><c:out value="${tunnit.tuntien_maara}"/> <c:set var="yhteensa" value="${yhteensa + tunnit.tuntien_maara}" /></td>
     <td><c:out value="${tunnit.kuvaus}"/></td>
-    <td><form:form modelAttribute="kayttaja" method="post">
-    <form:input type="hidden" path="uusitunti.id" value="${tunnit.id}" name="tunnit" id="syotaTunnit" /><button type="button" class="btn btn-default" aria-label="Left Align">
- 		<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+    <td>
+     <form:form modelAttribute="kayttaja" method="post">
+    <form:input path="uusitunti.id" type="hidden" value="${id}"/><button type="submit" class="btn btn-success" aria-label="Left Align">
+ 		<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>-
 		</button>
-		</form:form>
+	 </form:form>
 		</td>
     
 		</c:forEach>
@@ -56,19 +59,10 @@
 		</tr><tr><td>Yhteensä: <c:out value="${yhteensa}"/></td></tr>
 		</c:forEach> 
 	
-     <tr>  
-     <td><button type="button" class="btn btn-default" aria-label="Left Align">
- 		 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
- 	 </td> 
-  	 </tr>
-        <tr>
-        
-        <td></td>
-        <td>xxx</td></tr>
        </tbody>
    </table>
   </div> 
-  </form>
+  
  </div>
  
 </body>

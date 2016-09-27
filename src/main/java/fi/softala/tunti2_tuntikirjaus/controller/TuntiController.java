@@ -62,17 +62,18 @@ public class TuntiController {
 	}
 	
 	@RequestMapping(value="lista", method=RequestMethod.POST)
-	public String delete( @ModelAttribute(value="kayttaja") KayttajaImpl kayttaja){
+	public String delete( @ModelAttribute(value="kayttaja") KayttajaImpl kayttaja){		
 		
-		System.out.println("HAI");
 		Tunnit tunti = new TunnitImpl();
 		
 		tunti.setId(kayttaja.getUusitunti().getId());
 		
+		
+		System.out.println(tunti.getId());
 		tunnitDao.poista(tunti.getId());
 		
 		
-		return "lista";		
+		return "redirect:/tunnit/lista";
 	}
 	
 	
