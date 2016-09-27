@@ -98,7 +98,7 @@ public class TuntiController {
 		tunnitDao.tallenna(kayttaja.getUusitunti(), kayttaja, paivamaara);
 		}
 		
-		return "index";		
+		return "redirect:/tunnit/uusi";		
 	}
 	
 	
