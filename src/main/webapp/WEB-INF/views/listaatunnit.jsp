@@ -5,6 +5,7 @@
 <%@page import="fi.softala.tunti2_tuntikirjaus.luokat.TunnitImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form"  prefix="form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -36,18 +37,22 @@
   </thead>
     <tbody>    
     <c:forEach items="${kayttajat}" var="klista">
-    <c:set var="yhteensa" value="${0}" />     
+    <c:set var="yhteensa" value="${0}" /> 
+       
     <tr><td><c:out value="${klista.etunimi}" /> <c:out value="${klista.sukunimi}" />     
     <c:forEach items="${klista.tunnit}" var="tunnit">
     <tr> <td><c:out value="${tunnit.paivamaara}"/></td>
     <td><c:out value="${tunnit.tuntien_maara}"/> <c:set var="yhteensa" value="${yhteensa + tunnit.tuntien_maara}" /></td>
     <td><c:out value="${tunnit.kuvaus}"/></td>
-    <td><button type="button" class="btn btn-default" aria-label="Left Align">
+    <td><form:form modelAttribute="kayttaja" method="post">
+    <form:input type="hidden" path="uusitunti.id" value="${tunnit.id}" name="tunnit" id="syotaTunnit" /><button type="button" class="btn btn-default" aria-label="Left Align">
  		<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 		</button>
+		</form:form>
 		</td>
     
 		</c:forEach>
+		
 		</tr><tr><td>Yhteensä: <c:out value="${yhteensa}"/></td></tr>
 		</c:forEach> 
 	

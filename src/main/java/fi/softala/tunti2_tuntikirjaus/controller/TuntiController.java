@@ -54,10 +54,27 @@ public class TuntiController {
 		for (int i = 0; i < kayttajat.size(); i++) {
 			kayttajat.get(i).setTunnit((ArrayList<Tunnit>) tunnitDao.haeKayttajanTunnit(kayttajat.get(i).getId()));
 		}
-						
+		Kayttaja kayttaja = new KayttajaImpl();
+		
+		model.addAttribute("kayttaja", kayttaja);
 		model.addAttribute("kayttajat", kayttajat);		
 		return "listaatunnit";
 	}
+	
+	@RequestMapping(value="lista", method=RequestMethod.POST)
+	public String delete( @ModelAttribute(value="kayttaja") KayttajaImpl kayttaja){
+		
+		System.out.println("HAI");
+		Tunnit tunti = new TunnitImpl();
+		
+		tunti.setId(kayttaja.getUusitunti().getId());
+		
+		tunnitDao.poista(tunti.getId());
+		
+		
+		return "lista";		
+	}
+	
 	
 	
 	@RequestMapping(value="uusi", method=RequestMethod.POST)
