@@ -1,10 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page import = "java.util.Date" %>
+<%@ page import = "java.text.SimpleDateFormat" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <%@ taglib uri="http://www.springframework.org/tags/form"  prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
+<%
+  SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+  String date = sdf.format(new Date());
+%>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Kirjaa tunnit</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,7 +36,7 @@
   </div>
 <div class="form-group">
     <label for="syotaTunnit" class="col-sm-2 control-label">Pvm: </label>
-    <div class="col-sm-10">22.9.2016
+    <div class="col-sm-10"><%=date%>
     </div>
   </div>
 <div class="form-group">
