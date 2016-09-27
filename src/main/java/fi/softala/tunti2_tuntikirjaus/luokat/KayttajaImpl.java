@@ -13,10 +13,11 @@ public class KayttajaImpl implements Kayttaja {
 	private String sukunimi;
 	private String salasana;
 	private ArrayList<Tunnit> tunnit;
-	
+	private Tunnit uusitunti;
 	
 	// Tyhjä constructor
 	
+
 	public KayttajaImpl(){
 		this.id = -1;
 		this.kayttajatunnus = "";
@@ -25,6 +26,7 @@ public class KayttajaImpl implements Kayttaja {
 		this.sukunimi = "";
 		this.salasana = "";		
 		this.tunnit = new ArrayList<Tunnit>();
+		this.uusitunti = new TunnitImpl();
 	}
 	
 	// Constructor joka vaatii kaikki muuttujat
@@ -37,7 +39,7 @@ public class KayttajaImpl implements Kayttaja {
 		this.etunimi = etunimi;
 		this.sukunimi = sukunimi;
 		this.salasana = salasana;
-		this.tunnit = tunnit;
+		this.tunnit = tunnit;		
 	}
 	
 	// Constructor id:lle ja salasanalle
@@ -50,6 +52,7 @@ public class KayttajaImpl implements Kayttaja {
 		this.sahkoposti = "";
 		this.etunimi = "";
 		this.sukunimi = "";
+		this.uusitunti = new TunnitImpl();
 	}
 
 	// Getterit ja setterit
@@ -126,6 +129,12 @@ public class KayttajaImpl implements Kayttaja {
 		this.tunnit = tunnit;
 }
 	
-	
+	public Tunnit getUusitunti() {
+		return uusitunti;
+	}
+
+	public void setUusitunti(Tunnit uusitunti) {
+		this.uusitunti = uusitunti;
+	}
 
 }

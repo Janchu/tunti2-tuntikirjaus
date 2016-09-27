@@ -1,5 +1,4 @@
 <%@page import="java.util.ArrayList"%>
-<%@page import="fi.softala.tunti2_tuntikirjaus.servletit.Kontrolleri"%>
 <%@page import="fi.softala.tunti2_tuntikirjaus.luokat.Kayttaja"%>
 <%@page import="fi.softala.tunti2_tuntikirjaus.luokat.KayttajaImpl"%>
 <%@page import="fi.softala.tunti2_tuntikirjaus.luokat.Tunnit"%>
@@ -28,40 +27,37 @@
  <div class="table-responsive"> 
   <table class="table table-bordered"> 
   <thead>
-   <tr>
-   <th class="col-sm-1">#</th>
+   <tr>  
    <th class="col-sm-1">P‰iv‰m‰‰r‰</th>
    <th class="col-sm-1">Tunnit</th>
    <th class="col-sm-3">Kuvaus</th>
    <th class="col-sm-1">Poista</th>
    </tr>
   </thead>
-    <tbody>
-    <tr>
-    <th scope="row">1</th>
+    <tbody>    
     <c:forEach items="${kayttajat}" var="klista">
+    <c:set var="yhteensa" value="${0}" />     
+    <tr><td><c:out value="${klista.etunimi}" /> <c:out value="${klista.sukunimi}" />     
     <c:forEach items="${klista.tunnit}" var="tunnit">
-    <td><c:out value="${tunnit.paivamaara}"/></td>
-    <td><c:out value="${tunnit.tuntien_maara}"/></td>
+    <tr> <td><c:out value="${tunnit.paivamaara}"/></td>
+    <td><c:out value="${tunnit.tuntien_maara}"/> <c:set var="yhteensa" value="${yhteensa + tunnit.tuntien_maara}" /></td>
     <td><c:out value="${tunnit.kuvaus}"/></td>
     <td><button type="button" class="btn btn-default" aria-label="Left Align">
  		<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 		</button>
+		</td>
+    
 		</c:forEach>
+		</tr><tr><td>Yhteens‰: <c:out value="${yhteensa}"/></td></tr>
 		</c:forEach> 
-	</td>
-    </tr>
-     <tr>
-     <th scope="row">2</th>
-     <td>Table cell</td>
-     <td>Table cell</td>
-     <td>Table cell</td> 
+	
+     <tr>  
      <td><button type="button" class="btn btn-default" aria-label="Left Align">
  		 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
  	 </td> 
   	 </tr>
         <tr>
-        <td>Yhteens‰</td>
+        
         <td></td>
         <td>xxx</td></tr>
        </tbody>

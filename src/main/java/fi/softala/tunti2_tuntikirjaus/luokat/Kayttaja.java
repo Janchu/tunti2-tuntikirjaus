@@ -34,4 +34,8 @@ public interface Kayttaja {
 	
 	public abstract void setTunnit(ArrayList<Tunnit> tunnit);
 	
+	public abstract Tunnit getUusitunti();
+	
+	public abstract void setUusitunti(Tunnit tunnit);
+	
 }

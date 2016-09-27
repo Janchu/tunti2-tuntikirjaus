@@ -2,9 +2,11 @@ package fi.softala.tunti2_tuntikirjaus.dao;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-
+import org.springframework.stereotype.Repository;
 
 import fi.softala.tunti2_tuntikirjaus.dao.TunnitRowMapper;
 import fi.softala.tunti2_tuntikirjaus.luokat.Tunnit;
@@ -12,8 +14,10 @@ import fi.softala.tunti2_tuntikirjaus.luokat.Kayttaja;
 /**
  * Servlet implementation class TunnitDAOSPingJdbcImpl
  */
+@Repository
 public class TunnitDAOSpringJdbcImpl implements TunnitDAO {
 	
+	@Inject
 	private JdbcTemplate jdbcTemplate;
 	
 	public JdbcTemplate getJdbcTemplate() {
