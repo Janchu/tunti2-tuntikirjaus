@@ -1,18 +1,47 @@
 package fi.softala.tunti2_tuntikirjaus.luokat;
 
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import java.util.ArrayList;
 
+@Entity
+@Table(name = "kayttaja")
 public class KayttajaImpl implements Kayttaja {
 	
 	// Muuttujat
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)	
 	private int id;
+	
+	@Size(min = 1, max = 255)
 	private String kayttajatunnus;
+	
+	@Size(min = 1, max = 255)
+	@Email
 	private String sahkoposti;
+	
+	@Size(min = 1, max = 255)
 	private String etunimi;
+	
+	@Size(min = 1, max = 255)
 	private String sukunimi;
+	
+	@Size(min = 1, max = 255)
 	private String salasana;
+	
+	@Pattern(regexp = "\\d{4}")
 	private ArrayList<Tunnit> tunnit;
+	
 	private Tunnit uusitunti;
 	
 	// Tyhjä constructor
