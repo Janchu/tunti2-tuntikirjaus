@@ -45,7 +45,7 @@ public class TuntiController {
 		
 		model.addAttribute("kayttajat", kayttajat);
 		model.addAttribute("kayttaja", kayttaja);
-		return "index";
+		return "syotatunnit";
 	}
 	
 	@RequestMapping(value="lista", method=RequestMethod.GET)
