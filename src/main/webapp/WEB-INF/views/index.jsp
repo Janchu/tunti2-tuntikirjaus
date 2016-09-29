@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Java EE - Demo 14</title>
-<link rel="stylesheet" type="text/css" href="resources/styles/common.css">
+<link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 	<div id="contentbox">
