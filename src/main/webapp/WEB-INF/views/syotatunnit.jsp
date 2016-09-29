@@ -21,7 +21,7 @@
 	crossorigin="anonymous">
 </head>
 <body>
-	<div class="container">
+	<div class="container" style="border: 2px solid black">
 		<div class="col-sm-offset-1">
 			<h1>
 				Tuntikirjanpito Spring MVC<a href="lista"><button class="btn btn-default" type="button">Tuntikatselmointiin</button></a>
@@ -29,21 +29,18 @@
 		</div>
 		<form:form modelAttribute="kayttaja" method="post" class="form-horizontal">
 			<div class="form-group">
-				<form:label path="etunimi" for="syotaEtunimi"
-					class="col-sm-2 control-label">Etunimi: </form:label>
-				<div class="col-sm-4">
-					<form:input path="etunimi" type="text" class="form-control"
-						id="syotaEtunimi" placeholder="Etunimi" />
-				</div>
-			</div>
-			<div class="form-group">
-				<form:label path="sukunimi" for="syotaSukunimi"
-					class="col-sm-2 control-label">Sukunimi: </form:label>
-				<div class="col-sm-4">
-					<form:input path="sukunimi" type="text" class="form-control"
-						id="syotaSukunimi" placeholder="Sukunimi" />
-				</div>
-			</div>
+<label for="syotaEtunimi" class="col-sm-2 control-label">Nimi:</label>
+<label class="col-sm-2"><select class="form-control" name="etunimi" id="syotaEtunimi">
+  <option>Daniel</option>
+  <option>Janne</option>
+  <option>Mira</option>
+  <option>Niko</option>
+  <option>Tommi</option>
+  <option>Testaaja</option>
+</select>
+</label>
+</div>
+			
 			<div class="form-group">
 				<label for="syotaTunnit" class="col-sm-2 control-label">Pvm:
 				</label>
