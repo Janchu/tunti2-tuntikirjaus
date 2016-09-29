@@ -29,6 +29,6 @@
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	
 	<!-- Mäppäys bootstrappia varten -->
-	<mvc:resources location="/webjars/**" mapping="/webjars/" />
+	<mvc:resources location="/webjars/" mapping="/webjars/**" />
 
 </beans>
