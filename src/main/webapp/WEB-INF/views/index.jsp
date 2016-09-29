@@ -5,13 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Java EE - Demo 14</title>
-<link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet">
 </head>
 <body>
 	<div id="contentbox">
 		<h3>Tästä tuntikirjaushärdelliin</h3>
-		<ul>
-			
+		<p>
 			<a href="tunnit/uusi">tunnit/uusi</a>
 		</p>
 	</div>
