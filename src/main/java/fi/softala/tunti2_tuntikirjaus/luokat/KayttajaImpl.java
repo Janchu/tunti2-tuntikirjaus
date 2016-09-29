@@ -24,31 +24,24 @@ public class KayttajaImpl implements Kayttaja {
 	@GeneratedValue(strategy = GenerationType.AUTO)	
 	private int id;
 	
-	@NotNull
 	@Size(min = 1, max = 255)
 	private String kayttajatunnus;
 	
-	@NotNull
 	@Size(min = 1, max = 255)
 	@Email
 	private String sahkoposti;
 	
-	@NotNull
 	@Size(min = 1, max = 255)
 	@Pattern(regexp = "[^a-zA-ZäöÄÖ]")
 	private String etunimi;
 	
-	@NotNull
 	@Size(min = 1, max = 255)
 	@Pattern(regexp = "[^a-zA-ZäöÄÖ]")
 	private String sukunimi;
 	
-	@NotNull
 	@Size(min = 1, max = 255)
 	private String salasana;
 	
-	@NotNull
-	@Pattern(regexp = "\\d{4}")
 	private ArrayList<Tunnit> tunnit;
 	
 	private Tunnit uusitunti;

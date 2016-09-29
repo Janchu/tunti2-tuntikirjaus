@@ -6,9 +6,9 @@ public interface Tunnit {
 	
 	public abstract void setId(int id);
 	
-	public abstract int getTuntien_maara();
+	public abstract double getTuntien_maara();
 	
-	public abstract void setTuntien_maara(int tuntien_maara);
+	public abstract void setTuntien_maara(double tuntien_maara);
 	
 	public abstract String getPaivamaara();
 	

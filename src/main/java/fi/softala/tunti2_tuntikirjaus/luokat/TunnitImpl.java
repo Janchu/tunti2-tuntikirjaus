@@ -2,8 +2,8 @@ package fi.softala.tunti2_tuntikirjaus.luokat;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -15,12 +15,11 @@ public class TunnitImpl implements Tunnit {
 	private int id;
 	
 	@NotNull
-	@Pattern(regexp = "\\d{4}")
-	private int tuntien_maara;
+	@DecimalMax("99999.99")
+	private double tuntien_maara;
 	
 	private String paivamaara;
 	
-	@NotNull
 	@Size(min = 1, max = 1000)
 	private String kuvaus;
 	
@@ -28,7 +27,7 @@ public class TunnitImpl implements Tunnit {
 	
 	public TunnitImpl(){
 		this.id = 0;
-		this.tuntien_maara = 0;
+		this.tuntien_maara = 0.00;
 		this.paivamaara = "";
 		this.kuvaus = "";		
 		
@@ -54,8 +53,6 @@ public class TunnitImpl implements Tunnit {
 		
 	}
 
-	// Getterit ja setterit
-	
 	public int getId() {
 		return id;
 	}
@@ -64,11 +61,11 @@ public class TunnitImpl implements Tunnit {
 		this.id = id;
 	}
 
-	public int getTuntien_maara() {
+	public double getTuntien_maara() {
 		return tuntien_maara;
 	}
 
-	public void setTuntien_maara(int tuntien_maara) {
+	public void setTuntien_maara(double tuntien_maara) {
 		this.tuntien_maara = tuntien_maara;
 	}
 
@@ -87,9 +84,9 @@ public class TunnitImpl implements Tunnit {
 	public void setKuvaus(String kuvaus) {
 		this.kuvaus = kuvaus;
 	}
+
+	// Getterit ja setterit
 	
-	
-	
-	
+
 	
 }
