@@ -6,7 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags"  prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
@@ -18,77 +18,74 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	crossorigin="anonymous">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 
 	<div class="container">
-  <h2>Simple Collapsible</h2>
-  <a href="#demo" class="btn btn-info" data-toggle="collapse">Niko Kaartinen</a>
-  <div id="demo" class="collapse">
-  	
-    <table>
-    <tr><td>Plavehold</td><td>Plop</td><td>Testi</td></tr>
-    <tr><td>Plavehold</td><td>Plop</td><td>Testi</td></tr>
-    </table>
-  </div>
-</div>
-
-
-
-	<div class="container">
 		<div class="col-sm-offset-1">
 			<h1>
-				<spring:message code="title"/>
-				<a href="uusi"><button class="btn btn-default" type="button"><spring:message code="back"/></button></a>
+				<spring:message code="title" />
+				<a href="uusi"><button class="btn btn-default" type="button">
+						<spring:message code="back" />
+					</button></a>
 			</h1>
 		</div>
 
 
 
-		<div class="table-responsive">
-			<table class="table table-bordered">
-				<thead>
-					<tr>
-						<th class="col-sm-1"><spring:message code="date"/></th>
-						<th class="col-sm-1"><spring:message code="hours"/></th>
-						<th class="col-sm-3"><spring:message code="desc"/></th>
-						<th class="col-sm-1"><spring:message code="del"/></th>
-					</tr>
-				</thead>
-				<tbody>
 
-					<c:forEach items="${kayttajat}" var="klista">
-						<c:set var="yhteensa" value="${0}" />
+
+		<c:forEach items="${kayttajat}" var="klista">
+			<c:set var="yhteensa" value="${0}" />
+
+			<a href="#<c:out value="${klista.etunimi}" />" class="btn btn-info"
+				data-toggle="collapse"><c:out value="${klista.etunimi}" /> <c:out
+					value="${klista.sukunimi}" /></a><br><br>
+					
+		<div id="<c:out value="${klista.etunimi}" />" class="collapse">
+
+			<div class="table-responsive">
+				<table class="table table-bordered">
+
+					<thead>
+						<tr>
+							<th class="col-sm-1"><spring:message code="date" /></th>
+							<th class="col-sm-1"><spring:message code="hours" /></th>
+							<th class="col-sm-3"><spring:message code="desc" /></th>
+							<th class="col-sm-1"><spring:message code="del" /></th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${klista.tunnit}" var="tunnit">
+							<c:set var="id" value="${tunnit.id}" />
+							<tr>
+								<td><c:out value="${tunnit.paivamaara}" /></td>
+								<td><c:out value="${tunnit.tuntien_maara}" /> <c:set
+										var="yhteensa" value="${yhteensa + tunnit.tuntien_maara}" /></td>
+								<td><c:out value="${tunnit.kuvaus}" /></td>
+								<td><form:form modelAttribute="kayttaja" method="post">
+										<form:input path="uusitunti.id" type="hidden" value="${id}" />
+										<button type="submit" class="btn btn-danger"
+											aria-label="Left Align">
+											<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+										</button>
+									</form:form></td>
+							</tr>
+						</c:forEach>
 
 						<tr>
-							<td><c:out value="${klista.etunimi}" /> <c:out
-									value="${klista.sukunimi}" /> <c:forEach
-									items="${klista.tunnit}" var="tunnit">
-									<c:set var="id" value="${tunnit.id}" />
-									<tr>
-										<td><c:out value="${tunnit.paivamaara}" /></td>
-										<td><c:out value="${tunnit.tuntien_maara}" /> <c:set
-												var="yhteensa" value="${yhteensa + tunnit.tuntien_maara}" /></td>
-										<td><c:out value="${tunnit.kuvaus}" /></td>
-										<td><form:form modelAttribute="kayttaja" method="post">
-												<form:input path="uusitunti.id" type="hidden" value="${id}" />
-												<button type="submit" class="btn btn-danger"
-													aria-label="Left Align">
-													<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-												</button>
-											</form:form></td>
-								</c:forEach>
+							<td><spring:message code="total" />: <c:out
+									value="${yhteensa}" /></td>
 						</tr>
-						<tr>
-							<td><spring:message code="total"/>: <c:out value="${yhteensa}" /></td>
-						</tr>
-					</c:forEach>
-
-				</tbody>
-			</table>
-		</div>
+					</tbody>
+				</table>
+			</div>
+			</div>
+		</c:forEach>
 
 	</div>
 
