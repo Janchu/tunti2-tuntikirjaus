@@ -3,8 +3,8 @@
 <%@page import="fi.softala.tunti2_tuntikirjaus.luokat.KayttajaImpl"%>
 <%@page import="fi.softala.tunti2_tuntikirjaus.luokat.Tunnit"%>
 <%@page import="fi.softala.tunti2_tuntikirjaus.luokat.TunnitImpl"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags"  prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -26,7 +26,7 @@
 	<div class="container">
 		<div class="col-sm-offset-1">
 			<h1>
-				Tuntikirjanpito
+				<spring:message code="title"/>
 				<a href="uusi"><button class="btn btn-default" type="button"><spring:message code="back"/></button></a>
 			</h1>
 		</div>
@@ -37,10 +37,10 @@
 			<table class="table table-bordered">
 				<thead>
 					<tr>
-						<th class="col-sm-1">P‰iv‰m‰‰r‰</th>
-						<th class="col-sm-1">Tunnit</th>
-						<th class="col-sm-3">Kuvaus</th>
-						<th class="col-sm-1">Poista</th>
+						<th class="col-sm-1"><spring:message code="date"/></th>
+						<th class="col-sm-1"><spring:message code="hours"/></th>
+						<th class="col-sm-3"><spring:message code="desc"/></th>
+						<th class="col-sm-1"><spring:message code="del"/></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -68,7 +68,7 @@
 								</c:forEach>
 						</tr>
 						<tr>
-							<td>Yhteens‰: <c:out value="${yhteensa}" /></td>
+							<td><spring:message code="total"/>: <c:out value="${yhteensa}" /></td>
 						</tr>
 					</c:forEach>
 
