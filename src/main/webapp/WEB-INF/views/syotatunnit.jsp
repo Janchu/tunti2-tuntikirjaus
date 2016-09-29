@@ -15,17 +15,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Kirjaa tunnit</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"
-	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
 </head>
 <body>
 	<div class="container">
 		<div class="col-sm-offset-1">
 			<h1>
-				Tuntikirjanpito Spring MVC<a href="lista">Tuntikatselmointiin</a>
+				Tuntikirjanpito Spring MVC<a href="lista"><button class="btn btn-default" type="button">Tuntikatselmointiin</button></a>
 			</h1>
 		</div>
-		<form:form modelAttribute="kayttaja" method="post">
+		<form:form modelAttribute="kayttaja" method="post" class="form-horizontal">
 			<div class="form-group">
 				<form:label path="etunimi" for="syotaEtunimi"
 					class="col-sm-2 control-label">Etunimi: </form:label>

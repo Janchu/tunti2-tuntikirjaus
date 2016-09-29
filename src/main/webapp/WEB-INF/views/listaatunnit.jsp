@@ -13,8 +13,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Listaa tunnit</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"
-	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
 </head>
 <body>
 
@@ -24,7 +26,7 @@
 		<div class="col-sm-offset-1">
 			<h1>
 				Tuntikirjanpito
-				<button class="btn btn-default" type="button">Tuntikatselmointiin</button>
+				<a href="uusi"><button class="btn btn-default" type="button">Takaisin</button></a>
 			</h1>
 		</div>
 
@@ -57,9 +59,9 @@
 										<td><c:out value="${tunnit.kuvaus}" /></td>
 										<td><form:form modelAttribute="kayttaja" method="post">
 												<form:input path="uusitunti.id" type="hidden" value="${id}" />
-												<button type="submit" class="btn btn-success"
+												<button type="submit" class="btn btn-danger"
 													aria-label="Left Align">
-													<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>-
+													<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 												</button>
 											</form:form></td>
 								</c:forEach>
