@@ -1,21 +1,27 @@
 package fi.softala.tunti2_tuntikirjaus.luokat;
 
-import javax.validation.constraints.Size;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
+@Entity
+@Table(name = "tunnit")
 public class TunnitImpl implements Tunnit {
 
 	// Muuttujat
 	
 	private int id;
+	
+	@NotNull
+	@Pattern(regexp = "\\d{4}")
 	private int tuntien_maara;
+	
 	private String paivamaara;
 	
-	@Size(min = 1, max = 255)
+	@NotNull
+	@Size(min = 1, max = 1000)
 	private String kuvaus;
 	
 	// Tyhjä constructor
