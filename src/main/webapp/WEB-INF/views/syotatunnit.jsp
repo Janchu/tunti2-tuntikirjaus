@@ -8,6 +8,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script>
+
+	function myFunction() {
+    // Get the snackbar DIV
+    var x = document.getElementById("snackbar")
+
+    // Add the "show" class to DIV
+    x.className = "show";
+
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+	}
+
+</script>
+
 <%
 	SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 	String date = sdf.format(new Date());
@@ -19,6 +34,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/styles/tyyli.css"/>"/>
 </head>
 <body>
 	<div class="container" style="border: 2px solid black">
@@ -66,12 +82,13 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button class="btn btn-success" type="submit">Tallenna</button>
+					<button class="btn btn-success" onclick="myFunction()" type="submit">Tallenna</button>
 				</div>
 			</div>
 		</form:form>
 	</div>
 	<script src="webjars/jquery/1.11.1/jquery.min.js"></script>
 	<script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<div id="snackbar">Some text some message..</div>
 </body>
 </html>
