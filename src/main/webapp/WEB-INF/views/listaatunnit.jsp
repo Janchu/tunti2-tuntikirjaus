@@ -18,12 +18,36 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/styles/tyyli.css"/>"/>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+    
+      <li><a href="uusi">Syötä tunnit</a></li>
+       <li class="active"><a href="lista">Tuntilista</a></li>
+
+    </ul>
+    <ul class="nav navbar-nav navbar-middle">
+    <li><a href="?lang=en">en</a></li>
+    <li><a href="?lang=fi">fi</a></li>
+    </ul>
+   
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+	<a href="?lang=en">en</a> | <a href="?lang=fi">fi</a>
 
 	<div class="container">
 		<div class="col-sm-offset-1">
@@ -70,7 +94,7 @@
 								<td><form:form modelAttribute="kayttaja" method="post">
 										<form:input path="uusitunti.id" type="hidden" value="${id}" />
 										<button type="submit" class="btn btn-danger"
-											aria-label="Left Align">
+											aria-label="Left Align" onclick="return confirm('Haluatko varmasti poistaa tunnit?')">
 											<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 										</button>
 									</form:form></td>
