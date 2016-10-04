@@ -26,11 +26,6 @@
 </head>
 <body>
 
-	<div id="testiloota">
-	
-	<h1>teoitaty</h1>
-	
-	</div>
 
 	<a href="?lang=en">en</a> | <a href="?lang=fi">fi</a>
 
@@ -79,7 +74,7 @@
 								<td><form:form modelAttribute="kayttaja" method="post">
 										<form:input path="uusitunti.id" type="hidden" value="${id}" />
 										<button type="submit" class="btn btn-danger"
-											aria-label="Left Align">
+											aria-label="Left Align" onclick="return confirm('Haluatko varmasti poistaa tunnit?')">
 											<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 										</button>
 									</form:form></td>

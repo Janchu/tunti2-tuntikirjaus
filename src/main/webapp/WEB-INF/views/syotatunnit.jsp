@@ -38,10 +38,24 @@
 
 </head>
 <body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+    
+      <li class="active"><a href="uusi">Syötä tunnit</a></li>
+       <li><a href="lista">Tuntilista</a></li>
+
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+  </div>
+</nav>
 	<div class="container" style="border: 2px solid black">
 		<div class="col-sm-offset-1">
 			<h1>
-				Tuntikirjanpito Spring MVC<a href="lista"><button class="btn btn-default" type="button">Tuntikatselmointiin</button></a>
+				Tuntikirjanpito Spring MVC<a href="lista"></a>
 			</h1>
 		</div>
 		<form:form modelAttribute="kayttaja" method="post" class="form-horizontal">
