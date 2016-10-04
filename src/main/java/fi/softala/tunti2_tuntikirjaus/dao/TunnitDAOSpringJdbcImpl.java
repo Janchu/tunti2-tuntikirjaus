@@ -4,10 +4,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.slf4j.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-
 import fi.softala.tunti2_tuntikirjaus.dao.TunnitRowMapper;
 import fi.softala.tunti2_tuntikirjaus.luokat.Tunnit;
 import fi.softala.tunti2_tuntikirjaus.luokat.Kayttaja;
@@ -18,7 +18,9 @@ import fi.softala.tunti2_tuntikirjaus.luokat.Kayttaja;
 public class TunnitDAOSpringJdbcImpl implements TunnitDAO {
 	
 	@Inject
-	private JdbcTemplate jdbcTemplate;
+	private JdbcTemplate jdbcTemplate;	
+	
+	final static Logger logger = LoggerFactory.getLogger(TunnitDAOSpringJdbcImpl.class);
 	
 	public JdbcTemplate getJdbcTemplate() {
 		return jdbcTemplate;
@@ -30,6 +32,7 @@ public class TunnitDAOSpringJdbcImpl implements TunnitDAO {
 
 	public void tallenna(Tunnit t, Kayttaja k, String paivamaara) {
 		t.setPaivamaara(paivamaara);
+		logger.info("Laitettava p‰iv‰m‰‰r‰ on " + paivamaara);
 		String sql = "insert into Tunnit(tuntien_maara, paivamaara, kuvaus, kayttaja_id) values(?,?,?,?)";
 		Object[] parametrit = new Object[] {t.getTuntien_maara(), t.getPaivamaara(), t.getKuvaus(),k.getId()};
 		System.out.println(t.getPaivamaara());
@@ -47,6 +50,8 @@ public class TunnitDAOSpringJdbcImpl implements TunnitDAO {
 	}
 	
 	public List<Tunnit>haeKayttajanTunnit(int kayttaja_id){
+		
+		logger.info("K‰ytt‰j‰n ID on: " + kayttaja_id);
 		
 		String sql = "select id, tuntien_maara, paivamaara, kuvaus from Tunnit where kayttaja_id =(?) order by paivamaara";
 		Object[] parametri = new Object[]{kayttaja_id};

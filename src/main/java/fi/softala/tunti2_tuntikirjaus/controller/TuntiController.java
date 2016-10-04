@@ -6,6 +6,8 @@ import java.util.Date;
 
 import javax.inject.Inject;
 
+
+import org.slf4j.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,6 +27,9 @@ public class TuntiController {
 	@Inject
 	private TunnitDAO tunnitDao;
 
+	final static Logger logger = LoggerFactory.getLogger(TuntiController.class);
+	
+	
 	public TunnitDAO getTunnitDao() {
 		return tunnitDao;
 	}
@@ -44,7 +49,7 @@ public class TuntiController {
 		Kayttaja kayttaja = new KayttajaImpl();
 		
 		model.addAttribute("kayttajat", kayttajat);
-		model.addAttribute("kayttaja", kayttaja);
+		model.addAttribute("kayttaja", kayttaja);		
 		return "syotatunnit";
 	}
 	
@@ -94,7 +99,7 @@ public class TuntiController {
 		
 		
 		if(kayttaja.getId() > 6 || kayttaja.getId() < 1){}else{
-		
+		logger.info(kayttaja.getEtunimi() + " " + kayttaja.getSukunimi());
 		tunnitDao.tallenna(kayttaja.getUusitunti(), kayttaja, paivamaara);
 		}
 		
