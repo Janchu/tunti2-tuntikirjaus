@@ -35,6 +35,7 @@
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/styles/tyyli.css"/>"/>
+
 </head>
 <body>
 	<div class="container" style="border: 2px solid black">
@@ -46,7 +47,10 @@
 		<form:form modelAttribute="kayttaja" method="post" class="form-horizontal">
 			<div class="form-group">
 <label for="syotaEtunimi" class="col-sm-2 control-label">Nimi:</label>
+
+
 <label class="col-sm-2"><select class="form-control" name="etunimi" id="syotaEtunimi">
+  <option>Valitse Käyttäjä</option>
   <option>Daniel</option>
   <option>Janne</option>
   <option>Mira</option>
