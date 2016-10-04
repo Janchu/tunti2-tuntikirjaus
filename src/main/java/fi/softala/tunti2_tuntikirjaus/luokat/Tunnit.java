@@ -6,6 +6,10 @@ public interface Tunnit {
 	
 	public abstract void setId(int id);
 	
+	public abstract int getKayttajaId();
+	
+	public abstract void setKayttajaId(int kayttajaId);
+	
 	public abstract double getTuntien_maara();
 	
 	public abstract void setTuntien_maara(double tuntien_maara);

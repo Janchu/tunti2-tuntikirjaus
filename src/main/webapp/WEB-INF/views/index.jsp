@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Java EE - Demo 14</title>
+<title>Tervetuloa tuntikirjaukseen</title>
 <link
 	href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"
 	rel="stylesheet">

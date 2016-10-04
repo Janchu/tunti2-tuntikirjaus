@@ -3,8 +3,11 @@ package fi.softala.tunti2_tuntikirjaus.luokat;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Range;
 
 @Entity
 @Table(name = "tunnit")
@@ -14,8 +17,11 @@ public class TunnitImpl implements Tunnit {
 	
 	private int id;
 	
-	@NotNull
-	@DecimalMax("99999.99")
+	@Range(min=1, max=1000)
+	private int kayttajaId;
+	
+	@DecimalMin("0.25")
+	@DecimalMax("100.00")
 	private double tuntien_maara;
 	
 	private String paivamaara;
@@ -27,6 +33,7 @@ public class TunnitImpl implements Tunnit {
 	
 	public TunnitImpl(){
 		this.id = 0;
+		this.kayttajaId = 0;
 		this.tuntien_maara = 0.00;
 		this.paivamaara = "";
 		this.kuvaus = "";		
@@ -35,8 +42,9 @@ public class TunnitImpl implements Tunnit {
 	
 	// Constructor joka vaatii kaikki muuttujat
 	
-	public TunnitImpl(int id, int tuntien_maara, String paivamaara, String kuvaus){
+	public TunnitImpl(int id, int kayttajaId, double tuntien_maara, String paivamaara, String kuvaus){
 		this.id = id;
+		this.kayttajaId = kayttajaId;
 		this.tuntien_maara = tuntien_maara;
 		this.paivamaara = paivamaara;
 		this.kuvaus = kuvaus;
@@ -45,8 +53,9 @@ public class TunnitImpl implements Tunnit {
 	
 	// Constructor joka vaatii kaiken paitsi id:n
 	
-	public TunnitImpl(int tuntien_maara, String paivamaara, String kuvaus){
+	public TunnitImpl(int kayttajaId, int tuntien_maara, String paivamaara, String kuvaus){
 		this.id = -1;
+		this.kayttajaId = 0;
 		this.tuntien_maara = tuntien_maara;
 		this.paivamaara = paivamaara;
 		this.kuvaus = kuvaus;
@@ -60,7 +69,15 @@ public class TunnitImpl implements Tunnit {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	public int getKayttajaId() {
+		return kayttajaId;
+	}
 
+	public void setKayttajaId(int kayttajaId) {
+		this.kayttajaId = kayttajaId;
+	}
+	
 	public double getTuntien_maara() {
 		return tuntien_maara;
 	}
