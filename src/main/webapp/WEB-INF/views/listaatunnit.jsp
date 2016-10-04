@@ -25,6 +25,8 @@
 </head>
 <body>
 
+	<a href="?lang=en">en</a> | <a href="?lang=fi">fi</a>
+
 	<div class="container">
 		<div class="col-sm-offset-1">
 			<h1>
