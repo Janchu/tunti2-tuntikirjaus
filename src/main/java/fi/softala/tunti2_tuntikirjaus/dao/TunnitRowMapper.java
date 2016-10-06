@@ -8,6 +8,11 @@ import org.springframework.jdbc.core.RowMapper;
 import fi.softala.tunti2_tuntikirjaus.luokat.Tunnit;
 import fi.softala.tunti2_tuntikirjaus.luokat.TunnitImpl;
 
+/**
+ * 
+ * @author Daniel Rikkilä
+ * 
+ */
 
 public class TunnitRowMapper implements RowMapper<Tunnit> {
 

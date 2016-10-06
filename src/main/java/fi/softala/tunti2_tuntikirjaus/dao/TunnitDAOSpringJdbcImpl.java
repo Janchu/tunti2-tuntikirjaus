@@ -11,9 +11,17 @@ import org.springframework.stereotype.Repository;
 import fi.softala.tunti2_tuntikirjaus.dao.TunnitRowMapper;
 import fi.softala.tunti2_tuntikirjaus.luokat.Tunnit;
 import fi.softala.tunti2_tuntikirjaus.luokat.Kayttaja;
+
 /**
- * Servlet implementation class TunnitDAOSPingJdbcImpl
+ * 
+ * @author Mira Erjansola
+ * @author Tommi Ilvonen
+ * @author Janne J‰ppinen
+ * @author Niko Kaartinen
+ * @author Daniel Rikkil‰
+ * 
  */
+
 @Repository
 public class TunnitDAOSpringJdbcImpl implements TunnitDAO {
 	
@@ -29,7 +37,9 @@ public class TunnitDAOSpringJdbcImpl implements TunnitDAO {
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
-
+	
+	// Tallennetaan k‰ytt‰j‰n uudet tunnit tietokantaan
+	
 	public void tallenna(Tunnit t, String paivamaara) {
 		t.setPaivamaara(paivamaara);
 		logger.info("Laitettava p‰iv‰m‰‰r‰ on " + paivamaara);
@@ -39,6 +49,8 @@ public class TunnitDAOSpringJdbcImpl implements TunnitDAO {
 	    
 	}
 
+	// Haetaan kannasta kaikkien k‰ytt‰jien tunnit
+	
 	public List<Kayttaja> haeKaikki() {
 		
 		String sql = "select id, etunimi, sukunimi from Kayttajat";
@@ -47,6 +59,8 @@ public class TunnitDAOSpringJdbcImpl implements TunnitDAO {
 
 		return kayttajat;
 	}
+	
+	// Haetaan kannasta tietyn k‰ytt‰j‰n tunnit p‰iv‰m‰‰r‰n mukaan
 	
 	public List<Tunnit>haeKayttajanTunnit(int kayttaja_id){
 		
@@ -61,6 +75,8 @@ public class TunnitDAOSpringJdbcImpl implements TunnitDAO {
 		return kayttajaTunnit;
 		
 	}
+	
+	// Poistetaan kannasta valitun k‰ytt‰j‰n valitut tunnit
 	
 	public void poista(int id) {		
 		String sql = "delete from Tunnit where id=(?)";
