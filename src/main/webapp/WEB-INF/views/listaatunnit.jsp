@@ -92,7 +92,7 @@
 								<td><form:form modelAttribute="kayttaja" method="post">
 										<form:input path="uusitunti.id" type="hidden" value="${id}" />
 										<button type="submit" class="btn btn-danger"
-											aria-label="Left Align" onclick="return confirm('Haluatko varmasti poistaa tunnit?')">
+											aria-label="Left Align" onclick="return confirm('<spring:message code="areusure" />')">
 											<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 										</button>
 									</form:form></td>
