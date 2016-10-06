@@ -66,15 +66,16 @@ function myFunction() {
 		<form:form modelAttribute="tunnit" method="post"
 			class="form-horizontal">
 
+			
 			<fieldset>
-			<legend><spring:message code="title" /></legend>
+			<legend class="col-sm-offset-2"><spring:message code="title" /></legend>
 
 
 				<div class="form-group">
 					<label for="valitseKayttaja" class="col-sm-2 control-label"><spring:message code="name" />:</label>
 
 
-					<label class="col-sm-2"><select class="form-control"
+					<div class="col-sm-2"><select class="form-control"
 						name="kayttajaId" id="valitseKayttaja">
 							<option selected disabled><spring:message code="chooseuser" /></option>
 							<option value="4">Daniel</option>
@@ -83,7 +84,7 @@ function myFunction() {
 							<option value="1">Niko</option>
 							<option value="3">Tommi</option>
 							<option value="6">Testaaja</option>
-					</select> </label>
+					</select> </div>
 					<form:errors path="kayttajaId" style="color:red;" />
 				</div>
 
@@ -114,7 +115,7 @@ function myFunction() {
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button class="btn btn-success" onclick="myFunction()"
+						<button class="savebutton" onclick="myFunction2()"
 							type="submit"><spring:message code="save" /></button>
 					</div>
 				</div>
