@@ -62,7 +62,7 @@
 
 
 
-
+		<c:set var="kaikkiyhteensa" value="${0}" />
 		<c:forEach items="${kayttajat}" var="klista">
 			<c:set var="yhteensa" value="${0}" />
 
@@ -104,13 +104,14 @@
 						<tr>
 							<td><spring:message code="total" />: <c:out
 									value="${yhteensa}" /></td>
+									<c:set var="kaikkiyhteensa" value="${kaikkiyhteensa + yhteensa}" />
 						</tr>
 					</tbody>
 				</table>
 			</div>
 			</div>
 		</c:forEach>
-
+		<spring:message code="alltotal" />: <c:out value="${kaikkiyhteensa}" />
 	</div>
 
 </body>
