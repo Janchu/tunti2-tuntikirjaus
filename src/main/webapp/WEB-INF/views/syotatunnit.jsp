@@ -11,18 +11,8 @@
 <html>
 <head>
 <script>
-	function myFunction() {
-		// Get the snackbar DIV
-		var x = document.getElementById("snackbar")
-
-		// Add the "show" class to DIV
-		x.className = "show";
-
-		// After 3 seconds, remove the show class from DIV
-		setTimeout(function() {
-			x.className = x.className.replace("show", "");
-		}, 3000);
-	}
+function myFunction() {
+    alert("Tunnit lisätty");}
 </script>
 
 <%
@@ -38,7 +28,8 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/styles/tyyli.css"/>" />
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -46,6 +37,14 @@
 		<div class="container-fluid">
 			<ul class="nav navbar-nav">
 
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+       				<span class="icon-bar"></span>
+        			<span class="icon-bar"></span>
+        			<span class="icon-bar"></span>                        
+      			</button>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+			 <ul class="nav navbar-nav">
 				<li class="active"><a href="uusi"><spring:message code="addhours" /></a></li>
 				<li><a href="lista"><spring:message code="listhours" /></a></li>
 
@@ -59,7 +58,7 @@
 
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#"><span class="glyphicon glyphicon-user"></span><spring:message code="signup" /></a></li>
-      			<li><a href="#"><span class="glyphicon glyphicon-log-in"></span><spring:message code="login" /></a></li>
+      				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span><spring:message code="login" /></a></li>
 			</ul>
 		</div>
 	</nav>

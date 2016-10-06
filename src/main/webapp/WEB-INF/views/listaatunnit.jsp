@@ -27,25 +27,37 @@
 <body>
 
 <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <ul class="nav navbar-nav">
-    
-      <li><a href="uusi"><spring:message code="addhours" /></a></li>
-       <li class="active"><a href="lista"><spring:message code="listhours" /></a></li>
+		<div class="container-fluid">
+			<ul class="nav navbar-nav">
 
-    </ul>
-    <ul class="nav navbar-nav navbar-middle">
-    <li><a href="?lang=en">en</a></li>
-    <li><a href="?lang=fi">fi</a></li>
-    </ul>
-   
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span><spring:message code="signup" /></a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span><spring:message code="login" /></a></li>
-    </ul>
-  </div>
-</nav>
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+       				<span class="icon-bar"></span>
+        			<span class="icon-bar"></span>
+        			<span class="icon-bar"></span>                        
+      			</button>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+			 <ul class="nav navbar-nav">
+				<li class="active"><a href="uusi"><spring:message code="addhours" /></a></li>
+				<li><a href="lista"><spring:message code="listhours" /></a></li>
 
+			</ul>
+
+			</ul>
+			<ul class="nav navbar-nav navbar-middle">
+				<li><a href="?lang=en">en</a></li>
+				<li><a href="?lang=fi">fi</a></li>
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#"><span class="glyphicon glyphicon-user"></span><spring:message code="signup" /></a></li>
+      				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span><spring:message code="login" /></a></li>
+			</ul>
+		</div>
+	</nav>
+
+
+	<a href="?lang=en">en</a> | <a href="?lang=fi">fi</a>
 
 	<div class="container">
 		<div class="col-sm-offset-1">
