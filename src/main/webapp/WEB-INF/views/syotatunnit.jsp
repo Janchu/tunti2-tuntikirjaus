@@ -11,18 +11,18 @@
 <html>
 <head>
 <script>
-
 	function myFunction() {
-    // Get the snackbar DIV
-    var x = document.getElementById("snackbar")
+		// Get the snackbar DIV
+		var x = document.getElementById("snackbar")
 
-    // Add the "show" class to DIV
-    x.className = "show";
+		// Add the "show" class to DIV
+		x.className = "show";
 
-    // After 3 seconds, remove the show class from DIV
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+		// After 3 seconds, remove the show class from DIV
+		setTimeout(function() {
+			x.className = x.className.replace("show", "");
+		}, 3000);
 	}
-
 </script>
 
 <%
@@ -36,88 +36,92 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/styles/tyyli.css"/>"/>
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/styles/tyyli.css"/>" />
 
 
 </head>
 <body>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <ul class="nav navbar-nav">
-    
-      <li class="active"><a href="uusi">Syötä tunnit</a></li>
-       <li><a href="lista">Tuntilista</a></li>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<ul class="nav navbar-nav">
 
-    </ul>
-    
-    </ul>
-    <ul class="nav navbar-nav navbar-middle">
-    <li><a href="?lang=en">en</a></li>
-    <li><a href="?lang=fi">fi</a></li>
-    </ul>
-    
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-    </ul>
-  </div>
-</nav>
-	<div class="container" style="border: 2px solid black">
-		<div class="col-sm-offset-1">
-			<h1>
-				Tuntikirjanpito Spring MVC<a href="lista"></a>
-			</h1>
+				<li class="active"><a href="uusi">Syötä tunnit</a></li>
+				<li><a href="lista">Tuntilista</a></li>
+
+			</ul>
+
+			</ul>
+			<ul class="nav navbar-nav navbar-middle">
+				<li><a href="?lang=en">en</a></li>
+				<li><a href="?lang=fi">fi</a></li>
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#"><span class="glyphicon glyphicon-user"></span>
+						Sign Up</a></li>
+				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
+						Login</a></li>
+			</ul>
 		</div>
+	</nav>
+	<div class="container">
 		<form:form modelAttribute="tunnit" method="post"
 			class="form-horizontal">
 
+			<fieldset>
+			<legend>Tuntikirjanpito</legend>
 
-			<div class="form-group">
-				<label for="valitseKayttaja" class="col-sm-2 control-label">Nimi:</label>
+
+				<div class="form-group">
+					<label for="valitseKayttaja" class="col-sm-2 control-label">Nimi:</label>
 
 
-				<label class="col-sm-2"><select class="form-control"
-					name="kayttajaId" id="valitseKayttaja">
-						<option selected disabled>Valitse Käyttäjä</option>
-						<option value="4">Daniel</option>
-						<option value="2">Janne</option>
-						<option value="5">Mira</option>
-						<option value="1">Niko</option>
-						<option value="3">Tommi</option>
-						<option value="6">Testaaja</option>
-				</select> </label>
-				<form:errors path="kayttajaId" style="color:red;" />
-			</div>
+					<label class="col-sm-2"><select class="form-control"
+						name="kayttajaId" id="valitseKayttaja">
+							<option selected disabled>Valitse Käyttäjä</option>
+							<option value="4">Daniel</option>
+							<option value="2">Janne</option>
+							<option value="5">Mira</option>
+							<option value="1">Niko</option>
+							<option value="3">Tommi</option>
+							<option value="6">Testaaja</option>
+					</select> </label>
+					<form:errors path="kayttajaId" style="color:red;" />
+				</div>
 
-			<div class="form-group">
-				<label for="syotaTunnit" class="col-sm-2 control-label">Pvm:
-				</label>
-				<div class="col-sm-10"><%=date%>
+				<div class="form-group">
+					<label for="syotaTunnit" class="col-sm-2 control-label">Pvm:
+					</label>
+					<div class="col-sm-10"><%=date%>
+					</div>
 				</div>
-			</div>
-			<div class="form-group">
-				<form:label path="tuntien_maara" for="syotaTunnit"
-					class="col-sm-2 control-label">Tunnit: </form:label>
-				<div class="col-sm-1">
-					<form:input path="tuntien_maara" type="number" class="form-control"
-						name="tunnit" id="syotaTunnit" placeholder="Tunnit" />
+				<div class="form-group">
+					<form:label path="tuntien_maara" for="syotaTunnit"
+						class="col-sm-2 control-label">Tunnit: </form:label>
+					<div class="col-sm-1">
+						<form:input path="tuntien_maara" type="number"
+							class="form-control" name="tunnit" id="syotaTunnit"
+							placeholder="Tunnit" />
+					</div>
+					<form:errors path="tuntien_maara" style="color:red;" />
 				</div>
-				<form:errors path="tuntien_maara" style="color:red;" />
-			</div>
-			<div class="form-group">
-				<form:label path="kuvaus" for="syotaTunnit"
-					class="col-sm-2 control-label">Kuvaus: </form:label>
-				<div class="col-sm-4">
-					<form:textarea path="kuvaus" class="form-control" name="kuvaus"
-						rows="4"></form:textarea>
+				<div class="form-group">
+					<form:label path="kuvaus" for="syotaTunnit"
+						class="col-sm-2 control-label">Kuvaus: </form:label>
+					<div class="col-sm-4">
+						<form:textarea path="kuvaus" class="form-control" name="kuvaus"
+							rows="4"></form:textarea>
+					</div>
+					<form:errors path="kuvaus" style="color:red;" />
 				</div>
-				<form:errors path="kuvaus" style="color:red;" />
-			</div>
-			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-10">
-					<button class="btn btn-success" onclick="myFunction()" type="submit">Tallenna</button>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button class="btn btn-success" onclick="myFunction()"
+							type="submit">Tallenna</button>
+					</div>
 				</div>
-			</div>
+			</fieldset>
 		</form:form>
 	</div>
 	<script src="webjars/jquery/1.11.1/jquery.min.js"></script>
