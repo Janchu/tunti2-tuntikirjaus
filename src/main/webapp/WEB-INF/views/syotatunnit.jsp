@@ -46,8 +46,8 @@
 		<div class="container-fluid">
 			<ul class="nav navbar-nav">
 
-				<li class="active"><a href="uusi">Syötä tunnit</a></li>
-				<li><a href="lista">Tuntilista</a></li>
+				<li class="active"><a href="uusi"><spring:message code="addhours" /></a></li>
+				<li><a href="lista"><spring:message code="listhours" /></a></li>
 
 			</ul>
 
@@ -58,10 +58,8 @@
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><span class="glyphicon glyphicon-user"></span>
-						Sign Up</a></li>
-				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
-						Login</a></li>
+				<li><a href="#"><span class="glyphicon glyphicon-user"></span><spring:message code="signup" /></a></li>
+      			<li><a href="#"><span class="glyphicon glyphicon-log-in"></span><spring:message code="login" /></a></li>
 			</ul>
 		</div>
 	</nav>
