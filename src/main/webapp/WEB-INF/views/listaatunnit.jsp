@@ -58,16 +58,16 @@
 
 	<div class="container">
 		<fieldset>
-			<legend><spring:message code="title" /></legend>
+			<legend class="col-sm-offset-2"><spring:message code="title" /></legend>
 
 
 
-
+<div class="col-sm-offset-2">
 		<c:set var="kaikkiyhteensa" value="${0}" />
 		<c:forEach items="${kayttajat}" var="klista">
 			<c:set var="yhteensa" value="${0}" />
 
-			<a href="#<c:out value="${klista.etunimi}" />" class="btn btn-info"
+			<a href="#<c:out value="${klista.etunimi}" />" class="namebutton"
 				data-toggle="collapse"><c:out value="${klista.etunimi}" /> <c:out
 					value="${klista.sukunimi}" /></a><br><br>
 					
@@ -103,8 +103,8 @@
 						</c:forEach>
 
 						<tr>
-							<td><spring:message code="total" />: <c:out
-									value="${yhteensa}" /></td>
+							<td><b><u><spring:message code="total" />:</u> <c:out
+									value="${yhteensa}" /></b></td>
 									<c:set var="kaikkiyhteensa" value="${kaikkiyhteensa + yhteensa}" />
 						</tr>
 					</tbody>
@@ -113,6 +113,7 @@
 			</div>
 		</c:forEach>
 		<b><u><spring:message code="alltotal" />:</u> <c:out value="${kaikkiyhteensa}" /></b>
+		</div>
 		</fieldset>
 	</div>
 
