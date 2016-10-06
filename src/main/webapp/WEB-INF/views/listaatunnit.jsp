@@ -27,35 +27,38 @@
 <body>
 
 <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <ul class="nav navbar-nav">
-    
-      <li><a href="uusi"><spring:message code="addhours" /></a></li>
-       <li class="active"><a href="lista"><spring:message code="listhours" /></a></li>
+		<div class="container-fluid">
+			<ul class="nav navbar-nav">
 
-    </ul>
-    <ul class="nav navbar-nav navbar-middle">
-    <li><a href="?lang=en">en</a></li>
-    <li><a href="?lang=fi">fi</a></li>
-    </ul>
-   
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span><spring:message code="signup" /></a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span><spring:message code="login" /></a></li>
-    </ul>
-  </div>
-</nav>
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+       				<span class="icon-bar"></span>
+        			<span class="icon-bar"></span>
+        			<span class="icon-bar"></span>                        
+      			</button>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+			 <ul class="nav navbar-nav">
+				<li ><a href="uusi"><spring:message code="addhours" /></a></li>
+				<li class="active"><a href="lista"><spring:message code="listhours" /></a></li>
 
+			</ul>
+
+			</ul>
+			<ul class="nav navbar-nav navbar-middle">
+				<li><a href="?lang=en">en</a></li>
+				<li><a href="?lang=fi">fi</a></li>
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#"><span class="glyphicon glyphicon-user"></span><spring:message code="signup" /></a></li>
+      				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span><spring:message code="login" /></a></li>
+			</ul>
+		</div>
+	</nav>
 
 	<div class="container">
-		<div class="col-sm-offset-1">
-			<h1>
-				<spring:message code="title" />
-				<a href="uusi"><button class="btn btn-default" type="button">
-						<spring:message code="back" />
-					</button></a>
-			</h1>
-		</div>
+		<fieldset>
+			<legend><spring:message code="title" /></legend>
 
 
 
@@ -92,7 +95,7 @@
 								<td><form:form modelAttribute="kayttaja" method="post">
 										<form:input path="uusitunti.id" type="hidden" value="${id}" />
 										<button type="submit" class="btn btn-danger"
-											aria-label="Left Align" onclick="return confirm('Haluatko varmasti poistaa tunnit?')">
+											aria-label="Left Align" onclick="return confirm('<spring:message code="areusure" />')">
 											<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 										</button>
 									</form:form></td>
@@ -110,6 +113,7 @@
 			</div>
 		</c:forEach>
 		<spring:message code="alltotal" />: <c:out value="${kaikkiyhteensa}" />
+		</fieldset>
 	</div>
 
 </body>
