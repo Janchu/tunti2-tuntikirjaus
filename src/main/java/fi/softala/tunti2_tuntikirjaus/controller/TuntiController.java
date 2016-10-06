@@ -99,8 +99,6 @@ public class TuntiController {
 					"yyyy-MM-dd HH:mm:ss");
 			String paivamaara = simppeli.format(pvm);
 
-			
-
 			if (tunnit.getKayttajaId() > 6 || tunnit.getKayttajaId() < 1) {
 			} else {
 				logger.info(tunnit.getKayttajaId() + ":n tunnit");

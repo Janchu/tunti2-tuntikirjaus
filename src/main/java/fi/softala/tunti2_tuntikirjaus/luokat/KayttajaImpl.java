@@ -1,6 +1,5 @@
 package fi.softala.tunti2_tuntikirjaus.luokat;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -17,68 +16,69 @@ import java.util.ArrayList;
 @Entity
 @Table(name = "kayttaja")
 public class KayttajaImpl implements Kayttaja {
-	
+
 	// Muuttujat
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)	
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
+
 	@Size(min = 1, max = 255)
 	private String kayttajatunnus;
-	
+
 	@Size(min = 1, max = 255)
 	@Email
 	private String sahkoposti;
-	
+
 	@Size(min = 1, max = 255)
 	@Pattern(regexp = "[a-zA-ZäöåÄÖÅ]")
 	private String etunimi;
-	
+
 	@Size(min = 1, max = 255)
 	@Pattern(regexp = "[a-zA-ZäöåÄÖÅ]")
 	private String sukunimi;
-	
+
 	@Size(min = 1, max = 255)
 	private String salasana;
-	
-	private ArrayList<Tunnit> tunnit;
-	
-	private Tunnit uusitunti;
-	
-	// Tyhjä constructor
-	
 
-	public KayttajaImpl(){
+	private ArrayList<Tunnit> tunnit;
+
+	private Tunnit uusitunti;
+
+	// Tyhjä constructor
+
+	public KayttajaImpl() {
 		this.id = -1;
 		this.kayttajatunnus = "";
 		this.sahkoposti = "";
 		this.etunimi = "";
 		this.sukunimi = "";
-		this.salasana = "";		
+		this.salasana = "";
 		this.tunnit = new ArrayList<Tunnit>();
 		this.uusitunti = new TunnitImpl();
 	}
-	
+
 	// Constructor joka vaatii kaikki muuttujat
-	
-	public KayttajaImpl(int id, String kayttajatunnus, String sahkoposti, String etunimi, String sukunimi, String salasana, ArrayList<Tunnit> tunnit){
-		
+
+	public KayttajaImpl(int id, String kayttajatunnus, String sahkoposti,
+			String etunimi, String sukunimi, String salasana,
+			ArrayList<Tunnit> tunnit) {
+
 		this.id = id;
 		this.kayttajatunnus = kayttajatunnus;
 		this.sahkoposti = sahkoposti;
 		this.etunimi = etunimi;
 		this.sukunimi = sukunimi;
 		this.salasana = salasana;
-		this.tunnit = tunnit;		
+		this.tunnit = tunnit;
 	}
-	
+
 	// Constructor id:lle ja salasanalle
-	
-	public KayttajaImpl(int id, String salasana){
+
+	public KayttajaImpl(int id, String salasana) {
 		this.id = id;
-		this.salasana = salasana;	
-		
+		this.salasana = salasana;
+
 		this.kayttajatunnus = "";
 		this.sahkoposti = "";
 		this.etunimi = "";
@@ -87,67 +87,55 @@ public class KayttajaImpl implements Kayttaja {
 	}
 
 	// Getterit ja setterit
-	
 
 	public int getId() {
 		return id;
 	}
 
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 	public String getKayttajatunnus() {
 		return kayttajatunnus;
 	}
 
-
 	public void setKayttajatunnus(String kayttajatunnus) {
 		this.kayttajatunnus = kayttajatunnus;
 	}
-
 
 	public String getSahkoposti() {
 		return sahkoposti;
 	}
 
-
 	public void setSahkoposti(String sahkoposti) {
 		this.sahkoposti = sahkoposti;
 	}
-
 
 	public String getEtunimi() {
 		return etunimi;
 	}
 
-
 	public void setEtunimi(String etunimi) {
 		this.etunimi = etunimi;
 	}
-
 
 	public String getSukunimi() {
 		return sukunimi;
 	}
 
-
 	public void setSukunimi(String sukunimi) {
 		this.sukunimi = sukunimi;
 	}
-
 
 	public String getSalasana() {
 		return salasana;
 	}
 
-
 	public void setSalasana(String salasana) {
 		this.salasana = salasana;
 	}
-	
+
 	public ArrayList<Tunnit> getTunnit() {
 		return tunnit;
 	}
@@ -155,11 +143,11 @@ public class KayttajaImpl implements Kayttaja {
 	public void addTunnit(Tunnit uusiTunnit) {
 		this.tunnit.add(uusiTunnit);
 	}
-	
+
 	public void setTunnit(ArrayList<Tunnit> tunnit) {
 		this.tunnit = tunnit;
-}
-	
+	}
+
 	public Tunnit getUusitunti() {
 		return uusitunti;
 	}
