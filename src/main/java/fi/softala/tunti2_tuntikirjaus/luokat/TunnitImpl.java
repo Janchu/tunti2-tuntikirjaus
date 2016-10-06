@@ -9,6 +9,13 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Range;
 
+/**
+ * 
+ * @author Janne Jäppinen
+ * @author Daniel Rikkilä
+ *
+ */
+
 @Entity
 @Table(name = "tunnit")
 public class TunnitImpl implements Tunnit {

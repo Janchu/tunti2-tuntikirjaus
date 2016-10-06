@@ -9,8 +9,15 @@ import fi.softala.tunti2_tuntikirjaus.luokat.Kayttaja;
 import fi.softala.tunti2_tuntikirjaus.luokat.KayttajaImpl;
 
 /**
- * Servlet implementation class KayttajaRowMapper
+ * 
+ * @author Mira Erjansola
+ * @author Tommi Ilvonen
+ * @author Janne Jäppinen
+ * @author Niko Kaartinen
+ * @author Daniel Rikkilä
+ * 
  */
+
 public class KayttajaRowMapper implements RowMapper<Kayttaja> {
 
 	public Kayttaja mapRow(ResultSet rs, int rowNum) throws SQLException {
