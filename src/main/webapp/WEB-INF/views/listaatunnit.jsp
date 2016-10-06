@@ -112,7 +112,7 @@
 			</div>
 			</div>
 		</c:forEach>
-		<spring:message code="alltotal" />: <c:out value="${kaikkiyhteensa}" />
+		<b><u><spring:message code="alltotal" />:</u> <c:out value="${kaikkiyhteensa}" /></b>
 		</fieldset>
 	</div>
 

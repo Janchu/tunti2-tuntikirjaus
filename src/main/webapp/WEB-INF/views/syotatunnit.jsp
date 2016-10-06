@@ -114,7 +114,7 @@ function myFunction() {
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button class="btn btn-success" onclick="myFunction()"
+						<button class="btn btn-success" onclick="myFunction()2"
 							type="submit"><spring:message code="save" /></button>
 					</div>
 				</div>
