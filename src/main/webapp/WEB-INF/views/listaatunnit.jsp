@@ -48,14 +48,8 @@
 
 
 	<div class="container">
-		<div class="col-sm-offset-1">
-			<h1>
-				<spring:message code="title" />
-				<a href="uusi"><button class="btn btn-default" type="button">
-						<spring:message code="back" />
-					</button></a>
-			</h1>
-		</div>
+		<fieldset>
+			<legend><spring:message code="title" /></legend>
 
 
 
@@ -110,6 +104,7 @@
 			</div>
 		</c:forEach>
 		<spring:message code="alltotal" />: <c:out value="${kaikkiyhteensa}" />
+		</fieldset>
 	</div>
 
 </body>
