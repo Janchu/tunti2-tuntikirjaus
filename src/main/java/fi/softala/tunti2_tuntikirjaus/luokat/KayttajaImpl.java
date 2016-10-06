@@ -32,11 +32,11 @@ public class KayttajaImpl implements Kayttaja {
 	private String sahkoposti;
 	
 	@Size(min = 1, max = 255)
-	@Pattern(regexp = "[^a-zA-ZäöÄÖ]")
+	@Pattern(regexp = "[a-zA-ZäöåÄÖÅ]")
 	private String etunimi;
 	
 	@Size(min = 1, max = 255)
-	@Pattern(regexp = "[^a-zA-ZäöÄÖ]")
+	@Pattern(regexp = "[a-zA-ZäöåÄÖÅ]")
 	private String sukunimi;
 	
 	@Size(min = 1, max = 255)
