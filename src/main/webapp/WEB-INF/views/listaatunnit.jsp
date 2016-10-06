@@ -38,8 +38,8 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			 <ul class="nav navbar-nav">
-				<li class="active"><a href="uusi"><spring:message code="addhours" /></a></li>
-				<li><a href="lista"><spring:message code="listhours" /></a></li>
+				<li ><a href="uusi"><spring:message code="addhours" /></a></li>
+				<li class="active"><a href="lista"><spring:message code="listhours" /></a></li>
 
 			</ul>
 
@@ -56,18 +56,9 @@
 		</div>
 	</nav>
 
-
-	<a href="?lang=en">en</a> | <a href="?lang=fi">fi</a>
-
 	<div class="container">
-		<div class="col-sm-offset-1">
-			<h1>
-				<spring:message code="title" />
-				<a href="uusi"><button class="btn btn-default" type="button">
-						<spring:message code="back" />
-					</button></a>
-			</h1>
-		</div>
+		<fieldset>
+			<legend><spring:message code="title" /></legend>
 
 
 
@@ -104,7 +95,7 @@
 								<td><form:form modelAttribute="kayttaja" method="post">
 										<form:input path="uusitunti.id" type="hidden" value="${id}" />
 										<button type="submit" class="btn btn-danger"
-											aria-label="Left Align" onclick="return confirm('Haluatko varmasti poistaa tunnit?')">
+											aria-label="Left Align" onclick="return confirm('<spring:message code="areusure" />')">
 											<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 										</button>
 									</form:form></td>
@@ -122,6 +113,7 @@
 			</div>
 		</c:forEach>
 		<spring:message code="alltotal" />: <c:out value="${kaikkiyhteensa}" />
+		</fieldset>
 	</div>
 
 </body>

@@ -67,16 +67,16 @@ function myFunction() {
 			class="form-horizontal">
 
 			<fieldset>
-			<legend>Tuntikirjanpito</legend>
+			<legend><spring:message code="title" /></legend>
 
 
 				<div class="form-group">
-					<label for="valitseKayttaja" class="col-sm-2 control-label">Nimi:</label>
+					<label for="valitseKayttaja" class="col-sm-2 control-label"><spring:message code="name" />:</label>
 
 
 					<label class="col-sm-2"><select class="form-control"
 						name="kayttajaId" id="valitseKayttaja">
-							<option selected disabled>Valitse Käyttäjä</option>
+							<option selected disabled><spring:message code="chooseuser" /></option>
 							<option value="4">Daniel</option>
 							<option value="2">Janne</option>
 							<option value="5">Mira</option>
@@ -88,14 +88,14 @@ function myFunction() {
 				</div>
 
 				<div class="form-group">
-					<label for="syotaTunnit" class="col-sm-2 control-label">Pvm:
+					<label for="syotaTunnit" class="col-sm-2 control-label"><spring:message code="date" />:
 					</label>
 					<div class="col-sm-10"><%=date%>
 					</div>
 				</div>
 				<div class="form-group">
 					<form:label path="tuntien_maara" for="syotaTunnit"
-						class="col-sm-2 control-label">Tunnit: </form:label>
+						class="col-sm-2 control-label"><spring:message code="hours" />:</form:label>
 					<div class="col-sm-1">
 						<form:input path="tuntien_maara" type="number"
 							class="form-control" name="tunnit" id="syotaTunnit"
@@ -105,7 +105,7 @@ function myFunction() {
 				</div>
 				<div class="form-group">
 					<form:label path="kuvaus" for="syotaTunnit"
-						class="col-sm-2 control-label">Kuvaus: </form:label>
+						class="col-sm-2 control-label"><spring:message code="desc" />:</form:label>
 					<div class="col-sm-4">
 						<form:textarea path="kuvaus" class="form-control" name="kuvaus"
 							rows="4"></form:textarea>
@@ -115,7 +115,7 @@ function myFunction() {
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
 						<button class="btn btn-success" onclick="myFunction()"
-							type="submit">Tallenna</button>
+							type="submit"><spring:message code="save" /></button>
 					</div>
 				</div>
 			</fieldset>
@@ -123,6 +123,6 @@ function myFunction() {
 	</div>
 	<script src="webjars/jquery/1.11.1/jquery.min.js"></script>
 	<script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<div id="snackbar">Some text some message..</div>
+	
 </body>
 </html>
