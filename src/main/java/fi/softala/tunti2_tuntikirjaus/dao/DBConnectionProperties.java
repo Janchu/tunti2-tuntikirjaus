@@ -9,30 +9,28 @@ public class DBConnectionProperties {
 	public static final String TIEDOSTON_NIMI = "db_connection.properties";
 	private static DBConnectionProperties instance;
 	private Properties properties;
-	
 
 	private DBConnectionProperties() throws IOException {
-		
+
 		InputStream inputStream = this.getClass().getClassLoader()
 				.getResourceAsStream(TIEDOSTON_NIMI);
 		properties = new Properties();
 		properties.load(inputStream);
-		
-		
+
 	}
-	
-	public String getProperty(String nimi){
-		
+
+	public String getProperty(String nimi) {
+
 		return this.properties.getProperty(nimi);
-		
+
 	}
-	
+
 	public static DBConnectionProperties getInstance() throws IOException {
-		if(instance == null){
-			
+		if (instance == null) {
+
 			instance = new DBConnectionProperties();
 		}
 		return instance;
 	}
-	
+
 }
