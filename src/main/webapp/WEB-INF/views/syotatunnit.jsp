@@ -100,7 +100,7 @@ function myFunction() {
 					<div class="col-sm-1">
 						<form:input path="tuntien_maara" type="number"
 							class="form-control" name="tunnit" id="syotaTunnit"
-							placeholder="Tunnit" />
+							 />
 					</div>
 					<form:errors path="tuntien_maara" style="color:red;" />
 				</div>
