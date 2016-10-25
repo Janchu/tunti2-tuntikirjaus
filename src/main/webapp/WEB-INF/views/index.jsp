@@ -33,8 +33,8 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 			 <ul class="nav navbar-nav">
 				<li class="active"><a href=""><spring:message code="frontpage" /></a></li>
-				<li><a href="tunnit/uusi"><spring:message code="addhours" /></a></li>
-				<li><a href="tunnit/lista"><spring:message code="listhours" /></a></li>
+				<li><a href="tunnit/lista"><spring:message code="addhours" /></a></li>
+				
 
 			</ul>
 
