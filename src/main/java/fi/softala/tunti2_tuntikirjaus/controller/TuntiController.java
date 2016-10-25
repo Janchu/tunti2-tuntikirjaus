@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.inject.Inject;
-
 import javax.validation.Valid;
 
 import org.slf4j.*;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -52,7 +52,7 @@ public class TuntiController {
 		Tunnit tunnit = new TunnitImpl();
 
 		model.addAttribute("tunnit", tunnit);
-		return "syotatunnit";
+		return "login/syotatunnit";
 	}
 
 	@RequestMapping(value = "lista", method = RequestMethod.GET)
@@ -68,7 +68,7 @@ public class TuntiController {
 
 		model.addAttribute("kayttaja", kayttaja);
 		model.addAttribute("kayttajat", kayttajat);
-		return "listaatunnit";
+		return "login/listaatunnit";
 	}
 
 	@RequestMapping(value = "lista", method = RequestMethod.POST)
@@ -91,7 +91,7 @@ public class TuntiController {
 			BindingResult result) {
 
 		if (result.hasErrors()) {
-			return "syotatunnit";
+			return "login/syotatunnit";
 		} else {
 
 			Date pvm = new Date();
@@ -109,4 +109,29 @@ public class TuntiController {
 		}
 	}
 
+	@RequestMapping(value="/loginpage", method = RequestMethod.GET)
+	public String login(Model model) {
+		System.out.println("läpi mänt");
+		model.addAttribute("loggedin", "true");
+		return "index";
+ 
+	}
+ 
+	@RequestMapping(value="/loginfail", method = RequestMethod.GET)
+	public String loginerror(Model model) {		
+		
+		model.addAttribute("loginerror", "true");
+		return "index";
+ 
+	}
+ 
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	public String logout(Model model) {
+
+		model.addAttribute("loggedout", "true");
+		return "index";
+ 
+	}
+	
+	
 }

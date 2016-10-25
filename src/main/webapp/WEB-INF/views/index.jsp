@@ -5,6 +5,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,8 +34,8 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 			 <ul class="nav navbar-nav">
 				<li class="active"><a href=""><spring:message code="frontpage" /></a></li>
-				<li><a href="tunnit/uusi"><spring:message code="addhours" /></a></li>
-				<li><a href="tunnit/lista"><spring:message code="listhours" /></a></li>
+				<c:if test="${not empty loggedin}"><li><a href="uusi"><spring:message code="addhours" /></a></li>
+				<li><a href="lista"><spring:message code="listhours" /></a></li></c:if>
 
 			</ul>
 
@@ -50,6 +51,31 @@
 			</ul>
 		</div>
 	</nav>
+	
+	<c:if test="${not empty loginerror}">
+		Sisäänkirjautuminen epäonnistui. Käyttäjätunnus tai salasana on syötetty väärin.
+	</c:if>	
+
+	<c:if test="${not empty loggedout}">
+		Uloskirjautuminen onnistui
+	</c:if>
+	
+	<form action="tunnit/j_spring_security_check" method="post">
+	<fieldset>
+		<table>
+		
+		<c:if test="${empty loggedin}"><tr><td>Käyttäjänimi:</td><td><input type='text' name='kayttajatunnus' value=''> 
+		<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/></td></tr>
+		<tr><td>Salasana:</td><td><input type='password' name='salasana' /></td></tr></c:if>
+		 
+		<tr><td>&nbsp;</td><td><button type="submit">Kirjaudu</button></td></tr>
+		</table>
+	</fieldset>
+	</form>
+	<c:if test="${not empty loggedin}"><h3>Sisäänkirjautuneena: <sec:authentication property="principal.username"/></h3>
+	
+	<p><a href="j_spring_security_logout" > Kirjaudu ulos</a></p></c:if>
+	
 	
 	
 		<h1><spring:message code="timetrackapp" /></h1>

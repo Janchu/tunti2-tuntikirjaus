@@ -1,10 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:sec="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+	">
 	
+	<context:property-placeholder location="classpath*:/db_connection.properties"/>
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${db.driver}" />
+		<property name="url" value="${db.url}" />
+		<property name="username" value="${db.username}" />
+		<property name="password" value="${db.password}" />
+		<property name="initialSize" value="1" />
+		<property name="maxActive" value="5" />
+	</bean>
 	
-	<import resource="spring-data.xml" />
+		<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+			<property name="dataSource" ref="dataSource"/>
+		</bean>
 	
+	<!-- SPRING SECURITY -->
+
+	<sec:http auto-config="true" use-expressions="true" >
+				 
+	<sec:csrf disabled="true"/>
+				 
+		<sec:intercept-url pattern="/login/**" access="hasRole('ROLE_ADMIN')" />
+		<sec:intercept-url pattern="/*" access="permitAll" />		
+
+		<sec:form-login
+			login-page="/tunnit/loginpage"
+			default-target-url="/tunnit/loginpage"
+			always-use-default-target="true"
+			login-processing-url="/tunnit/j_spring_security_check"
+			username-parameter="kayttajatunnus"
+			password-parameter="salasana"
+			
+			authentication-failure-url="/tunnit/loginfail" />
+			
+		<sec:logout logout-success-url="/tunnit/logout" />
+		
+	</sec:http>
+	
+<!-- <bean id="encoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder" /> -->	
+
+
+	<sec:authentication-manager>
+		<sec:authentication-provider>
+		<!-- 	<sec:password-encoder ref="encoder" />  -->
+			<sec:jdbc-user-service data-source-ref="dataSource"
+				users-by-username-query="select kayttajatunnus, salasana, enabled from Kayttajat where kayttajatunnus=? and enabled = 1"
+				authorities-by-username-query="select u.kayttajatunnus, a.role from Kayttajat u JOIN Kayttaja_authority ua ON (u.id = ua.Kayttaja_id) JOIN authority a ON (a.id = ua.authority_id) WHERE u.kayttajatunnus=?" />
+		</sec:authentication-provider>
+	</sec:authentication-manager>
+	
+	<sec:global-method-security pre-post-annotations="enabled" />
 
 </beans>
