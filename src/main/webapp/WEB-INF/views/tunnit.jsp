@@ -151,9 +151,13 @@ function myFunction() {
 					</thead>
 					<tbody>
 						<c:forEach items="${klista.tunnit}" var="tunnit">
+						
 							<c:set var="id" value="${tunnit.id}" />
 							<tr>
-								<td><c:out value="${tunnit.paivamaara}" /></td>
+							<fmt:parseDate value="${tunnit.paivamaara}" pattern="yyyy-MM-dd" var="paivamaara"/>
+							
+							
+								<td><fmt:formatDate value="${paivamaara}" pattern="dd.MM.yyyy" /></td>
 								<td><c:out value="${tunnit.tuntien_maara}" /> <c:set
 										var="yhteensa" value="${yhteensa + tunnit.tuntien_maara}" /></td>
 								<td><c:out value="${tunnit.kuvaus}" /></td>
