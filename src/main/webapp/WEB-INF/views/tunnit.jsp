@@ -158,11 +158,10 @@ function myFunction() {
 							<c:set var="id" value="${tunnit.id}" />
 							<tr>
 							<fmt:parseDate value="${tunnit.paivamaara}" pattern="yyyy-MM-dd" var="paivamaara"/>
-							
-							
 								<td><fmt:formatDate value="${paivamaara}" pattern="dd.MM.yyyy" /></td>
-								<td><c:out value="${tunnit.tuntien_maara}" /> <c:set
-										var="yhteensa" value="${yhteensa + tunnit.tuntien_maara}" /></td>
+								<td><c:set var="tuntienmaara" value="${tunnit.tuntien_maara}" />
+								<fmt:formatNumber type="number"  pattern="##.00" value="${tuntienmaara}" />
+								 <c:set var="yhteensa" value="${yhteensa + tunnit.tuntien_maara}" /></td>
 								<td><c:out value="${tunnit.kuvaus}" /></td>
 								<td><form:form modelAttribute="kayttaja" method="post" action="poista">
 										<form:input path="uusitunti.id" type="hidden" value="${id}" />
@@ -175,16 +174,22 @@ function myFunction() {
 						</c:forEach>
 
 						<tr>
-							<td><b><u><spring:message code="total" />:</u> <c:out
-									value="${yhteensa}" /></b></td>
-									<c:set var="kaikkiyhteensa" value="${kaikkiyhteensa + yhteensa}" />
+							<td><b><u><spring:message code="total" />:</u>
+							 
+							<fmt:formatNumber type="number"  pattern="###.00" value="${yhteensa}" />
+							  <!-- <c:out value="${yhteensa}" /> -->
+							  </b></td>
+									<c:set var="kaikkiyhteensa" value="${kaikkiyhteensa + yhteensa}" /> 
+									
 						</tr>
 					</tbody>
 				</table>
 			</div>
 			</div>
 		</c:forEach>
-		<b><u><spring:message code="alltotal" />:</u> <c:out value="${kaikkiyhteensa}" /></b>
+		<b><u><spring:message code="alltotal" />:</u>
+		<c:set var="yhteensa" value="${yhteensa + tunnit.tuntien_maara}" /></td>
+		<fmt:formatNumber type="number"  pattern="###.00" value="${kaikkiyhteensa + yhteensa}" /></b>
 		</div>
 		</fieldset>
 		
