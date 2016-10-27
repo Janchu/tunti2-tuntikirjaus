@@ -75,7 +75,7 @@
 	</fieldset>
 	</form:form>
 	</c:if>
-	<c:if test="${loggedin && loggedout && loginerror}">
+	<c:if test="${loggedout || loginerror}">
 	<form:form action="j_spring_security_check" method="post">
 	<fieldset>
 	<table>

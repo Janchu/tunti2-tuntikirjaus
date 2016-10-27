@@ -47,12 +47,12 @@
 		
 	</sec:http>
 	
-<!-- <bean id="encoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder" /> -->	
+<bean id="encoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder" /> 
 
 
 	<sec:authentication-manager>
 		<sec:authentication-provider>
-		<!-- 	<sec:password-encoder ref="encoder" />  -->
+		<sec:password-encoder ref="encoder" />
 			<sec:jdbc-user-service data-source-ref="dataSource"
 				users-by-username-query="select kayttajatunnus, salasana, enabled from Kayttajat where kayttajatunnus=? and enabled = 1"
 				authorities-by-username-query="select u.kayttajatunnus, a.role from Kayttajat u JOIN Kayttaja_authority ua ON (u.id = ua.Kayttaja_id) JOIN authority a ON (a.id = ua.authority_id) WHERE u.kayttajatunnus=?" />
