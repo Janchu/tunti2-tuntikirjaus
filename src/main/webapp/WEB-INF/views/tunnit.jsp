@@ -11,6 +11,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 
@@ -57,8 +58,10 @@ function myFunction() {
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><span class="glyphicon glyphicon-user"></span><spring:message code="signup" /></a></li>
-      				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span><spring:message code="login" /></a></li>
+				<li><a href="#">Hei, <sec:authentication property="principal.username"/> </a></li>
+      				<li><form:form action="${pageContext.request.contextPath}/logout" method="POST">      				
+    <input type="submit" value="Logout" />
+	</form:form></li>
 			</ul>
 		</div>
 	</nav>
