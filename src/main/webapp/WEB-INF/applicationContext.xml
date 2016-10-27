@@ -30,12 +30,12 @@
 				 
 	<sec:csrf disabled="true"/>
 				 
-		<sec:intercept-url pattern="/login/**" access="hasRole('ROLE_ADMIN')" />
+		<sec:intercept-url pattern="/tunnit/lista" access="hasRole('ROLE_ADMIN')" />
 		<sec:intercept-url pattern="/*" access="permitAll" />		
 
 		<sec:form-login
 			login-page="/tunnit/loginpage"
-			default-target-url="/tunnit/loginpage"
+			default-target-url="/tunnit/lista"
 			always-use-default-target="true"
 			login-processing-url="/tunnit/j_spring_security_check"
 			username-parameter="kayttajatunnus"

@@ -100,6 +100,8 @@ public class TuntiController {
 	public String login(Model model) {
 		System.out.println("läpi mänt");
 		model.addAttribute("loggedin", "true");
+			
+		
 		return "index";
  
 	}
