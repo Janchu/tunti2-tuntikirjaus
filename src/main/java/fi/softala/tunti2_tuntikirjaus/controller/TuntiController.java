@@ -8,7 +8,6 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 
 import org.slf4j.*;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,7 +38,7 @@ public class TuntiController {
 		this.tunnitDao = tunnitDao;
 	}
 
-	@RequestMapping(value = "uusi", method = RequestMethod.GET)
+	@RequestMapping(value = "lista", method = RequestMethod.GET)
 	public String getCreateForm(Model model) {
 		ArrayList<Kayttaja> kayttajat = (ArrayList<Kayttaja>) tunnitDao
 				.haeKaikki();
@@ -52,46 +51,19 @@ public class TuntiController {
 		Tunnit tunnit = new TunnitImpl();
 
 		model.addAttribute("tunnit", tunnit);
-		return "login/syotatunnit";
-	}
-
-	@RequestMapping(value = "lista", method = RequestMethod.GET)
-	public String getLista(Model model) {
-		ArrayList<Kayttaja> kayttajat = (ArrayList<Kayttaja>) tunnitDao
-				.haeKaikki();
-		for (int i = 0; i < kayttajat.size(); i++) {
-			kayttajat.get(i).setTunnit(
-					(ArrayList<Tunnit>) tunnitDao.haeKayttajanTunnit(kayttajat
-							.get(i).getId()));
-		}
 		Kayttaja kayttaja = new KayttajaImpl();
 
 		model.addAttribute("kayttaja", kayttaja);
 		model.addAttribute("kayttajat", kayttajat);
-		return "login/listaatunnit";
+		return "tunnit";
 	}
-
+	 
 	@RequestMapping(value = "lista", method = RequestMethod.POST)
-	public String delete(
-			@ModelAttribute(value = "kayttaja") KayttajaImpl kayttaja) {
-
-		Tunnit tunti = new TunnitImpl();
-
-		tunti.setId(kayttaja.getUusitunti().getId());
-
-		System.out.println(tunti.getId());
-		tunnitDao.poista(tunti.getId());
-
-		return "redirect:/tunnit/lista";
-	}
-
-	@RequestMapping(value = "uusi", method = RequestMethod.POST)
 	public String create(
 			@ModelAttribute(value = "tunnit") @Valid TunnitImpl tunnit,
 			BindingResult result) {
-
 		if (result.hasErrors()) {
-			return "login/syotatunnit";
+			return "tunnit";
 		} else {
 
 			Date pvm = new Date();
@@ -105,9 +77,24 @@ public class TuntiController {
 				tunnitDao.tallenna(tunnit, paivamaara);
 			}
 
-			return "redirect:/tunnit/uusi";
+			return "redirect:/tunnit/lista";
 		}
 	}
+	@RequestMapping(value = "/poista", method = RequestMethod.POST)
+	public String delete(
+			@ModelAttribute(value = "kayttaja") KayttajaImpl kayttaja) {
+
+		Tunnit tunti = new TunnitImpl();
+
+		tunti.setId(kayttaja.getUusitunti().getId());
+
+		System.out.println(tunti.getId());
+		tunnitDao.poista(tunti.getId());
+
+		return "redirect:/tunnit/lista";
+	}
+
+
 
 	@RequestMapping(value="/loginpage", method = RequestMethod.GET)
 	public String login(Model model) {

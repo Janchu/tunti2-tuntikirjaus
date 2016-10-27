@@ -34,8 +34,10 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 			 <ul class="nav navbar-nav">
 				<li class="active"><a href=""><spring:message code="frontpage" /></a></li>
-				<c:if test="${not empty loggedin}"><li><a href="uusi"><spring:message code="addhours" /></a></li>
-				<li><a href="lista"><spring:message code="listhours" /></a></li></c:if>
+				
+				<c:if test="${not empty loggedin}">
+				<li><a href="lista"><spring:message code="addhours" /></a></li>
+				</c:if>
 
 			</ul>
 
@@ -50,7 +52,7 @@
       				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span><spring:message code="login" /></a></li>
 			</ul>
 		</div>
-	</nav>
+</nav>
 	
 	<c:if test="${not empty loginerror}">
 		Sisäänkirjautuminen epäonnistui. Käyttäjätunnus tai salasana on syötetty väärin.
@@ -59,22 +61,41 @@
 	<c:if test="${not empty loggedout}">
 		Uloskirjautuminen onnistui
 	</c:if>
-	
-	<form action="tunnit/j_spring_security_check" method="post">
+		<c:if test="${empty loggedin && empty loggedout && empty loginerror}">
+	<form:form action="tunnit/j_spring_security_check" method="post">
 	<fieldset>
-		<table>
+	<table>
 		
-		<c:if test="${empty loggedin}"><tr><td>Käyttäjänimi:</td><td><input type='text' name='kayttajatunnus' value=''> 
+		<tr><td>Käyttäjänimi:</td><td><input type='text' name='kayttajatunnus' value=''> 
 		<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/></td></tr>
-		<tr><td>Salasana:</td><td><input type='password' name='salasana' /></td></tr></c:if>
+		<tr><td>Salasana:</td><td><input type='password' name='salasana' /></td></tr>
 		 
 		<tr><td>&nbsp;</td><td><button type="submit">Kirjaudu</button></td></tr>
 		</table>
 	</fieldset>
-	</form>
+	</form:form>
+	</c:if>
+	<c:if test="${loggedin && loggedout && loginerror}">
+	<form:form action="j_spring_security_check" method="post">
+	<fieldset>
+	<table>
+		
+		<tr><td>Käyttäjänimi:</td><td><input type='text' name='kayttajatunnus' value=''> 
+		<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/></td></tr>
+		<tr><td>Salasana:</td><td><input type='password' name='salasana' /></td></tr>
+		 
+		<tr><td>&nbsp;</td><td><button type="submit">Kirjaudu</button></td></tr>
+		</table>
+	</fieldset>
+	</form:form>
+	</c:if>
+	
+	
 	<c:if test="${not empty loggedin}"><h3>Sisäänkirjautuneena: <sec:authentication property="principal.username"/></h3>
 	
-	<p><a href="j_spring_security_logout" > Kirjaudu ulos</a></p></c:if>
+	<form:form action="${pageContext.request.contextPath}/logout" method="POST">
+    <input type="submit" value="Logout" />
+	</form:form></c:if>
 	
 	
 	
