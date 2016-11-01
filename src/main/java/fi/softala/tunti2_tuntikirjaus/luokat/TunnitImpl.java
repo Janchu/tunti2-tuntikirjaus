@@ -8,6 +8,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Range;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * 
@@ -31,6 +32,7 @@ public class TunnitImpl implements Tunnit {
 	@DecimalMax("100.00")
 	private double tuntien_maara;
 
+	@DateTimeFormat(pattern="yyyy-mm-dd")
 	private String paivamaara;
 
 	@Pattern(regexp = "[a-zA-ZäöåÄÖÅ0-9/./,/:/@/?/!/+/=/(/)/#/%/&/*//\"\'\t\n\r -]*")
