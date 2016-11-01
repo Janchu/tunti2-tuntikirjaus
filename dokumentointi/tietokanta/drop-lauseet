@@ -1,2 +1,4 @@
 DROP TABLE Tunnit;
 DROP TABLE Kayttajat;
+DROP TABLE authority;
+DROP TABLE Kayttaja_authority;

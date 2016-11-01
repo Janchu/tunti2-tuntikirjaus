@@ -8,6 +8,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Range;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * 
@@ -31,6 +32,7 @@ public class TunnitImpl implements Tunnit {
 	@DecimalMax("100.00")
 	private double tuntien_maara;
 
+	@DateTimeFormat(pattern="yyyy-mm-dd")
 	private String paivamaara;
 
 	@Pattern(regexp = "[a-zA-ZäöåÄÖÅ0-9/./,/:/@/?/!/+/=/(/)/#/%/&/*//\"\'\t\n\r -]*")
@@ -70,6 +72,18 @@ public class TunnitImpl implements Tunnit {
 		this.kuvaus = kuvaus;
 
 	}
+	
+	// Constructor joka vaatii kaiken paitsi id:t
+
+		public TunnitImpl(int tuntien_maara, String paivamaara,
+				String kuvaus) {
+			this.id = -1;
+			this.kayttajaId = -1;
+			this.tuntien_maara = tuntien_maara;
+			this.paivamaara = paivamaara;
+			this.kuvaus = kuvaus;
+
+		}
 
 	public int getId() {
 		return id;

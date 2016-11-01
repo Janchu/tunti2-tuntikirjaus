@@ -30,7 +30,7 @@
 				 
 	<sec:csrf disabled="true"/>
 				 
-		<sec:intercept-url pattern="/tunnit/lista" access="hasRole('ROLE_ADMIN')" />
+		<sec:intercept-url pattern="/tunnit/lista" access="isAuthenticated()" />
 		<sec:intercept-url pattern="/*" access="permitAll" />		
 
 		<sec:form-login

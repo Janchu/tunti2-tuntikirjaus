@@ -8,6 +8,8 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 
 import org.slf4j.*;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -47,12 +49,15 @@ public class TuntiController {
 					(ArrayList<Tunnit>) tunnitDao.haeKayttajanTunnit(kayttajat
 							.get(i).getId()));
 		}
-
+		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String kayttajaString = user.getUsername();
+		
 		Tunnit tunnit = new TunnitImpl();
 
 		model.addAttribute("tunnit", tunnit);
-		Kayttaja kayttaja = new KayttajaImpl();
+		Kayttaja kayttaja = tunnitDao.haeKayttaja(kayttajaString);
 
+		
 		model.addAttribute("kayttaja", kayttaja);
 		model.addAttribute("kayttajat", kayttajat);
 		return "tunnit";
@@ -63,20 +68,27 @@ public class TuntiController {
 			@ModelAttribute(value = "tunnit") @Valid TunnitImpl tunnit,
 			BindingResult result) {
 		if (result.hasErrors()) {
+			logger.info("Täällä oli erhe");
 			return "tunnit";
+			
+		
 		} else {
 
-			Date pvm = new Date();
-			SimpleDateFormat simppeli = new SimpleDateFormat(
-					"yyyy-MM-dd HH:mm:ss");
-			String paivamaara = simppeli.format(pvm);
 
-			if (tunnit.getKayttajaId() > 6 || tunnit.getKayttajaId() < 1) {
-			} else {
+			String pvm = tunnit.getPaivamaara();
+			logger.info(tunnit.getPaivamaara() + " <- päivämäärä");
+			
+						
+			logger.info("id: " +tunnit.getKayttajaId());
+			
+			if (tunnit.getKayttajaId() <= 6 && tunnit.getKayttajaId() >= 1) {
+
+			
+			logger.info(tunnit.getPaivamaara() + " <- päivämäärä");
 				logger.info(tunnit.getKayttajaId() + ":n tunnit");
-				tunnitDao.tallenna(tunnit, paivamaara);
+				tunnitDao.tallenna(tunnit, pvm);
+			
 			}
-
 			return "redirect:/tunnit/lista";
 		}
 	}
@@ -87,25 +99,25 @@ public class TuntiController {
 		Tunnit tunti = new TunnitImpl();
 
 		tunti.setId(kayttaja.getUusitunti().getId());
-
-		System.out.println(tunti.getId());
+		
 		tunnitDao.poista(tunti.getId());
 
 		return "redirect:/tunnit/lista";
 	}
 
-
+	// Käytetään Spring Securityn loginiin
 
 	@RequestMapping(value="/loginpage", method = RequestMethod.GET)
 	public String login(Model model) {
 		System.out.println("läpi mänt");
 		model.addAttribute("loggedin", "true");
-			
 		
 		return "index";
  
 	}
  
+	// Jos loginissa on virhe....
+	
 	@RequestMapping(value="/loginfail", method = RequestMethod.GET)
 	public String loginerror(Model model) {		
 		
@@ -114,6 +126,8 @@ public class TuntiController {
  
 	}
  
+	// Jos logataan ulos...
+	
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public String logout(Model model) {
 
