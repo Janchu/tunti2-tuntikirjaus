@@ -15,13 +15,19 @@ import fi.softala.tunti2_tuntikirjaus.luokat.Tunnit;
 
 public interface TunnitDAO {
 
+	@PreAuthorize("isAuthenticated()")
 	public abstract void tallenna(Tunnit tunnit, String paivamaara);
 
+	@PreAuthorize("isAuthenticated()")
 	public abstract List<Kayttaja> haeKaikki();
 
+	@PreAuthorize("isAuthenticated()")
 	public abstract List<Tunnit> haeKayttajanTunnit(int kayttaja_id);
+	
+	@PreAuthorize("isAuthenticated()")
+	public abstract Kayttaja haeKayttaja(String kayttajatunnus);
 
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("isAuthenticated()")
 	public abstract void poista(int id);
 
 }

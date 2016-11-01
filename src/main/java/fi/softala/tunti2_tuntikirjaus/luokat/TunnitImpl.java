@@ -70,6 +70,18 @@ public class TunnitImpl implements Tunnit {
 		this.kuvaus = kuvaus;
 
 	}
+	
+	// Constructor joka vaatii kaiken paitsi id:t
+
+		public TunnitImpl(int tuntien_maara, String paivamaara,
+				String kuvaus) {
+			this.id = -1;
+			this.kayttajaId = -1;
+			this.tuntien_maara = tuntien_maara;
+			this.paivamaara = paivamaara;
+			this.kuvaus = kuvaus;
+
+		}
 
 	public int getId() {
 		return id;

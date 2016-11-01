@@ -8,6 +8,8 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 
 import org.slf4j.*;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -63,15 +65,27 @@ public class TuntiController {
 			@ModelAttribute(value = "tunnit") @Valid TunnitImpl tunnit,
 			BindingResult result) {
 		if (result.hasErrors()) {
+			logger.info("Täällä oli erhe");
 			return "tunnit";
+			
+		
 		} else {
 
 			Date pvm = new Date();
 			SimpleDateFormat simppeli = new SimpleDateFormat(
 					"yyyy-MM-dd HH:mm:ss");
 			String paivamaara = simppeli.format(pvm);
-
-			if (tunnit.getKayttajaId() > 6 || tunnit.getKayttajaId() < 1) {
+			
+			User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();			
+			
+			String kayttajaString = user.getUsername();
+			
+			logger.info("KayttajaString: " + kayttajaString);
+			
+			Kayttaja kayt = tunnitDao.haeKayttaja(kayttajaString);
+			logger.info("id: " + kayt.getId());			
+			tunnit.setKayttajaId(kayt.getId());
+			if (kayt.getId() > 6 || kayt.getId() < 1) {
 			} else {
 				logger.info(tunnit.getKayttajaId() + ":n tunnit");
 				tunnitDao.tallenna(tunnit, paivamaara);
@@ -100,7 +114,6 @@ public class TuntiController {
 	public String login(Model model) {
 		System.out.println("läpi mänt");
 		model.addAttribute("loggedin", "true");
-			
 		
 		return "index";
  

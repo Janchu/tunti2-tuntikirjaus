@@ -66,6 +66,7 @@ function myFunction() {
 		</div>
 	</nav>
 	<div class="container">
+	<sec:authorize access="hasRole('ROLE_KAYTTAJA')">
 		<form:form modelAttribute="tunnit" method="post"
 			class="form-horizontal">
 
@@ -74,7 +75,7 @@ function myFunction() {
 			<legend class="col-sm-offset-2"><spring:message code="title1" /></legend>
 
 
-				<div class="form-group">
+			<form:input path="kayttajaId" type="hidden" value="5" />	<!--  <div class="form-group">
 					<label for="valitseKayttaja" class="col-sm-2 control-label"><spring:message code="name" />:</label>
 
 
@@ -89,7 +90,7 @@ function myFunction() {
 							<option value="6">Testaaja</option>
 					</select> </div>
 					<form:errors path="kayttajaId" style="color:red;" />
-				</div>
+				</div> -->
 
 				<div class="form-group">
 					<label for="syotaTunnit" class="col-sm-2 control-label"><spring:message code="date" />:
@@ -125,11 +126,12 @@ function myFunction() {
 			</fieldset>
 		</form:form>
 		
+		
+
 		<fieldset>
 			<legend class="col-sm-offset-2"><spring:message code="title2" /></legend>
 
-
-
+<sec:authentication var="principal" property="principal" />
 <div class="col-sm-offset-2">
 		<c:set var="kaikkiyhteensa" value="${0}" />
 		<c:forEach items="${kayttajat}" var="klista">
@@ -144,7 +146,7 @@ function myFunction() {
 			<div class="table-responsive">
 				<table class="table table-bordered">
 
-					<thead>
+					<thead>					
 						<tr>
 							<th class="col-sm-1"><spring:message code="date" /></th>
 							<th class="col-sm-1"><spring:message code="hours" /></th>
@@ -163,6 +165,77 @@ function myFunction() {
 								<fmt:formatNumber type="number"  pattern="##.00" value="${tuntienmaara}" />
 								 <c:set var="yhteensa" value="${yhteensa + tunnit.tuntien_maara}" /></td>
 								<td><c:out value="${tunnit.kuvaus}" /></td>
+								
+								<c:if test="${klista.kayttajatunnus == principal.username}" ><td><form:form modelAttribute="kayttaja" method="post" action="poista">
+										<form:input path="uusitunti.id" type="hidden" value="${id}" />
+										<button type="submit" class="btn btn-danger"
+											aria-label="Left Align" onclick="return confirm('<spring:message code="areusure" />')">
+											<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+										</button>
+									</form:form></td></c:if>
+							</tr>
+						</c:forEach>
+
+						<tr>
+							<td><b><u><spring:message code="total" />:</u>
+							 
+							<fmt:formatNumber type="number"  pattern="###.00" value="${yhteensa}" />
+							  <!-- <c:out value="${yhteensa}" /> -->
+							  </b></td>
+									<c:set var="kaikkiyhteensa" value="${kaikkiyhteensa + yhteensa}" /> 
+									
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			</div>
+		</c:forEach>
+		<b><u><spring:message code="alltotal" />:</u>
+		<c:set var="yhteensa" value="${yhteensa + tunnit.tuntien_maara}" /></td>
+		<fmt:formatNumber type="number"  pattern="###.00" value="${kaikkiyhteensa + yhteensa}" /></b>
+		</div>
+		</fieldset>
+		</sec:authorize>
+		
+<sec:authorize access="hasRole('ROLE_ADMIN')">	
+		<fieldset>
+			<legend class="col-sm-offset-2"><spring:message code="title2" /></legend>
+
+<sec:authentication var="principal" property="principal" />
+<div class="col-sm-offset-2">
+		<c:set var="kaikkiyhteensa" value="${0}" />
+		<c:forEach items="${kayttajat}" var="klista">
+			<c:set var="yhteensa" value="${0}" />
+
+			<a href="#<c:out value="${klista.etunimi}" />" class="namebutton"
+				data-toggle="collapse"><c:out value="${klista.etunimi}" /> <c:out
+					value="${klista.sukunimi}" /></a><br><br>
+					
+		<div id="<c:out value="${klista.etunimi}" />" class="collapse">
+
+			<div class="table-responsive">
+				<table class="table table-bordered">
+
+					<thead>					
+						<tr>
+							<th class="col-sm-1"><spring:message code="date" /></th>
+							<th class="col-sm-1"><spring:message code="hours" /></th>
+							<th class="col-sm-3"><spring:message code="desc" /></th>
+							<th class="col-sm-1"><spring:message code="del" /></th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${klista.tunnit}" var="tunnit">
+						
+							<c:set var="id" value="${tunnit.id}" />
+							<tr>
+							<fmt:parseDate value="${tunnit.paivamaara}" pattern="yyyy-MM-dd" var="paivamaara"/>
+								<td><fmt:formatDate value="${paivamaara}" pattern="dd.MM.yyyy" /></td>
+								<td><c:set var="tuntienmaara" value="${tunnit.tuntien_maara}" />
+								<fmt:formatNumber type="number"  pattern="##.00" value="${tuntienmaara}" />
+								 <c:set var="yhteensa" value="${yhteensa + tunnit.tuntien_maara}" /></td>
+								<td><c:out value="${tunnit.kuvaus}" /></td>
+								
 								<td><form:form modelAttribute="kayttaja" method="post" action="poista">
 										<form:input path="uusitunti.id" type="hidden" value="${id}" />
 										<button type="submit" class="btn btn-danger"
@@ -192,7 +265,8 @@ function myFunction() {
 		<fmt:formatNumber type="number"  pattern="###.00" value="${kaikkiyhteensa + yhteensa}" /></b>
 		</div>
 		</fieldset>
-		
+		</sec:authorize>
+	
 	</div>
 	<script src="webjars/jquery/1.11.1/jquery.min.js"></script>
 	<script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
