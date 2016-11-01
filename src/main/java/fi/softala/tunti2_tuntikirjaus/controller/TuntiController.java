@@ -49,12 +49,15 @@ public class TuntiController {
 					(ArrayList<Tunnit>) tunnitDao.haeKayttajanTunnit(kayttajat
 							.get(i).getId()));
 		}
-
+		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String kayttajaString = user.getUsername();
+		
 		Tunnit tunnit = new TunnitImpl();
 
 		model.addAttribute("tunnit", tunnit);
-		Kayttaja kayttaja = new KayttajaImpl();
+		Kayttaja kayttaja = tunnitDao.haeKayttaja(kayttajaString);
 
+		
 		model.addAttribute("kayttaja", kayttaja);
 		model.addAttribute("kayttajat", kayttajat);
 		return "tunnit";
@@ -75,16 +78,10 @@ public class TuntiController {
 			String pvm = tunnit.getPaivamaara();
 			logger.info(tunnit.getPaivamaara() + " <- päivämäärä");
 			
-			User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();			
+						
+			logger.info("id: " +tunnit.getKayttajaId());
 			
-			String kayttajaString = user.getUsername();
-			
-			logger.info("KayttajaString: " + kayttajaString);
-			
-			Kayttaja kayt = tunnitDao.haeKayttaja(kayttajaString);
-			logger.info("id: " + kayt.getId());			
-			tunnit.setKayttajaId(kayt.getId());
-			if (kayt.getId() <= 6 && kayt.getId() >= 1) {
+			if (tunnit.getKayttajaId() <= 6 && tunnit.getKayttajaId() >= 1) {
 
 			
 			logger.info(tunnit.getPaivamaara() + " <- päivämäärä");
@@ -102,14 +99,13 @@ public class TuntiController {
 		Tunnit tunti = new TunnitImpl();
 
 		tunti.setId(kayttaja.getUusitunti().getId());
-
-		System.out.println(tunti.getId());
+		
 		tunnitDao.poista(tunti.getId());
 
 		return "redirect:/tunnit/lista";
 	}
 
-
+	// Käytetään Spring Securityn loginiin
 
 	@RequestMapping(value="/loginpage", method = RequestMethod.GET)
 	public String login(Model model) {
@@ -120,6 +116,8 @@ public class TuntiController {
  
 	}
  
+	// Jos loginissa on virhe....
+	
 	@RequestMapping(value="/loginfail", method = RequestMethod.GET)
 	public String loginerror(Model model) {		
 		
@@ -128,6 +126,8 @@ public class TuntiController {
  
 	}
  
+	// Jos logataan ulos...
+	
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public String logout(Model model) {
 

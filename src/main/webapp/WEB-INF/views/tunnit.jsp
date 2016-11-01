@@ -91,7 +91,7 @@
 
 
 
-			<form:input path="kayttajaId" type="hidden" value="5" />	<!--  <div class="form-group">
+			<form:input path="kayttajaId" type="hidden" value="${kayttaja.id}" />	<!--  <div class="form-group">
 					<label for="valitseKayttaja" class="col-sm-2 control-label"><spring:message code="name" />:</label>
 
 				<div class="form-group">
