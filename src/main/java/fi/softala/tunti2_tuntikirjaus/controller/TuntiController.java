@@ -66,15 +66,14 @@ public class TuntiController {
 			return "tunnit";
 		} else {
 
-			Date pvm = new Date();
-			SimpleDateFormat simppeli = new SimpleDateFormat(
-					"yyyy-MM-dd HH:mm:ss");
-			String paivamaara = simppeli.format(pvm);
+			String pvm = tunnit.getPaivamaara();
+			logger.info(tunnit.getPaivamaara() + " <- päivämäärä");
+			
 
 			if (tunnit.getKayttajaId() > 6 || tunnit.getKayttajaId() < 1) {
 			} else {
 				logger.info(tunnit.getKayttajaId() + ":n tunnit");
-				tunnitDao.tallenna(tunnit, paivamaara);
+				tunnitDao.tallenna(tunnit, pvm);
 			}
 
 			return "redirect:/tunnit/lista";
