@@ -55,6 +55,33 @@
 		<spring:message code="logoutsuc" />
 	</c:if>
 	
+	<c:if test="${empty loggedin && empty loggedout && empty loginerror}">
+	<div class="container">	
+	<form:form action="tunnit/j_spring_security_check" method="post" class="form-horizontal">
+	
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="kayttajatunnus"><spring:message code="username" /></label>
+   			<div class="col-sm-4">
+   				<input type="text" class="form-control" id="kayttajatunnus" name='kayttajatunnus' value=''>
+   				<input type="hidden"  name="${_csrf.parameterName}" value="${_csrf.token}"/>
+			</div>
+		</div>
+		 <div class="form-group">
+    		<label class="control-label col-sm-2" for="pwd"><spring:message code="password" /></label>
+    		<div class="col-sm-4">
+      			<input type="password" class="form-control" id="salasana" name='salasana'>
+    		</div>
+  		</div>
+  		<div class="form-group">
+    		<div class="col-sm-offset-2 col-sm-10">
+      			<button type="submit" class="btn btn-default"><spring:message code="login" /></button>
+    		</div>
+  		</div>
+	</form:form>
+	</div>
+	</c:if>
+	
+	<c:if test="${loggedout || loginerror}">
 	<div class="container">	
 	<form:form action="j_spring_security_check" method="post" class="form-horizontal">
 	
@@ -78,7 +105,7 @@
   		</div>
 	</form:form>
 	</div>
-
+	</c:if>
 	
 		<h1><spring:message code="timetrackapp" /></h1>
 		

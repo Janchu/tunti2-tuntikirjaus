@@ -91,31 +91,7 @@
 
 
 
-			<form:input path="kayttajaId" type="hidden" value="${kayttaja.id}" />	<!--  <div class="form-group">
-					<label for="valitseKayttaja" class="col-sm-2 control-label"><spring:message code="name" />:</label>
-
-				<div class="form-group">
-					<label for="valitseKayttaja" class="col-sm-2 control-label"><spring:message
-							code="name" />:</label>
-
-
-
-					<div class="col-sm-2">
-						<select class="form-control" name="kayttajaId"
-							id="valitseKayttaja">
-							<option selected disabled><spring:message
-									code="chooseuser" /></option>
-							<option value="4">Daniel</option>
-							<option value="2">Janne</option>
-							<option value="5">Mira</option>
-							<option value="1">Niko</option>
-							<option value="3">Tommi</option>
-							<option value="6">Testaaja</option>
-						</select>
-					</div>
-					<form:errors path="kayttajaId" style="color:red;" />
-				</div> -->
-
+			<form:input path="kayttajaId" type="hidden" value="${kayttaja.id}" />
 				<div class="form-group">
 					<label path="paivamaara" for="syotaTunnit"
 						class="col-sm-2 control-label"><spring:message code="date" />:
