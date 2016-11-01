@@ -48,11 +48,16 @@
 </nav>
 	
 	<c:if test="${not empty loginerror}">
-		<spring:message code="loginfail" />
+	<div class="panel panel-danger">
+  		<div class="panel-body"><spring:message code="loginfail" /></div>
+	</div>
+		
 	</c:if>	
 
 	<c:if test="${not empty loggedout}">
-		<spring:message code="logoutsuc" />
+	<div class="panel panel-success">
+  		<div class="panel-body"><spring:message code="logoutsuc" /></div>
+	</div>		
 	</c:if>
 	
 	<c:if test="${empty loggedin && empty loggedout && empty loginerror}">
