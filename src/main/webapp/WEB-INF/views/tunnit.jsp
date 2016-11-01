@@ -158,7 +158,7 @@
 
 		<fieldset>
 			<legend class="col-sm-offset-2">
-				<spring:message code="title2" />
+git co				<spring:message code="title2" />
 			</legend>
 
 
