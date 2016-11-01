@@ -8,6 +8,7 @@ import org.slf4j.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+
 import fi.softala.tunti2_tuntikirjaus.dao.TunnitRowMapper;
 import fi.softala.tunti2_tuntikirjaus.luokat.Tunnit;
 import fi.softala.tunti2_tuntikirjaus.luokat.Kayttaja;
@@ -55,7 +56,7 @@ public class TunnitDAOSpringJdbcImpl implements TunnitDAO {
 
 	public List<Kayttaja> haeKaikki() {
 
-		String sql = "select id, etunimi, sukunimi from Kayttajat";
+		String sql = "select id, kayttajatunnus, etunimi, sukunimi from Kayttajat";
 		RowMapper<Kayttaja> mapper = new KayttajaRowMapper();
 		List<Kayttaja> kayttajat = jdbcTemplate.query(sql, mapper);
 
@@ -88,6 +89,18 @@ public class TunnitDAOSpringJdbcImpl implements TunnitDAO {
 
 		jdbcTemplate.update(sql, parametrit);
 
+	}
+
+	public Kayttaja haeKayttaja(String kayttajatunnus) {
+		 
+		String sql = "select id, kayttajatunnus, etunimi, sukunimi from Kayttajat where kayttajatunnus = (?)";
+		Object[] parametri = new Object[] { kayttajatunnus };
+		RowMapper<Kayttaja> mapper = new KayttajaRowMapper();
+		
+		Kayttaja kayttaja = jdbcTemplate
+				.queryForObject(sql, parametri, mapper);
+		
+		return kayttaja;
 	}
 
 }

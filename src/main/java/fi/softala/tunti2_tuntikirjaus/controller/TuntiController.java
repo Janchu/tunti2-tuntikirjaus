@@ -8,6 +8,8 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 
 import org.slf4j.*;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -63,19 +65,33 @@ public class TuntiController {
 			@ModelAttribute(value = "tunnit") @Valid TunnitImpl tunnit,
 			BindingResult result) {
 		if (result.hasErrors()) {
+			logger.info("T‰‰ll‰ oli erhe");
 			return "tunnit";
+			
+		
 		} else {
+
 
 			String pvm = tunnit.getPaivamaara();
 			logger.info(tunnit.getPaivamaara() + " <- p‰iv‰m‰‰r‰");
 			
+			User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();			
+			
+			String kayttajaString = user.getUsername();
+			
+			logger.info("KayttajaString: " + kayttajaString);
+			
+			Kayttaja kayt = tunnitDao.haeKayttaja(kayttajaString);
+			logger.info("id: " + kayt.getId());			
+			tunnit.setKayttajaId(kayt.getId());
+			if (kayt.getId() <= 6 && kayt.getId() >= 1) {
 
-			if (tunnit.getKayttajaId() > 6 || tunnit.getKayttajaId() < 1) {
-			} else {
+			
+			logger.info(tunnit.getPaivamaara() + " <- p‰iv‰m‰‰r‰");
 				logger.info(tunnit.getKayttajaId() + ":n tunnit");
 				tunnitDao.tallenna(tunnit, pvm);
+			
 			}
-
 			return "redirect:/tunnit/lista";
 		}
 	}
@@ -99,7 +115,6 @@ public class TuntiController {
 	public String login(Model model) {
 		System.out.println("l‰pi m‰nt");
 		model.addAttribute("loggedin", "true");
-			
 		
 		return "index";
  

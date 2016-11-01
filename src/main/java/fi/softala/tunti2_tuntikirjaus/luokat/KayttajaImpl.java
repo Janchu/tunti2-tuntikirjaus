@@ -84,8 +84,8 @@ public class KayttajaImpl implements Kayttaja {
 		this.etunimi = "";
 		this.sukunimi = "";
 		this.uusitunti = new TunnitImpl();
-	}
-
+	}	
+	
 	// Getterit ja setterit
 
 	public int getId() {
