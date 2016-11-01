@@ -48,40 +48,37 @@
 </nav>
 	
 	<c:if test="${not empty loginerror}">
-		Sisäänkirjautuminen epäonnistui. Käyttäjätunnus tai salasana on syötetty väärin.
+		<spring:message code="loginfail" />
 	</c:if>	
 
 	<c:if test="${not empty loggedout}">
-		Uloskirjautuminen onnistui
+		<spring:message code="logoutsuc" />
 	</c:if>
-		<c:if test="${empty loggedin && empty loggedout && empty loginerror}">
-	<form:form action="tunnit/j_spring_security_check" method="post">
-	<fieldset>
-	<table>
-		
-		<tr><td>Käyttäjänimi:</td><td><input type='text' name='kayttajatunnus' value=''> 
-		<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/></td></tr>
-		<tr><td>Salasana:</td><td><input type='password' name='salasana' /></td></tr>
-		 
-		<tr><td>&nbsp;</td><td><button type="submit">Kirjaudu</button></td></tr>
-		</table>
-	</fieldset>
+	
+	<div class="container">	
+	<form:form action="j_spring_security_check" method="post" class="form-horizontal">
+	
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="kayttajatunnus"><spring:message code="username" /></label>
+   			<div class="col-sm-4">
+   				<input type="text" class="form-control" id="kayttajatunnus" name='kayttajatunnus' value=''>
+   				<input type="hidden"  name="${_csrf.parameterName}" value="${_csrf.token}"/>
+			</div>
+		</div>
+		 <div class="form-group">
+    		<label class="control-label col-sm-2" for="pwd"><spring:message code="password" /></label>
+    		<div class="col-sm-4">
+      			<input type="password" class="form-control" id="salasana" name='salasana'>
+    		</div>
+  		</div>
+  		<div class="form-group">
+    		<div class="col-sm-offset-2 col-sm-10">
+      			<button type="submit" class="btn btn-default"><spring:message code="login" /></button>
+    		</div>
+  		</div>
 	</form:form>
-	</c:if>
-	<c:if test="${loggedout || loginerror}">
-	<form:form action="j_spring_security_check" method="post">
-	<fieldset>
-	<table>
-		
-		<tr><td>Käyttäjänimi:</td><td><input type='text' name='kayttajatunnus' value=''> 
-		<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/></td></tr>
-		<tr><td>Salasana:</td><td><input type='password' name='salasana' /></td></tr>
-		 
-		<tr><td>&nbsp;</td><td><button type="submit">Kirjaudu</button></td></tr>
-		</table>
-	</fieldset>
-	</form:form>
-	</c:if>	
+	</div>
+
 	
 		<h1><spring:message code="timetrackapp" /></h1>
 		
