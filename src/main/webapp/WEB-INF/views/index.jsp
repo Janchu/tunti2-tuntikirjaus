@@ -9,6 +9,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<sec:authorize access="isAuthenticated()">
+<c:redirect url="tunnit/lista"/>
+</sec:authorize>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Tervetuloa tuntikirjaukseen</title>
 <link rel="stylesheet"
@@ -31,25 +34,15 @@
         			<span class="icon-bar"></span>                        
       			</button>
 		</div>
-		<div class="collapse navbar-collapse" id="myNavbar">
-			 <ul class="nav navbar-nav">
-				<li class="active"><a href=""><spring:message code="frontpage" /></a></li>
-				
-				<c:if test="${not empty loggedin}">
-				<li><a href="lista"><spring:message code="addhours" /></a></li>
-				</c:if>
-
-			</ul>
-
-			</ul>
+		<div class="collapse navbar-collapse" id="myNavbar">			
 			<ul class="nav navbar-nav navbar-middle">
 				<li><a href="?lang=en">en</a></li>
 				<li><a href="?lang=fi">fi</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><span class="glyphicon glyphicon-user"></span><spring:message code="signup" /></a></li>
-      				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span><spring:message code="login" /></a></li>
+				<li></li>
+      				<li></li>
 			</ul>
 		</div>
 </nav>
@@ -88,16 +81,7 @@
 		</table>
 	</fieldset>
 	</form:form>
-	</c:if>
-	
-	
-	<c:if test="${not empty loggedin}"><h3>Sisäänkirjautuneena: <sec:authentication property="principal.username"/></h3>
-	
-	<form:form action="${pageContext.request.contextPath}/logout" method="POST">
-    <input type="submit" value="Logout" />
-	</form:form></c:if>
-	
-	
+	</c:if>	
 	
 		<h1><spring:message code="timetrackapp" /></h1>
 		

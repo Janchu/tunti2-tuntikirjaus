@@ -12,6 +12,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 
@@ -31,11 +33,11 @@
 
 <!-- Skriptit -->
 <script>
-$('.input-group date').datepicker({
+	$('.input-group date').datepicker({
 		language : 'fi',
 		format : 'dd.MM.yyyy',
 		weekStart : 1
-});
+	});
 </script>
 <script>
 	function myFunction() {
@@ -66,10 +68,13 @@ $('.input-group date').datepicker({
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><span class="glyphicon glyphicon-user"></span>
-						<spring:message code="signup" /></a></li>
-				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
-						<spring:message code="login" /></a></li>
+				<li><a href="#">Hei, <sec:authentication
+							property="principal.username" />
+				</a></li>
+				<li><form:form
+						action="${pageContext.request.contextPath}/logout" method="POST">
+						<input type="submit" value="Logout" />
+					</form:form></li>
 			</ul>
 		</div>
 	</nav>
@@ -106,10 +111,13 @@ $('.input-group date').datepicker({
 				</div>
 
 				<div class="form-group">
-					<label path="paivamaara" for="syotaTunnit" class="col-sm-2 control-label"><spring:message
-							code="date" />: </label>
+					<label path="paivamaara" for="syotaTunnit"
+						class="col-sm-2 control-label"><spring:message code="date" />:
+					</label>
 					<div class="col-sm-4">
-						<div class="input-group date" id="datepicker" data-provide="datepicker" data-date-format="yyyy-mm-dd" data-date-week-start="1" data-date-language="fi">
+						<div class="input-group date" id="datepicker"
+							data-provide="datepicker" data-date-format="yyyy-mm-dd"
+							data-date-week-start="1">
 							<form:input path="paivamaara" type="text" class="form-control" />
 							<span class="input-group-addon"> <i
 								class="glyphicon glyphicon-calendar"></i>
@@ -181,10 +189,16 @@ $('.input-group date').datepicker({
 								</thead>
 								<tbody>
 									<c:forEach items="${klista.tunnit}" var="tunnit">
+
 										<c:set var="id" value="${tunnit.id}" />
 										<tr>
-											<td><c:out value="${tunnit.paivamaara}" /></td>
-											<td><c:out value="${tunnit.tuntien_maara}" /> <c:set
+											<fmt:parseDate value="${tunnit.paivamaara}"
+												pattern="yyyy-MM-dd" var="paivamaara" />
+											<td><fmt:formatDate value="${paivamaara}"
+													pattern="dd.MM.yyyy" /></td>
+											<td><c:set var="tuntienmaara"
+													value="${tunnit.tuntien_maara}" /> <fmt:formatNumber
+													type="number" pattern="##.00" value="${tuntienmaara}" /> <c:set
 													var="yhteensa" value="${yhteensa + tunnit.tuntien_maara}" /></td>
 											<td><c:out value="${tunnit.kuvaus}" /></td>
 											<td><form:form modelAttribute="kayttaja" method="post"
@@ -201,18 +215,22 @@ $('.input-group date').datepicker({
 									</c:forEach>
 
 									<tr>
-										<td><b><u><spring:message code="total" />:</u> <c:out
-													value="${yhteensa}" /></b></td>
+										<td><b><u><spring:message code="total" />:</u> <fmt:formatNumber
+													type="number" pattern="###.00" value="${yhteensa}" /> <!-- <c:out value="${yhteensa}" /> -->
+										</b></td>
 										<c:set var="kaikkiyhteensa"
 											value="${kaikkiyhteensa + yhteensa}" />
+
 									</tr>
 								</tbody>
 							</table>
 						</div>
 					</div>
 				</c:forEach>
-				<b><u><spring:message code="alltotal" />:</u> <c:out
-						value="${kaikkiyhteensa}" /></b>
+				<b><u><spring:message code="alltotal" />:</u> <c:set
+						var="yhteensa" value="${yhteensa + tunnit.tuntien_maara}" />
+					</td> <fmt:formatNumber type="number" pattern="###.00"
+						value="${kaikkiyhteensa + yhteensa}" /></b>
 			</div>
 		</fieldset>
 
