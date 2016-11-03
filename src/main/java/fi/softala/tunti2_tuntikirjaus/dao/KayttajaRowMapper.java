@@ -21,11 +21,23 @@ import fi.softala.tunti2_tuntikirjaus.luokat.KayttajaImpl;
 public class KayttajaRowMapper implements RowMapper<Kayttaja> {
 
 	public Kayttaja mapRow(ResultSet rs, int rowNum) throws SQLException {
+		
+		// Luodaan Kayttaja-olio k
 		Kayttaja k = new KayttajaImpl();
+		
+		// Asetetaan olion ID:ksi tietokannasta saatu tieto "id", joka on int
 		k.setId(rs.getInt("id"));
+		
+		// Etunimeksi tietokannasta saatu tieto "etunimi", joka on String
 		k.setEtunimi(rs.getString("etunimi"));
+		
+		// Sukunimeksi "sukunimi"
 		k.setSukunimi(rs.getString("sukunimi"));
+		
+		// Kayttajatunnukseksi "kayttajatunnus"
 		k.setKayttajatunnus(rs.getString("kayttajatunnus"));
+		
+		// Palautetaan olio
 		return k;
 
 	}

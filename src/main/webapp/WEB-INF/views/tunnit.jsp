@@ -80,13 +80,19 @@
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">Hei, <sec:authentication
+				<li><a href="#"><spring:message code="greeting" /> <sec:authentication
 							property="principal.username" />
 				</a></li>
-				<li><form:form
+				<li>
+				<form:form
 						action="${pageContext.request.contextPath}/logout" method="POST">
-						<input type="submit" value="Logout" />
-					</form:form></li>
+						  <p class="navbar-btn">
+						<button type="submit" class="btn btn-default btn-md"><spring:message code="logout" /></button>
+						</p>
+					</form:form>
+					</li>
+					
+					
 			</ul>
 		</div>
 	</nav>

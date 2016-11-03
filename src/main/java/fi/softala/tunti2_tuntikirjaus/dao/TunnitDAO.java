@@ -9,12 +9,15 @@ import fi.softala.tunti2_tuntikirjaus.luokat.Tunnit;
 
 /**
  * 
+ * @author Mira Erjansola
  * @author Tommi Ilvonen
  *
  */
 
 public interface TunnitDAO {
 
+	// @PreAuthorizella varmistetaan, ett‰ k‰ytt‰j‰ joka yritt‰‰ k‰ytt‰‰ t‰t‰ koodin osaa oikeasti saa k‰ytt‰‰ sit‰
+	
 	@PreAuthorize("isAuthenticated()")
 	public abstract void tallenna(Tunnit tunnit, String paivamaara);
 
