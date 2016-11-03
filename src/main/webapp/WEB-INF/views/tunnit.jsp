@@ -24,14 +24,24 @@
 <title>Kirjaa tunnit</title>
 
 <!-- Tyylitiedostot -->
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />">
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/styles/tyyli.css"/>">
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/styles/datepicker.css"/>">
+<link rel="stylesheet" type="text/css" href="<c:url value="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/styles/timepicker.min.css"/>">
+<script type="text/javascript" src="<c:url value="/webjars/jquery/1.11.1/jquery.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/webjars/bootstrap/3.3.7/js/bootstrap.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/bootstrap-datepicker.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/bootstrap-timepicker.min.js" />"></script>
+
+
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/styles/tyyli.css"/>">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/styles/datepicker.css"/>">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/styles/bootstrap-timepicker.min.css"/>">
+
+
 
 <!-- Skriptit -->
+
+
+
 <script>
 	$('.input-group date').datepicker({
 		language : 'fi',
@@ -44,6 +54,8 @@
 		alert("Tunnit lisätty");
 	}
 </script>
+
+
 </head>
 
 
@@ -88,9 +100,8 @@
 				<legend class="col-sm-offset-2">
 					<spring:message code="title1" />
 				</legend>
-
-
-
+				
+				
 			<form:input path="kayttajaId" type="hidden" value="${kayttaja.id}" />
 				<div class="form-group">
 					<label path="paivamaara" for="syotaTunnit"
@@ -107,7 +118,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="form-group">
+		<!--  	<div class="form-group">
 					<form:label path="tuntien_maara" for="syotaTunnit"
 						class="col-sm-2 control-label">
 						<spring:message code="hours" />:</form:label>
@@ -117,6 +128,26 @@
 					</div>
 					<form:errors path="tuntien_maara" style="color:red;" />
 				</div>
+				
+				-->	
+				
+				<!-- timepicker  -------------------------------------------------------------------------------------->
+			<div class="form-group">
+			<form:label path="tuntien_maara" for="syotaTunnit" class="col-sm-2 control-label">
+				<spring:message code="hours" />:</form:label>
+				<div class="col-sm-2">
+			<div class="input-group bootstrap-timepicker timepicker">
+            <input id="timepicker1" type="text" class="form-control input-small">
+            <form:input path="tuntien_maara" type="text" class="form-control" />
+            <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+        </div>
+        </div>
+			</div>
+     
+
+
+				
+				
 				<div class="form-group">
 					<form:label path="kuvaus" for="syotaTunnit"
 						class="col-sm-2 control-label">
@@ -293,12 +324,16 @@
 		</sec:authorize>	
 
 	</div>
-	<script type="text/javascript"
-		src="<c:url value="/webjars/jquery/1.11.1/jquery.min.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/webjars/bootstrap/3.3.7/js/bootstrap.min.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/js/bootstrap-datepicker.js" />"></script>
+	
+	
+	             <script type="text/javascript">
+            $('#timepicker1').timepicker({
+            	showMeridian: false,
+            	maxHours: 13,
+            	defaultTime: '00:00'
+            	
+            });
+        </script>
 
 </body>
 </html>
