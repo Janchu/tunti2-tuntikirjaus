@@ -45,7 +45,7 @@ public class KayttajaImpl implements Kayttaja {
 
 	private Tunnit uusitunti;
 
-	// Tyhj‰ constructor
+	// Tyhj‰ constructor, k‰ytet‰‰n kun mit‰‰n tietoja ei voida asettaa etuk‰teen
 
 	public KayttajaImpl() {
 		this.id = -1;
