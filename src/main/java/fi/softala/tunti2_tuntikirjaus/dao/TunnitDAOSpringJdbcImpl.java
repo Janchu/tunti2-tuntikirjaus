@@ -62,7 +62,7 @@ public class TunnitDAOSpringJdbcImpl implements TunnitDAO {
 
 		
 		// Käytettävä SQL-string
-		String sql = "select id, kayttajatunnus, etunimi, sukunimi from Kayttajat";
+		String sql = "select id, kayttajatunnus, etunimi, sukunimi from Kayttajat WHERE id != 0";
 		
 		// RowMapper, jota käytetään kun halutaan palauttaa tietoa tietokannasta eikä syöttää sitä tietokantaan
 		RowMapper<Kayttaja> mapper = new KayttajaRowMapper();
