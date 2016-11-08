@@ -63,7 +63,10 @@
 	<c:if test="${empty loggedin && empty loggedout && empty loginerror}">
 	<div class="container">	
 	<form:form action="tunnit/j_spring_security_check" method="post" class="form-horizontal">
-	
+		<fieldset>
+			<legend class="col-sm-offset-2">
+				<spring:message code="timetrackapp" />
+			</legend>		
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="kayttajatunnus"><spring:message code="username" /></label>
    			<div class="col-sm-4">
@@ -81,7 +84,8 @@
     		<div class="col-sm-offset-2 col-sm-10">
       			<button type="submit" class="btn btn-default"><spring:message code="login" /></button>
     		</div>
-  		</div>
+  		</div>	
+  		</fieldset>
 	</form:form>
 	</div>
 	</c:if>
@@ -89,7 +93,10 @@
 	<c:if test="${loggedout || loginerror}">
 	<div class="container">	
 	<form:form action="j_spring_security_check" method="post" class="form-horizontal">
-	
+		<fieldset>
+			<legend class="col-sm-offset-2">
+				<spring:message code="timetrackapp" />
+			</legend>	
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="kayttajatunnus"><spring:message code="username" /></label>
    			<div class="col-sm-4">
@@ -108,11 +115,11 @@
       			<button type="submit" class="btn btn-default"><spring:message code="login" /></button>
     		</div>
   		</div>
+  		</fieldset>
 	</form:form>
 	</div>
 	</c:if>
 	
-		<h1><spring:message code="timetrackapp" /></h1>
 		
 	
 </body>

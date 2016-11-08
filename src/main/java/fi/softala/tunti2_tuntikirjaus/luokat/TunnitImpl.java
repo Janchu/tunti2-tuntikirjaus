@@ -2,8 +2,6 @@ package fi.softala.tunti2_tuntikirjaus.luokat;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.validation.constraints.DecimalMax;
-import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
