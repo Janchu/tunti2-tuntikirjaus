@@ -102,6 +102,7 @@ public class TuntiController {
 		tunnit.setTuntien_maara(strTunnit);
 		
 	
+	
 		// Jos luodussa tuloslistauksessa on virheit‰...
 		if (result.hasErrors()) {
 			logger.info("T‰‰ll‰ oli erhe");
@@ -115,6 +116,11 @@ public class TuntiController {
 
 			// Luodaan p‰iv‰m‰‰r‰-string listalta tulleesta tunnit-oliosta
 			String pvm = tunnit.getPaivamaara();
+			
+			if (pvm.equalsIgnoreCase("0000-00-00")) {
+				String korjattuPvm = "";
+				tunnit.setPaivamaara(korjattuPvm);
+			}
 			
 			// N‰ytt‰‰, mik‰ kyseinen p‰iv‰m‰‰r‰ on
 			logger.info(tunnit.getPaivamaara() + " <- p‰iv‰m‰‰r‰");

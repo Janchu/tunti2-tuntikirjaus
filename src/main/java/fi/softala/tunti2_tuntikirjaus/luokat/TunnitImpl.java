@@ -2,6 +2,7 @@ package fi.softala.tunti2_tuntikirjaus.luokat;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -26,8 +27,11 @@ public class TunnitImpl implements Tunnit {
 	@Range(min = 1, max = 1000)
 	private int kayttajaId;
 
+	@NotNull
 	private String tuntien_maara;
 
+	@NotNull
+	@Size(min=10)
 	@DateTimeFormat(pattern="yyyy-mm-dd")
 	private String paivamaara;
 
