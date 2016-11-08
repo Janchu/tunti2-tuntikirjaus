@@ -28,9 +28,7 @@ public class TunnitImpl implements Tunnit {
 	@Range(min = 1, max = 1000)
 	private int kayttajaId;
 
-	@DecimalMin("0.25")
-	@DecimalMax("100.00")
-	private double tuntien_maara;
+	private String tuntien_maara;
 
 	@DateTimeFormat(pattern="yyyy-mm-dd")
 	private String paivamaara;
@@ -44,7 +42,7 @@ public class TunnitImpl implements Tunnit {
 	public TunnitImpl() {
 		this.id = 0;
 		this.kayttajaId = 0;
-		this.tuntien_maara = 0.00;
+		this.tuntien_maara = "";
 		this.paivamaara = "";
 		this.kuvaus = "";
 
@@ -52,7 +50,7 @@ public class TunnitImpl implements Tunnit {
 
 	// Constructor joka vaatii kaikki muuttujat
 
-	public TunnitImpl(int id, int kayttajaId, double tuntien_maara,
+	public TunnitImpl(int id, int kayttajaId, String tuntien_maara,
 			String paivamaara, String kuvaus) {
 		this.id = id;
 		this.kayttajaId = kayttajaId;
@@ -63,7 +61,7 @@ public class TunnitImpl implements Tunnit {
 
 	// Constructor joka vaatii kaiken paitsi id:n
 
-	public TunnitImpl(int kayttajaId, int tuntien_maara, String paivamaara,
+	public TunnitImpl(int kayttajaId, String tuntien_maara, String paivamaara,
 			String kuvaus) {
 		this.id = -1;
 		this.kayttajaId = 0;
@@ -75,7 +73,7 @@ public class TunnitImpl implements Tunnit {
 	
 	// Constructor joka vaatii kaiken paitsi id:t
 
-		public TunnitImpl(int tuntien_maara, String paivamaara,
+		public TunnitImpl(String tuntien_maara, String paivamaara,
 				String kuvaus) {
 			this.id = -1;
 			this.kayttajaId = -1;
@@ -101,11 +99,11 @@ public class TunnitImpl implements Tunnit {
 		this.kayttajaId = kayttajaId;
 	}
 
-	public double getTuntien_maara() {
+	public String getTuntien_maara() {
 		return tuntien_maara;
 	}
 
-	public void setTuntien_maara(double tuntien_maara) {
+	public void setTuntien_maara(String tuntien_maara) {
 		this.tuntien_maara = tuntien_maara;
 	}
 

@@ -21,7 +21,7 @@ public class TunnitRowMapper implements RowMapper<Tunnit> {
 		t.setId(rs.getInt("id"));
 		t.setKuvaus(rs.getString("kuvaus"));
 		t.setPaivamaara(rs.getString("paivamaara"));
-		t.setTuntien_maara(rs.getDouble("tuntien_maara"));
+		t.setTuntien_maara(rs.getString("tuntien_maara"));
 
 		return t;
 

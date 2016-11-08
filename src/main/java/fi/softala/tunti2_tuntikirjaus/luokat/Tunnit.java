@@ -10,9 +10,9 @@ public interface Tunnit {
 
 	public abstract void setKayttajaId(int kayttajaId);
 
-	public abstract double getTuntien_maara();
+	public abstract String getTuntien_maara();
 
-	public abstract void setTuntien_maara(double tuntien_maara);
+	public abstract void setTuntien_maara(String tuntien_maara);
 
 	public abstract String getPaivamaara();
 

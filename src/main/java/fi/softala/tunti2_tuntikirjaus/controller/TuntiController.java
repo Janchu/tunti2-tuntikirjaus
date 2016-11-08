@@ -78,6 +78,8 @@ public class TuntiController {
 		// Jos luodussa tuloslistauksessa on virheit‰...
 		if (result.hasErrors()) {
 			logger.info("T‰‰ll‰ oli erhe");
+			logger.info("" + tunnit.getTuntien_maara());
+			
 			
 			// Palautetaan kontrolleri
 			return "tunnit";
@@ -90,9 +92,11 @@ public class TuntiController {
 			
 			// N‰ytt‰‰, mik‰ kyseinen p‰iv‰m‰‰r‰ on
 			logger.info(tunnit.getPaivamaara() + " <- p‰iv‰m‰‰r‰");
+			logger.info("" + tunnit.getTuntien_maara());
 			
 			// N‰ytt‰‰ k‰ytt‰j‰n id-luvun
 			logger.info("id: " +tunnit.getKayttajaId());
+			System.out.println(tunnit.getTuntien_maara());
 			
 			// Jos k‰ytt‰j‰n id on 6 tai alle ja 1 tai yli...
 			if (tunnit.getKayttajaId() <= 6 && tunnit.getKayttajaId() >= 1) {

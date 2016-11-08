@@ -41,7 +41,6 @@
 <!-- Skriptit -->
 
 
-
 <script>
 	$('.input-group date').datepicker({
 		language : 'fi',
@@ -136,15 +135,12 @@
 				</div>
 				
 				-->	
-				
-				<!-- timepicker  -------------------------------------------------------------------------------------->
 			<div class="form-group">
 			<form:label path="tuntien_maara" for="syotaTunnit" class="col-sm-2 control-label">
 				<spring:message code="hours" />:</form:label>
 				<div class="col-sm-2">
 			<div class="input-group bootstrap-timepicker timepicker">
-            <input id="timepicker1" type="text" class="form-control input-small">
-            <form:input path="tuntien_maara" type="text" class="form-control" />
+            <form:input path="tuntien_maara" type="text" name="tunnit" id="syotaTunnit" class="form-control input-small" />
             <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
         </div>
         </div>
@@ -333,7 +329,7 @@
 	
 	
 	             <script type="text/javascript">
-            $('#timepicker1').timepicker({
+            $('#syotaTunnit').timepicker({
             	showMeridian: false,
             	maxHours: 13,
             	defaultTime: '00:00'
