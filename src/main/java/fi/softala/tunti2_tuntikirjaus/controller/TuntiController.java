@@ -2,8 +2,10 @@ package fi.softala.tunti2_tuntikirjaus.controller;
 
 
 import java.util.ArrayList;
+
 import javax.inject.Inject;
 import javax.validation.Valid;
+
 import org.slf4j.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -13,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import fi.softala.tunti2_tuntikirjaus.dao.TunnitDAO;
 import fi.softala.tunti2_tuntikirjaus.luokat.Kayttaja;
 import fi.softala.tunti2_tuntikirjaus.luokat.KayttajaImpl;
@@ -75,10 +78,33 @@ public class TuntiController {
 			@ModelAttribute(value = "tunnit") @Valid TunnitImpl tunnit,
 			BindingResult result) {
 		
+		
+		// Haetaan k‰ytt‰j‰n syˆtt‰m‰ tuntim‰‰r‰
+		String strTunnit = tunnit.getTuntien_maara();
+		// Erotellaan tunnit ja minuuti toisistaan
+		String[] parts = strTunnit.split(":");
+		String part2 = parts[1];
+		//Tehd‰‰n minuuttien muuttujasta Integer
+		int verrattava = new Integer(part2);
+		
+		// Verrataan minuuttien syˆtt‰m‰‰ aikaa ja pyˆristet‰‰n luku 15 minuutin tarkkuudella
+		// Muokataan Stringin mukana tullut : -> .
+		if (verrattava < 15 ) {
+			strTunnit = strTunnit.replaceAll(":.*", ".00");
+		} else if (verrattava >=15 && verrattava < 30) {
+			strTunnit = strTunnit.replaceAll(":.*", ".25");
+		} else if (verrattava >=30 && verrattava < 45 ) {
+			strTunnit = strTunnit.replaceAll(":.*", ".50");
+		} else if (verrattava >=45) {
+			strTunnit = strTunnit.replaceAll(":.*", ".75");
+		}
+		// Tallennetaan tunnit olioon
+		tunnit.setTuntien_maara(strTunnit);
+		
+	
 		// Jos luodussa tuloslistauksessa on virheit‰...
 		if (result.hasErrors()) {
 			logger.info("T‰‰ll‰ oli erhe");
-			logger.info("" + tunnit.getTuntien_maara());
 			
 			
 			// Palautetaan kontrolleri
@@ -92,7 +118,6 @@ public class TuntiController {
 			
 			// N‰ytt‰‰, mik‰ kyseinen p‰iv‰m‰‰r‰ on
 			logger.info(tunnit.getPaivamaara() + " <- p‰iv‰m‰‰r‰");
-			logger.info("" + tunnit.getTuntien_maara());
 			
 			// N‰ytt‰‰ k‰ytt‰j‰n id-luvun
 			logger.info("id: " +tunnit.getKayttajaId());
