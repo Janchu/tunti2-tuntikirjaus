@@ -132,7 +132,7 @@
 						<form:label path="paivamaara" for="syotaPaivamaara"
 							class="col-sm-2 control-label">
 							<spring:message code="date" />:</form:label>
-						<div class="col-sm-4">
+						<div class="col-sm-2">
 							<div class="input-group date" id="datepicker"
 								data-provide="datepicker" data-date-format="yyyy-mm-dd"
 								data-date-week-start="1">
