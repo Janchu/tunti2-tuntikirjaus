@@ -1,5 +1,3 @@
- /* The snackbar - position it at the bottom and in the middle of the screen */
-
 #testiloota {
 	
 	border-radius:15px;
@@ -26,7 +24,6 @@
 }
 
 .namebutton {
-	
 	color:white;
 	text-align:center;
 	border-radius:5px;
@@ -39,3 +36,26 @@
 .bold {
 	font-weight: bold;
 }
+
+.navbar {
+	border-radius: 0;
+}
+
+#logout {
+	background:none;
+	border:none;
+	color: #9d9d9d;
+	position: relative;
+ 	display: block;
+ 	padding: 10px;
+ 	text-align: center;
+}
+
+#logout:hover {
+	color: #fff;
+}
+
+@media (min-width: 768px) {
+	#logout {
+		padding: 15px 15px;
+	}

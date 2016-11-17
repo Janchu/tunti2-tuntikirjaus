@@ -74,7 +74,11 @@
 
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
-			<ul class="nav navbar-nav">
+			<a class="navbar-brand" href="#"> <spring:message code="greeting" />
+				<sec:authentication property="principal.username" />
+			</a>
+
+			<ul class="nav navbar-nav navbar-left">
 
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target="#myNavbar">
@@ -82,26 +86,21 @@
 						class="icon-bar"></span>
 				</button>
 			</ul>
-		</div>
 
-		<div class="collapse navbar-collapse" id="myNavbar">
-			<ul class="nav navbar-nav navbar-middle">
-				<li><a href="?lang=en">en</a></li>
-				<li><a href="?lang=fi">fi</a></li>
-			</ul>
-
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><spring:message code="greeting" /> <sec:authentication
-							property="principal.username" /> </a></li>
-				<li><form:form
-						action="${pageContext.request.contextPath}/logout" method="POST">
-						<p class="navbar-btn">
-							<button type="submit" class="btn btn-default btn-md">
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav navbar-right">
+					<li class="nav-item"><a href="?lang=en">en</a></li>
+					<li class="nav-item"><a href="?lang=fi">fi</a></li>
+				
+					<li class="nav-item"><form:form
+							action="${pageContext.request.contextPath}/logout" method="POST">
+							<button id="logout" type="submit">
+								<i class="glyphicon glyphicon-log-out"></i>
 								<spring:message code="logout" />
 							</button>
-						</p>
-					</form:form></li>
-			</ul>
+						</form:form></li>
+				</ul>
+			</div>
 		</div>
 	</nav>
 
