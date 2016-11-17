@@ -49,6 +49,12 @@
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/styles/bootstrap-timepicker.min.css"/>">
 
+<style>
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
+    color:white;}
+    </style>
 
 <!-- Skriptit -->
 
@@ -87,6 +93,7 @@
 				</button>
 			</ul>
 
+
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="nav-item"><a href="?lang=en">en</a></li>
@@ -106,13 +113,13 @@
 
 
 
-	<!-- Syöttökentät -->
+	<!----- Syöttökentät ------>
 
 	<div class="container">
-		<sec:authorize access="hasRole('ROLE_KAYTTAJA')">
+
+		<sec:authorize access="hasRole('ROLE_KAYTTAJA')">  <!-- Normaalikäyttäjän näkymät luodaan tästä alaspäin -->
 			<form:form modelAttribute="tunnit" method="post"
 				class="form-horizontal">
-
 
 				<fieldset>
 					<legend class="col-sm-offset-2">
@@ -144,7 +151,7 @@
 					</div>
 
 
-					<!-- Tuntien määrä -->
+					<!------ Tuntien määrä ------>
 
 					<div class="form-group">
 						<form:label path="tuntien_maara" for="syotaTunnit"
@@ -162,7 +169,7 @@
 
 
 
-					<!-- Kuvaus -->
+					<!----- Kuvaus ------->
 
 					<div class="form-group">
 						<form:label path="kuvaus" for="syotaTunnit"
@@ -175,8 +182,7 @@
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button class="savebutton" onclick="myFunction2()" type="submit"
-								name="lisaa">
+							<button class="savebutton" onclick="myFunction2()" type="submit" name="lisaa">
 								<spring:message code="save" />
 							</button>
 						</div>
@@ -185,7 +191,7 @@
 			</form:form>
 
 
-			<!-- Tuntitaulukot -->
+			<!------ Tuntitaulukot ------>
 
 			<fieldset>
 				<legend class="col-sm-offset-2">
@@ -197,14 +203,28 @@
 					<c:set var="kaikkiyhteensa" value="${0}" />
 					<c:forEach items="${kayttajat}" var="klista">
 						<c:set var="yhteensa" value="${0}" />
+						
+						<c:forEach items="${klista.tunnit}" var="tunnit">
+						<c:set var="tuntienmaara" value="${tunnit.tuntien_maara}"/>
+						<c:set var="yhteensa" value="${yhteensa + tunnit.tuntien_maara}"/>
+						</c:forEach>
+						
+						
+						<!--  wrapper laittaa käyttäjän nimen ja tämän tunnit kiinni toisiinsa -->
+						
+						
 
-						<a href="#<c:out value="${klista.etunimi}" />" class="namebutton"
-							data-toggle="collapse"><c:out value="${klista.etunimi}" /> <c:out
-								value="${klista.sukunimi}" /></a>
-						<br>
+						<div class="wrapper"><div class="left"><a href="#<c:out value="${klista.etunimi}" />" class="namebutton"
+							data-toggle="collapse"><c:out value="${klista.etunimi}" />
+							<c:out value="${klista.sukunimi}"/></a></div><div class="right"><div id="kayttajantunnit">
+							
+							<fmt:formatNumber type="number" pattern="###.00" value="${yhteensa}" />
+												</div></div></div>
 						<br>
 
 						<div id="<c:out value="${klista.etunimi}" />" class="collapse">
+						
+						<!----- Tuntitaulukko ----->
 
 							<div class="table-responsive">
 								<table class="table table-bordered">
@@ -217,48 +237,44 @@
 											<th class="col-sm-1"><spring:message code="del" /></th>
 										</tr>
 									</thead>
+									
 									<tbody>
 										<c:forEach items="${klista.tunnit}" var="tunnit">
 
 											<c:set var="id" value="${tunnit.id}" />
+											
+											<!-- Käyttäjän pvm, tunnit, kuvaus, ja poistanappi tr -->
+											
 											<tr>
-												<fmt:parseDate value="${tunnit.paivamaara}"
-													pattern="yyyy-MM-dd" var="paivamaara" />
-												<td><fmt:formatDate value="${paivamaara}"
-														pattern="dd.MM.yyyy" /></td>
+												<fmt:parseDate value="${tunnit.paivamaara}" pattern="yyyy-MM-dd" var="paivamaara" />
+												<td><fmt:formatDate value="${paivamaara}" pattern="dd.MM.yyyy" /></td>
 												<td><c:set var="tuntienmaara"
 														value="${tunnit.tuntien_maara}" /> <fmt:formatNumber
 														type="number" pattern="##.00" value="${tuntienmaara}" />
-													<c:set var="yhteensa"
-														value="${yhteensa + tunnit.tuntien_maara}" /></td>
+													
 												<td><c:out value="${tunnit.kuvaus}" /></td>
 
 												<c:if test="${klista.kayttajatunnus == principal.username}">
-													<td><form:form modelAttribute="kayttaja" method="post"
-															action="poista">
-															<form:input path="uusitunti.id" type="hidden"
-																value="${id}" />
-															<button type="submit" class="btn btn-danger"
-																aria-label="Left Align"
+													<td><form:form modelAttribute="kayttaja" method="post" action="poista">
+															<form:input path="uusitunti.id" type="hidden" value="${id}" />
+															<button type="submit" class="btn btn-danger" aria-label="Left Align"
 																onclick="return confirm('<spring:message code="areusure" />')">
-																<span class="glyphicon glyphicon-remove"
-																	aria-hidden="true"></span>
+																<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 															</button>
 														</form:form></td>
 												</c:if>
 											</tr>
 										</c:forEach>
 
+										<!-- Yhteistunnit tr -->
+
 										<tr>
 											<td><p class="bold">
 													<spring:message code="total" />
 													:
-													<fmt:formatNumber type="number" pattern="###.00"
-														value="${yhteensa}" />
+													<fmt:formatNumber type="number" pattern="###.00" value="${yhteensa}" />
 												</p></td>
-											<c:set var="kaikkiyhteensa"
-												value="${kaikkiyhteensa + yhteensa}" />
-
+											<c:set var="kaikkiyhteensa" value="${kaikkiyhteensa + yhteensa}" />
 										</tr>
 									</tbody>
 								</table>
@@ -270,12 +286,16 @@
 						:
 						<c:set var="yhteensa" value="${yhteensa + tunnit.tuntien_maara}" />
 
-						<fmt:formatNumber type="number" pattern="###.00"
-							value="${kaikkiyhteensa + yhteensa}" />
+						<fmt:formatNumber type="number" pattern="###.00" value="${kaikkiyhteensa + yhteensa}" />
 					</p>
 				</div>
 			</fieldset>
 		</sec:authorize>
+		
+		
+		<!-- Tästä eteenpäin ADMININ näkymät -->
+		
+		
 		<sec:authorize access="hasRole('ROLE_ADMIN')">
 
 			<fieldset>
@@ -283,21 +303,18 @@
 					<spring:message code="title2" />
 				</legend>
 
-
-
 				<div class="col-sm-offset-2">
 					<c:set var="kaikkiyhteensa" value="${0}" />
 					<c:forEach items="${kayttajat}" var="klista">
 						<c:set var="yhteensa" value="${0}" />
 
 						<a href="#<c:out value="${klista.etunimi}" />" class="namebutton"
-							data-toggle="collapse"><c:out value="${klista.etunimi}" /> <c:out
-								value="${klista.sukunimi}" /></a>
+							data-toggle="collapse"><c:out value="${klista.etunimi}" />
+							 <c:out value="${klista.sukunimi}" /></a>
 						<br>
 						<br>
 
 						<div id="<c:out value="${klista.etunimi}" />" class="collapse">
-
 							<div class="table-responsive">
 								<table class="table table-bordered">
 
@@ -314,30 +331,23 @@
 
 											<c:set var="id" value="${tunnit.id}" />
 											<tr>
-												<fmt:parseDate value="${tunnit.paivamaara}"
-													pattern="yyyy-MM-dd" var="paivamaara" />
-												<td><fmt:formatDate value="${paivamaara}"
-														pattern="dd.MM.yyyy" /></td>
+												<fmt:parseDate value="${tunnit.paivamaara}" pattern="yyyy-MM-dd" var="paivamaara" />
+												<td><fmt:formatDate value="${paivamaara}" pattern="dd.MM.yyyy" /></td>
 												<td><c:set var="tuntienmaara"
 														value="${tunnit.tuntien_maara}" /> <fmt:formatNumber
-														type="number" pattern="##.00" value="${tuntienmaara}" />
-													<c:set var="yhteensa"
-														value="${yhteensa + tunnit.tuntien_maara}" /></td>
+														type="number" pattern="00.00" value="${tuntienmaara}" />
+													<c:set var="yhteensa" value="${yhteensa + tunnit.tuntien_maara}" /></td>
 												<td><c:out value="${tunnit.kuvaus}" /></td>
-												<td><form:form modelAttribute="kayttaja" method="post"
-														action="poista">
-														<form:input path="uusitunti.id" type="hidden"
-															value="${id}" />
+												<td><form:form modelAttribute="kayttaja" method="post" action="poista">
+														<form:input path="uusitunti.id" type="hidden" value="${id}" />
 														<button type="submit" class="btn btn-danger"
 															aria-label="Left Align"
 															onclick="return confirm('<spring:message code="areusure" />')">
-															<span class="glyphicon glyphicon-remove"
-																aria-hidden="true"></span>
+															<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 														</button>
 													</form:form></td>
 											</tr>
 										</c:forEach>
-
 										<tr>
 											<td><p class="bold">
 													<spring:message code="total" />
@@ -346,8 +356,7 @@
 														value="${yhteensa}" />
 													<!-- <c:out value="${yhteensa}" /> -->
 												</p></td>
-											<c:set var="kaikkiyhteensa"
-												value="${kaikkiyhteensa + yhteensa}" />
+											<c:set var="kaikkiyhteensa"	value="${kaikkiyhteensa + yhteensa}" />
 
 										</tr>
 									</tbody>
@@ -355,6 +364,9 @@
 							</div>
 						</div>
 					</c:forEach>
+					
+					<!-- Koko projektin yhteistunnit -->
+					
 					<p class="bold">
 						<spring:message code="alltotal" />
 						:
@@ -365,11 +377,10 @@
 
 				</div>
 			</fieldset>
-
 		</sec:authorize>
-
 	</div>
 
+<!---- Scriptit ----->
 
 	<script type="text/javascript">
 		$('#syotaTunnit').timepicker({
