@@ -205,7 +205,6 @@ a:hover, a:visited, a:link, a:active {
 					<c:set var="kaikkiyhteensa" value="${0}" />
 					<c:forEach items="${kayttajat}" var="klista">
 						<c:set var="yhteensa" value="${0}" />
-
 						<c:forEach items="${klista.tunnit}" var="tunnit">
 							<c:set var="tuntienmaara" value="${tunnit.tuntien_maara}" />
 							<c:set var="yhteensa" value="${yhteensa + tunnit.tuntien_maara}" />
@@ -215,7 +214,7 @@ a:hover, a:visited, a:link, a:active {
 						<!--  wrapper laittaa käyttäjän nimen ja tämän tunnit kiinni toisiinsa -->
 
 
-
+						
 						<div class="wrapper">
 							<div class="left">
 								<a href="#<c:out value="${klista.etunimi}" />"
@@ -321,18 +320,42 @@ a:hover, a:visited, a:link, a:active {
 					<spring:message code="title2" />
 				</legend>
 
+				<sec:authentication var="principal" property="principal" />
 				<div class="col-sm-offset-2">
 					<c:set var="kaikkiyhteensa" value="${0}" />
 					<c:forEach items="${kayttajat}" var="klista">
 						<c:set var="yhteensa" value="${0}" />
+						<c:forEach items="${klista.tunnit}" var="tunnit">
+							<c:set var="tuntienmaara" value="${tunnit.tuntien_maara}" />
+							<c:set var="yhteensa" value="${yhteensa + tunnit.tuntien_maara}" />
+						</c:forEach>
 
-						<a href="#<c:out value="${klista.etunimi}" />" class="namebutton"
-							data-toggle="collapse"><c:out value="${klista.etunimi}" /> <c:out
-								value="${klista.sukunimi}" /></a>
-						<br>
+
+						<!--  wrapper laittaa käyttäjän nimen ja tämän tunnit kiinni toisiinsa -->
+
+
+						
+						<div class="wrapper">
+							<div class="left">
+								<a href="#<c:out value="${klista.etunimi}" />"
+									class="namebutton" data-toggle="collapse"><c:out
+										value="${klista.etunimi}" /> <c:out
+										value="${klista.sukunimi}" /></a>
+							</div>
+							<div class="right">
+								<div id="kayttajantunnit">
+
+									<fmt:formatNumber type="number" pattern="###.00"
+										value="${yhteensa}" />
+								</div>
+							</div>
+						</div>
 						<br>
 
 						<div id="<c:out value="${klista.etunimi}" />" class="collapse">
+
+							<!----- Tuntitaulukko ----->
+
 							<div class="table-responsive">
 								<table class="table table-bordered">
 
@@ -344,10 +367,14 @@ a:hover, a:visited, a:link, a:active {
 											<th class="col-sm-1"><spring:message code="del" /></th>
 										</tr>
 									</thead>
+
 									<tbody>
 										<c:forEach items="${klista.tunnit}" var="tunnit">
 
 											<c:set var="id" value="${tunnit.id}" />
+
+											<!-- Käyttäjän pvm, tunnit, kuvaus, ja poistanappi tr -->
+
 											<tr>
 												<fmt:parseDate value="${tunnit.paivamaara}"
 													pattern="yyyy-MM-dd" var="paivamaara" />
@@ -355,50 +382,49 @@ a:hover, a:visited, a:link, a:active {
 														pattern="dd.MM.yyyy" /></td>
 												<td><c:set var="tuntienmaara"
 														value="${tunnit.tuntien_maara}" /> <fmt:formatNumber
-														type="number" pattern="00.00" value="${tuntienmaara}" />
-													<c:set var="yhteensa"
-														value="${yhteensa + tunnit.tuntien_maara}" /></td>
+														type="number" pattern="##.00" value="${tuntienmaara}" />
 												<td><c:out value="${tunnit.kuvaus}" /></td>
-												<td><form:form modelAttribute="kayttaja" method="post"
-														action="poista">
-														<form:input path="uusitunti.id" type="hidden"
-															value="${id}" />
-														<button type="submit" class="btn btn-danger"
-															aria-label="Left Align"
-															onclick="return confirm('<spring:message code="areusure" />')">
-															<span class="glyphicon glyphicon-remove"
-																aria-hidden="true"></span>
-														</button>
-													</form:form></td>
+
+												
+													<td><form:form modelAttribute="kayttaja" method="post"
+															action="poista">
+															<form:input path="uusitunti.id" type="hidden"
+																value="${id}" />
+															<button type="submit" class="btn btn-danger"
+																aria-label="Left Align"
+																onclick="return confirm('<spring:message code="areusure" />')">
+																<span class="glyphicon glyphicon-remove"
+																	aria-hidden="true"></span>
+															</button>
+														</form:form></td>
+												
 											</tr>
 										</c:forEach>
+
+										<!-- Yhteistunnit tr -->
+
 										<tr>
 											<td><p class="bold">
 													<spring:message code="total" />
 													:
 													<fmt:formatNumber type="number" pattern="###.00"
 														value="${yhteensa}" />
-													<!-- <c:out value="${yhteensa}" /> -->
 												</p></td>
 											<c:set var="kaikkiyhteensa"
 												value="${kaikkiyhteensa + yhteensa}" />
-
 										</tr>
 									</tbody>
 								</table>
 							</div>
 						</div>
 					</c:forEach>
-
-					<!-- Koko projektin yhteistunnit -->
-
 					<p class="bold">
 						<spring:message code="alltotal" />
 						:
+
 						<fmt:formatNumber type="number" pattern="###.00"
 							value="${kaikkiyhteensa}" />
 					</p>
-
 				</div>
 			</fieldset>
 		</sec:authorize>
