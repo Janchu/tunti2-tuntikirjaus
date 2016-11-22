@@ -45,19 +45,24 @@
 <body>
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
-			<ul class="nav navbar-nav">
+			<div id="greeting"><a class="navbar-brand" style="margin-top:3px;"> <spring:message code="greeting" />
+			</a></div>
 
+			<ul class="nav navbar-nav navbar-left">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target="#myNavbar">
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-		</div>
+			</ul>
+
 		<div class="collapse navbar-collapse" id="myNavbar">
-			<ul class="nav navbar-nav navbar-left">
+					
+			<ul class="nav navbar-nav navbar-right">
 				<li class="nav-item"><a href="?lang=fi"><spring:url value="/resources/images" var="images" /><img src="${images}/finflag.png" class="finflag" width="28" height="auto"/></a></li>
 				<li class="nav-item"><a href="?lang=en"><spring:url value="/resources/images" var="images" /><img src="${images}/ukflag.png" class="ukflag" width="28" height="auto"/></a></li>
 			</ul>
+		</div>
 		</div>
 	</nav>
 

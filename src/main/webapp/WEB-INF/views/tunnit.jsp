@@ -71,14 +71,12 @@ a:hover, a:visited, a:link, a:active {
 			</a></div>
 
 			<ul class="nav navbar-nav navbar-left">
-
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target="#myNavbar">
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
 			</ul>
-
 
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav navbar-right">
