@@ -32,14 +32,7 @@
 	href="<c:url value="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />">
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/styles/timepicker.min.css"/>">
-<script type="text/javascript"
-	src="<c:url value="/webjars/jquery/1.11.1/jquery.min.js" />"></script>
-<script type="text/javascript"
-	src="<c:url value="/webjars/bootstrap/3.3.7/js/bootstrap.min.js" />"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/js/bootstrap-datepicker.js" />"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/js/bootstrap-timepicker.min.js" />"></script>
+
 
 
 <link rel="stylesheet" type="text/css"
@@ -58,13 +51,6 @@ a:hover, a:visited, a:link, a:active {
 
 <!-- Skriptit -->
 
-<script>
-	$('.input-group date').datepicker({
-		language : 'fi',
-		format : 'dd.MM.yyyy',
-		weekStart : 1
-	});
-</script>
 <script>
 	function myFunction() {
 		alert("Tunnit lisätty");
@@ -140,11 +126,9 @@ a:hover, a:visited, a:link, a:active {
 							class="col-sm-2 control-label">
 							<spring:message code="date" />:</form:label>
 						<div class="col-sm-2">
-							<div class="input-group date" id="datepicker"
-								data-provide="datepicker" data-date-format="yyyy-mm-dd"
-								data-date-week-start="1">
+							<div class="input-group date" id="datepicker">
 								<form:input path="paivamaara" type="text" id="syotaPaivamaara"
-									class="form-control" />
+									class="form-control" data-provide="datepicker" />
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-calendar"></i></span>
 							</div>
@@ -406,12 +390,39 @@ a:hover, a:visited, a:link, a:active {
 
 	<!---- Scriptit ----->
 
+	<script type="text/javascript"
+		src="<c:url value="/webjars/jquery/1.11.1/jquery.min.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/webjars/bootstrap/3.3.7/js/bootstrap.min.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/js/bootstrap-datepicker.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/js/locales/bootstrap-datepicker.fi.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/js/bootstrap-timepicker.min.js" />"></script>
+
+<c:if test="${pageContext.response.locale == 'fi'}">
+	<script type="text/javascript">
+		$('#syotaPaivamaara').datepicker({
+			language : 'fi',
+			format : 'yyyy-mm-dd',
+			weekStart : 1
+		});
+	</script>
+</c:if>
+<c:if test="${pageContext.response.locale == 'en'}">
+	<script type="text/javascript">
+		$('#syotaPaivamaara').datepicker({
+			format : 'yyyy-mm-dd',
+			weekStart : 1
+		});
+	</script>
+</c:if>
 	<script type="text/javascript">
 		$('#syotaTunnit').timepicker({
 			showMeridian : false,
 			maxHours : 13,
 			defaultTime : '00:00'
-
 		});
 	</script>
 
