@@ -244,7 +244,7 @@ a:hover, a:visited, a:link, a:active {
 											<th class="col-sm-1"><spring:message code="date" /></th>
 											<th class="col-sm-1"><spring:message code="hours" /></th>
 											<th class="col-sm-3"><spring:message code="desc" /></th>
-											<th class="col-sm-1"><spring:message code="del" /></th>
+											<c:if test="${klista.kayttajatunnus == principal.username}"><th class="col-sm-1"><spring:message code="del" /></th></c:if>
 										</tr>
 									</thead>
 
