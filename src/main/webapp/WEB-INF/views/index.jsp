@@ -1,6 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -10,22 +10,38 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <sec:authorize access="isAuthenticated()">
 	<c:redirect url="tunnit/lista" />
 </sec:authorize>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+
+<!-- Metatiedot -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tervetuloa tuntikirjaukseen</title>
+
+
+<!-- Tyylitiedostot -->
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	crossorigin="anonymous">
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/styles/tyyli.css"/>" />
+
+
+<!-- Skriptit -->
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+
+
 <body>
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
@@ -49,7 +65,7 @@
 			</ul>
 		</div>
 	</nav>
-	
+
 	<c:if test="${empty loggedin && empty loggedout && empty loginerror}">
 		<div class="container">
 			<form:form action="tunnit/j_spring_security_check" method="post"
