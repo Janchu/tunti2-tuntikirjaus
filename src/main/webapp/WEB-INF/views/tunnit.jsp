@@ -232,7 +232,7 @@ a:hover, a:visited, a:link, a:active {
 						</div>
 						<br>
 
-						<div id="<c:out value="${klista.etunimi}" />" class="collapse">
+						<div id="<c:out value="${klista.etunimi}" />" class="<c:if test="${klista.kayttajatunnus == principal.username}">collapse in</c:if><c:if test="${klista.kayttajatunnus != principal.username}">collapse</c:if>">
 
 							<!----- Tuntitaulukko ----->
 
