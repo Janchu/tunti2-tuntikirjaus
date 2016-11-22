@@ -6,6 +6,32 @@
 	
 }
 
+
+@media screen and (max-width: 768px) {
+    .ukflag {
+       margin-left:40px;
+       margin-top:-90px
+    }
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+    #greeting {
+       margin-left:-20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .logout {
+       margin-top:-50px;
+    }
+}
+
+
+
+
 #fieldset {
 	
 	border:1px black solid;
@@ -31,7 +57,7 @@
 }
 
 
-
+.right {margin-left:-4px;}
 
 
 .left {
