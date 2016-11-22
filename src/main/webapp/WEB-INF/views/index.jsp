@@ -54,14 +54,9 @@
 				</button>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
-			<ul class="nav navbar-nav navbar-middle">
-				<li><a href="?lang=en">en</a></li>
-				<li><a href="?lang=fi">fi</a></li>
-			</ul>
-
-			<ul class="nav navbar-nav navbar-right">
-				<li></li>
-				<li></li>
+			<ul class="nav navbar-nav navbar-left">
+				<li class="nav-item"><a href="?lang=fi"><spring:url value="/resources/images" var="images" /><img src="${images}/finflag.png" class="finflag" width="28" height="auto"/></a></li>
+				<li class="nav-item"><a href="?lang=en"><spring:url value="/resources/images" var="images" /><img src="${images}/ukflag.png" class="ukflag" width="28" height="auto"/></a></li>
 			</ul>
 		</div>
 	</nav>

@@ -80,9 +80,9 @@ a:hover, a:visited, a:link, a:active {
 
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#"> <spring:message code="greeting" />
+			<div id="greeting"><a class="navbar-brand" style="margin-top:3px;"> <spring:message code="greeting" />
 				<sec:authentication property="principal.username" />
-			</a>
+			</a></div>
 
 			<ul class="nav navbar-nav navbar-left">
 
@@ -96,12 +96,12 @@ a:hover, a:visited, a:link, a:active {
 
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="nav-item"><a href="?lang=en">en</a></li>
-					<li class="nav-item"><a href="?lang=fi">fi</a></li>
-
-					<li class="nav-item"><form:form
+					
+					<li class="nav-item"><a href="?lang=fi"><spring:url value="/resources/images" var="images" /><img src="${images}/finflag.png" class="finflag" width="28" height="auto"/></a></li>
+					<li class="nav-item"><a href="?lang=en"><spring:url value="/resources/images" var="images" /><img src="${images}/ukflag.png" class="ukflag" width="28" height="auto"/></a></li>
+					<li class="nav-item" style="margin-top:3px;"><form:form
 							action="${pageContext.request.contextPath}/logout" method="POST">
-							<button id="logout" type="submit">
+							<button id="logout" type="submit" class="logout">
 								<i class="glyphicon glyphicon-log-out"></i>
 								<spring:message code="logout" />
 							</button>
