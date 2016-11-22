@@ -19,3 +19,16 @@ CREATE TABLE Tunnit (
 	FOREIGN KEY (kayttaja_id) REFERENCES Kayttajat(id)
 )ENGINE=InnoDB;
 
+CREATE TABLE authority (
+  id integer NOT NULL auto_increment PRIMARY KEY,
+  role varchar(255) NOT NULL UNIQUE
+ ) ENGINE=InnoDB;
+	
+CREATE TABLE Kayttaja_authority (
+  id integer NOT NULL auto_increment PRIMARY KEY,
+  Kayttaja_id integer NOT NULL,
+  authority_id integer NOT NULL,
+  FOREIGN KEY (Kayttaja_id) REFERENCES Kayttajat(id) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  FOREIGN KEY (authority_id) REFERENCES authority(id) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB;
+
