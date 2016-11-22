@@ -283,10 +283,9 @@ a:hover, a:visited, a:link, a:active
 					</c:forEach>
 					<p class="bold">
 						<spring:message code="alltotal" />
-						:
-						<c:set var="yhteensa" value="${yhteensa + tunnit.tuntien_maara}" />
+						:			
 
-						<fmt:formatNumber type="number" pattern="###.00" value="${kaikkiyhteensa + yhteensa}" />
+						<fmt:formatNumber type="number" pattern="###.00" value="${kaikkiyhteensa}" />
 					</p>
 				</div>
 			</fieldset>
@@ -369,10 +368,9 @@ a:hover, a:visited, a:link, a:active
 					
 					<p class="bold">
 						<spring:message code="alltotal" />
-						:
-						<c:set var="yhteensa" value="${yhteensa + tunnit.tuntien_maara}" />
+						:						
 						<fmt:formatNumber type="number" pattern="###.00"
-							value="${kaikkiyhteensa + yhteensa}" />
+							value="${kaikkiyhteensa}" />
 					</p>
 
 				</div>
