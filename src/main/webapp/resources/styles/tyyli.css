@@ -43,10 +43,14 @@
 	color:white;
 	text-align:center;
 	border-radius:5px;
+	border:1px solid grey;
 	background-color:grey;
-	padding:10px;
+	padding:8px;
 	width:80px;
-	
+}
+
+.savebutton:hover {
+	background-color:#999999;
 }
 
 .namebutton {
@@ -72,7 +76,10 @@
 
 
 
-.left:hover {background-color:#999999;}
+.left:hover {
+	background-color:#999999;
+}
+
 #kayttajantunnit {
 	font-weight:bold;
 	color:grey;

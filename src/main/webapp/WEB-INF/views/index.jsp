@@ -79,7 +79,7 @@
 								code="username" /></label>
 						<div class="col-sm-4">
 							<input type="text" class="form-control" id="kayttajatunnus"
-								name='kayttajatunnus' value=''> <input type="hidden"
+								name='kayttajatunnus' value='' required> <input type="hidden"
 								name="${_csrf.parameterName}" value="${_csrf.token}" />
 						</div>
 					</div>
@@ -88,7 +88,7 @@
 								code="password" /></label>
 						<div class="col-sm-4">
 							<input type="password" class="form-control" id="salasana"
-								name='salasana'>
+								name='salasana' required>
 						</div>
 					</div>
 					<div class="form-group">

@@ -126,10 +126,11 @@ a:hover, a:visited, a:link, a:active {
 						<div class="col-sm-2">
 							<div class="input-group date" id="datepicker">
 								<form:input path="paivamaara" type="text" id="syotaPaivamaara"
-									class="form-control" data-provide="datepicker" />
+									class="form-control" data-provide="datepicker" required="required"/>
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-calendar"></i></span>
 							</div>
+							<form:errors path="paivamaara" style="color:red;" />
 						</div>
 					</div>
 
@@ -141,12 +142,13 @@ a:hover, a:visited, a:link, a:active {
 							class="col-sm-2 control-label">
 							<spring:message code="hours" />:</form:label>
 						<div class="col-sm-2">
-							<div class="input-group bootstrap-timepicker timepicker">
+							<div class="input-group">
 								<form:input path="tuntien_maara" type="text" id="syotaTunnit"
-									class="form-control" />
+									class="form-control bootstrap-timepicker timepicker" required="required"/>
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-time"></i></span>
 							</div>
+							<form:errors path="tuntien_maara" style="color:red;" />
 						</div>
 					</div>
 
@@ -163,6 +165,10 @@ a:hover, a:visited, a:link, a:active {
 						</div>
 						<form:errors path="kuvaus" style="color:red;" />
 					</div>
+					
+					
+					<!-- Submit-nappula -->
+					
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<button class="savebutton" onclick="myFunction2()" type="submit"
@@ -430,23 +436,27 @@ a:hover, a:visited, a:link, a:active {
 		$('#syotaPaivamaara').datepicker({
 			language : 'fi',
 			format : 'yyyy-mm-dd',
-			weekStart : 1
-		});
+			weekStart : 1,
+			autoclose : true,
+			startDate : '1970-01-02'
+		}).datepicker("setDate", "0");
 	</script>
 </c:if>
 <c:if test="${pageContext.response.locale == 'en'}">
 	<script type="text/javascript">
 		$('#syotaPaivamaara').datepicker({
 			format : 'yyyy-mm-dd',
-			weekStart : 1
-		});
+			weekStart : 1,
+			autoclose : true,
+			startDate : '1970-01-02'
+		}).datepicker("setDate", "0");
 	</script>
 </c:if>
 	<script type="text/javascript">
 		$('#syotaTunnit').timepicker({
 			showMeridian : false,
 			maxHours : 13,
-			defaultTime : '00:00'
+			defaultTime : "0.00",
 		});
 	</script>
 
