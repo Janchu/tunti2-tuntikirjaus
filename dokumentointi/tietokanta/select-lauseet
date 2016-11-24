@@ -1,9 +1,0 @@
-SELECT * FROM Tunnit;
-
-SELECT * FROM Kayttajat;
-
-SELECT * FROM Tunnit WHERE ID = '1';
-
-SELECT * FROM authority;
-
-SELECT * FROM Kayttaja_authority;
