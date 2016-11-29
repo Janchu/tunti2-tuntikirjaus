@@ -53,15 +53,21 @@
 	background-color:#999999;
 }
 
-.namebutton {
-	color:white;
+
+
+
+.right {
+	margin-left:-4px;
+	font-weight:bold;
+	color:grey;
 	text-align:center;
-	padding:10px;
-
-}
-
-
-.right {margin-left:-4px;}
+	border-radius:0px 5px 5px 0px;
+	border:1px solid grey;
+	background-color:white;
+	padding:8px;
+	width:60px;
+	margin-top:-7px;
+	margin-bottom:-7px;}
 
 
 .left {
@@ -72,6 +78,9 @@
 	padding:8px;
 	margin-top:-7px;
 	margin-bottom:-7px;
+	color:white;
+	text-align:center;
+	
 }
 
 
@@ -80,18 +89,7 @@
 	background-color:#999999;
 }
 
-#kayttajantunnit {
-	font-weight:bold;
-	color:grey;
-	text-align:center;
-	border-radius:0px 5px 5px 0px;
-	border:1px solid grey;
-	background-color:white;
-	padding:8px;
-	width:60px;
-	margin-top:-7px;
-	margin-bottom:-7px;
-}
+
 
 
 

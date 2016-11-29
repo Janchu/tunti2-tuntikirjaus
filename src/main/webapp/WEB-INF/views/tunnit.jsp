@@ -206,16 +206,13 @@ a:hover, a:visited, a:link, a:active {
 						<div class="wrapper">
 							<div class="left">
 								<a href="#<c:out value="${klista.etunimi}" />"
-									class="namebutton" data-toggle="collapse"><c:out
+									 data-toggle="collapse"><c:out
 										value="${klista.etunimi}" /> <c:out
 										value="${klista.sukunimi}" /></a>
 							</div>
 							<div class="right">
-								<div id="kayttajantunnit">
-
 									<fmt:formatNumber type="number" pattern="###.00"
 										value="${yhteensa}" />
-								</div>
 							</div>
 						</div>
 						<br>
