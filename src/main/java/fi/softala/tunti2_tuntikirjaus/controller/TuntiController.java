@@ -109,7 +109,7 @@ public class TuntiController {
 			
 			
 			// Palautetaan kontrolleri
-			return "tunnit";
+			return "redirect:/tunnit/lista";
 			
 		// Muuten...
 		} else {
