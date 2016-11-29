@@ -161,7 +161,7 @@ a:hover, a:visited, a:link, a:active {
 							class="col-sm-2 control-label">
 							<spring:message code="desc" />:</form:label>
 						<div class="col-sm-4">
-							<form:textarea path="kuvaus" class="form-control" rows="4"></form:textarea>
+							<form:textarea path="kuvaus" class="form-control" rows="4" required="required"></form:textarea>
 						</div>
 						<form:errors path="kuvaus" style="color:red;" />
 					</div>
