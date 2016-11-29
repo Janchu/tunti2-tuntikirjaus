@@ -50,7 +50,7 @@ public class TunnitImpl implements Tunnit {
 
 	}
 
-	// Constructor joka vaatii kaikki muuttujat
+	// Konstruktori, joka vaatii kaikki muuttujat
 
 	public TunnitImpl(int id, int kayttajaId, String tuntien_maara,
 			String paivamaara, String kuvaus) {
@@ -61,7 +61,7 @@ public class TunnitImpl implements Tunnit {
 		this.kuvaus = kuvaus;
 	}
 
-	// Constructor joka vaatii kaiken paitsi id:n
+	// Konstruktori, joka vaatii kaiken paitsi id:n
 
 	public TunnitImpl(int kayttajaId, String tuntien_maara, String paivamaara,
 			String kuvaus) {
@@ -73,7 +73,7 @@ public class TunnitImpl implements Tunnit {
 
 	}
 	
-	// Constructor joka vaatii kaiken paitsi id:t
+	// Konstruktori, joka vaatii kaiken paitsi id:t
 
 		public TunnitImpl(String tuntien_maara, String paivamaara,
 				String kuvaus) {

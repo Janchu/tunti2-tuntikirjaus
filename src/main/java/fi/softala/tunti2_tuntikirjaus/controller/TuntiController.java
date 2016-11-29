@@ -26,13 +26,14 @@ import fi.softala.tunti2_tuntikirjaus.luokat.TunnitImpl;
 @RequestMapping(value = "/tunnit")
 public class TuntiController {
 
-	// TunnitDAO:n paikallinen tunnitDao-olio	
+	// TunnitDAO:n paikallinen tunnitDao-olio
 	@Inject
 	private TunnitDAO tunnitDao;
 	
-	// Logger, jota k‰ytet‰‰n System.outin sijaan
+	// Luodaan loggeri
 	final static Logger logger = LoggerFactory.getLogger(TuntiController.class);
 
+	
 	// Tuntien listaaminen	
 	@RequestMapping(value = "lista", method = RequestMethod.GET)
 	public String getCreateForm(Model model) {
@@ -52,20 +53,15 @@ public class TuntiController {
 		// Laitetaan k‰ytt‰j‰n k‰ytt‰j‰nimi Stringiin, joka haetaan aiemmin luodusta User-oliosta
 		String kayttajaString = user.getUsername();		
 		
+		// Luodaan Kayttaja-olio, johon k‰ytt‰j‰n tiedot haetaan k‰ytt‰j‰n k‰ytt‰j‰tunnuksen mukaan
+		Kayttaja kayttaja = tunnitDao.haeKayttaja(kayttajaString);
+		
 		// Luodaan Tunnit-luokalle pohjautuva olio, tunnit
 		Tunnit tunnit = new TunnitImpl();
-		
-		// Vied‰‰n juuri luotu tunnit-olio modeliin, eli paikkaan josta tunnit.jsp voi sit‰ k‰ytt‰‰
-		model.addAttribute("tunnit", tunnit);
-		
-		// Luodaan Kayttaja-luokasta olio kayttaja, joka pohjautuu tunnitDao:ssa olevalle metodille joka hakee yhden k‰ytt‰j‰n
-		// K‰ytt‰j‰n tiedot haetaan k‰ytt‰j‰n k‰ytt‰j‰tunnuksen mukaan
-		Kayttaja kayttaja = tunnitDao.haeKayttaja(kayttajaString);
 
-		// Vied‰‰n luotu k‰ytt‰j‰olio modeliin
+		// Vied‰‰n luotu tunnit-olio, k‰ytt‰j‰-olio ja k‰ytt‰j‰lista modeliin
+		model.addAttribute("tunnit", tunnit);
 		model.addAttribute("kayttaja", kayttaja);
-		
-		// Vied‰‰n aivan aluksi luotu kaikki k‰ytt‰j‰t hakenut ArrayList modeliin myˆs
 		model.addAttribute("kayttajat", kayttajat);
 		
 		// Palautetaan tunnit.jsp
@@ -106,12 +102,10 @@ public class TuntiController {
 		// Jos luodussa tuloslistauksessa on virheit‰...
 		if (result.hasErrors()) {
 			logger.info("T‰‰ll‰ oli erhe");
-			
-			
+					
 			// Palautetaan kontrolleri
 			return "redirect:/tunnit/lista";
 			
-		// Muuten...
 		} else {
 
 			// Luodaan p‰iv‰m‰‰r‰-string listalta tulleesta tunnit-oliosta
@@ -122,23 +116,14 @@ public class TuntiController {
 				tunnit.setPaivamaara(korjattuPvm);
 			}
 			
-			// N‰ytt‰‰, mik‰ kyseinen p‰iv‰m‰‰r‰ on
-			logger.info(tunnit.getPaivamaara() + " <- p‰iv‰m‰‰r‰");
+			// Tunteja lis‰nneen k‰ytt‰j‰n id ja p‰iv‰m‰‰r‰, jolle tunnit on lis‰tty
+			logger.info("Id: " +tunnit.getKayttajaId() + "Pvm" + tunnit.getPaivamaara());
 			
-			// N‰ytt‰‰ k‰ytt‰j‰n id-luvun
-			logger.info("id: " +tunnit.getKayttajaId());
-			System.out.println(tunnit.getTuntien_maara());
-			
-			// Jos k‰ytt‰j‰n id on 6 tai alle ja 1 tai yli...
+			// Tarkistetaan, ett‰ k‰ytt‰j‰n id on v‰lill‰ 1-6
 			if (tunnit.getKayttajaId() <= 6 && tunnit.getKayttajaId() >= 1) {
-			
-			// Kuka k‰ytt‰j‰ taas oli kyseess‰? Turha sin‰ns‰, koska t‰m‰ on jo k‰yty ylemp‰n‰
-				logger.info(tunnit.getKayttajaId() + ":n tunnit");
 				
-				// Tallennetaan k‰ytt‰j‰n uudet tunnit tietokantaan k‰ytt‰en tunnitDao-olion metodia tallenna
-				// Sinne syˆtet‰‰n tunnit ja pvm erikseen - ei en‰‰ tarvitsisi, koska tunnit-oliossa on
-				// pvm valmiiksi!
-				tunnitDao.tallenna(tunnit, pvm);
+				// Tallennetaan k‰ytt‰j‰n uudet tunnit tietokantaan
+				tunnitDao.tallenna(tunnit);
 			
 			}
 			
@@ -147,7 +132,7 @@ public class TuntiController {
 		}
 	}
 	
-	// Tuntien tietokannasta poisto	
+	// Tuntien poisto tietokannasta	
 	@RequestMapping(value = "/poista", method = RequestMethod.POST)
 	public String delete(
 			@ModelAttribute(value = "kayttaja") KayttajaImpl kayttaja) {

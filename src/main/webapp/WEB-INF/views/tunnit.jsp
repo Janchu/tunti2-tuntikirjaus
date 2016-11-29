@@ -31,12 +31,9 @@
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />">
 <link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/styles/timepicker.min.css"/>">
-
-
-
-<link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/styles/tyyli.css"/>">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/styles/timepicker.min.css"/>">
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/styles/datepicker.css"/>">
 <link rel="stylesheet" type="text/css"

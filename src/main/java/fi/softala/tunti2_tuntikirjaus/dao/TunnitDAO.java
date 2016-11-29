@@ -19,7 +19,7 @@ public interface TunnitDAO {
 	// @PreAuthorizella varmistetaan, ett‰ k‰ytt‰j‰ joka yritt‰‰ k‰ytt‰‰ t‰t‰ koodin osaa oikeasti saa k‰ytt‰‰ sit‰
 	
 	@PreAuthorize("isAuthenticated()")
-	public abstract void tallenna(Tunnit tunnit, String paivamaara);
+	public abstract void tallenna(Tunnit tunnit);
 
 	@PreAuthorize("isAuthenticated()")
 	public abstract List<Kayttaja> haeKaikki();

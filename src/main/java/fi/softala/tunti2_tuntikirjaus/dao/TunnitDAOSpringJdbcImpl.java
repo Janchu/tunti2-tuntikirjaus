@@ -37,18 +37,16 @@ public class TunnitDAOSpringJdbcImpl implements TunnitDAO {
 			.getLogger(TunnitDAOSpringJdbcImpl.class);
 	
 	// Tallennetaan k‰ytt‰j‰n uudet tunnit tietokantaan
-	public void tallenna(Tunnit t, String paivamaara) {
+	public void tallenna(Tunnit t) {
 		
-		// Asetetaan t-olion p‰iv‰m‰‰r‰ksi String paivamaara
-		t.setPaivamaara(paivamaara);
+		// Logger kantaan viet‰vist‰ tiedoista
+		logger.info("Tallennettavan tuntikirjauksen tiedot: k‰ytt‰j‰id: " + t.getKayttajaId() + ", pvm: " + t.getPaivamaara() + 
+				", tunnit: " + t.getTuntien_maara() + ", kuvaus: " + t.getKuvaus());
 		
-		// Mik‰ p‰iv‰m‰‰r‰ olikaan?
-		logger.info("Laitettava p‰iv‰m‰‰r‰ on " + paivamaara);
-		
-		// K‰ytett‰v‰ SQL-string, jota siis k‰ytet‰‰n MariaDB-tietokannan kanssa
+		// Insert-lause
 		String sql = "insert into Tunnit(tuntien_maara, paivamaara, kuvaus, kayttaja_id) values(?,?,?,?)";
 		
-		// Parametrit, jotka t‰ytt‰v‰t ylemm‰n SQL-stringin loppup‰‰n kysymysmerkit
+		// Parametrit insert-lauseeseen
 		Object[] parametrit = new Object[] { t.getTuntien_maara(),
 				t.getPaivamaara(), t.getKuvaus(), t.getKayttajaId() };
 		
@@ -76,16 +74,13 @@ public class TunnitDAOSpringJdbcImpl implements TunnitDAO {
 	}
 
 	// Haetaan kannasta tietyn k‰ytt‰j‰n tunnit p‰iv‰m‰‰r‰ll‰ j‰rjestettyn‰
-	public List<Tunnit> haeKayttajanTunnit(int kayttaja_id) {
+	public List<Tunnit> haeKayttajanTunnit(int kayttajaId) {
 
-		// Listataan k‰ytt‰j‰n ID
-		logger.info("K‰ytt‰j‰n ID on: " + kayttaja_id);
-
-		// SQL-string, joka haetaan k‰ytt‰j‰n ID:n mukaan, jonka j‰lkeen tieto j‰rjestet‰‰n p‰iv‰m‰‰r‰ll‰
+		// Select-lause, jossa haetaan k‰ytt‰j‰ ja sen tunnit p‰iv‰m‰‰r‰j‰rjestyksess‰
 		String sql = "select id, tuntien_maara, paivamaara, kuvaus from Tunnit where kayttaja_id =(?) order by paivamaara";
 		
-		// K‰ytetyt parametrit, joka t‰ss‰ tapauksessa on vain k‰ytt‰j‰n ID
-		Object[] parametri = new Object[] { kayttaja_id };
+		// Select-lauseen parametri
+		Object[] parametri = new Object[] { kayttajaId };
 		
 		// RowMapper, koska tietoa palautetaan tietokannasta eik‰ lis‰t‰ sinne
 		RowMapper<Tunnit> mapper = new TunnitRowMapper();
