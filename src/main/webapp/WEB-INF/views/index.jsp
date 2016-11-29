@@ -20,7 +20,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tervetuloa tuntikirjaukseen</title>
+<title>Tuntikirjanpitosovellus</title>
 
 
 <!-- Tyylitiedostot -->
@@ -57,8 +57,10 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 					
 			<ul class="nav navbar-nav navbar-right">
+				<div class="flagwrap">
 				<li class="nav-item"><a href="?lang=fi"><spring:url value="/resources/images" var="images" /><img src="${images}/finflag.png" class="finflag" width="28" height="auto"/></a></li>
 				<li class="nav-item"><a href="?lang=en"><spring:url value="/resources/images" var="images" /><img src="${images}/ukflag.png" class="ukflag" width="28" height="auto"/></a></li>
+			</div>
 			</ul>
 		</div>
 		</div>

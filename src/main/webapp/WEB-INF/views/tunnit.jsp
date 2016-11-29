@@ -23,7 +23,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kirjaa tunnit</title>
+<title>Tuntikirjanpitosovellus</title>
 
 
 <!-- Tyylitiedostot -->
@@ -78,8 +78,8 @@ a:hover, a:visited, a:link, a:active {
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav navbar-right">
 					
-					<li class="nav-item"><a href="?lang=fi"><spring:url value="/resources/images" var="images" /><img src="${images}/finflag.png" class="finflag" width="28" height="auto"/></a></li>
-					<li class="nav-item"><a href="?lang=en"><spring:url value="/resources/images" var="images" /><img src="${images}/ukflag.png" class="ukflag" width="28" height="auto"/></a></li>
+					<li class="nav-item"><a href="?lang=fi"><spring:url value="/resources/images" var="images" /><img src="${images}/finflag.png" class="finflag2" width="28" height="auto"/></a></li>
+					<li class="nav-item"><a href="?lang=en"><spring:url value="/resources/images" var="images" /><img src="${images}/ukflag.png" class="ukflag2" width="28" height="auto"/></a></li>
 					<li class="nav-item" style="margin-top:3px;"><form:form
 							action="${pageContext.request.contextPath}/logout" method="POST">
 							<button id="logout" type="submit" class="logout">
