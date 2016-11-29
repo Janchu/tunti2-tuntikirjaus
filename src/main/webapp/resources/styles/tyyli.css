@@ -5,18 +5,29 @@
 	border:2px solid;
 	
 }
-
-
 @media screen and (max-width: 768px) {
-    .ukflag {
-       margin-left:40px;
-       margin-top:-90px
+	.ukflag2 {
+       margin-left:60px;
+       margin-top:-90px;
+    
     }
 }
 
 
+    .ukflag {
+    
+       margin-left:60px;
+       margin-top:-50px;
+    
+    }
 
 
+.flagwrap {
+	margin-top:10px;
+	margin-left:10px;
+	margin-bottom:-10px;
+	
+}
 @media screen and (max-width: 768px) {
     #greeting {
        margin-left:-20px;
@@ -28,8 +39,6 @@
        margin-top:-50px;
     }
 }
-
-
 
 
 #fieldset {
@@ -52,8 +61,6 @@
 .savebutton:hover {
 	background-color:#999999;
 }
-
-
 
 
 .right {
@@ -84,13 +91,9 @@
 }
 
 
-
 .left:hover {
 	background-color:#999999;
 }
-
-
-
 
 
 .wrapper>div{
