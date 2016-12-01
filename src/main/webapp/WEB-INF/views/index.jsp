@@ -43,7 +43,7 @@
 <body>
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
-			<div id="greeting"><a class="navbar-brand" style="margin-top:3px;"> <spring:message code="greeting" />
+			<div id="greeting"><a class="navbar-brand" style="vertical-align:center;"> <spring:message code="timetrackapp" />
 			</a></div>
 
 			<ul class="nav navbar-nav navbar-left">
@@ -71,10 +71,8 @@
 			<form:form action="tunnit/j_spring_security_check" method="post"
 				class="form-horizontal">
 				<fieldset>
-					<legend class="col-sm-offset-2">
-						<spring:message code="timetrackapp" />
-					</legend>
-					<div class="form-group">
+				<div class="kirjautumiskentat">
+					<div class="form-group" style="margin-top:50px;">
 						<label class="control-label col-sm-2" for="kayttajatunnus"><spring:message
 								code="username" /></label>
 						<div class="col-sm-4">
@@ -91,9 +89,10 @@
 								name='salasana' required>
 						</div>
 					</div>
+					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-default">
+							<button type="submit" class="btn btn-default" style="background-color:grey; color:white;">
 								<spring:message code="login" />
 							</button>
 						</div>
@@ -125,9 +124,6 @@
 			<form:form action="j_spring_security_check" method="post"
 				class="form-horizontal">
 				<fieldset>
-					<legend class="col-sm-offset-2">
-						<spring:message code="timetrackapp" />
-					</legend>
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="kayttajatunnus"><spring:message
 								code="username" /></label>
@@ -147,7 +143,7 @@
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-default">
+							<button type="submit" class="btn btn-default" style="background-color:grey; color:white;">
 								<spring:message code="login" />
 							</button>
 						</div>
