@@ -39,7 +39,6 @@
     }
 }
 
-
 #fieldset {
 	
 	border:1px black solid;
@@ -61,32 +60,30 @@
 	background-color:#999999;
 }
 
-
 .right {
+	display:table-cell;
 	margin-left:-4px;
 	font-weight:bold;
 	color:grey;
 	text-align:center;
+	vertical-align: middle;
 	border-radius:0px 5px 5px 0px;
 	border:1px solid grey;
 	background-color:white;
 	padding:8px;
 	width:60px;
-	margin-top:-7px;
-	margin-bottom:-7px;}
+	}
 
 
 .left {
+	display:table-cell;
 	border-radius:5px 0px 0px 5px;
 	border:1px solid grey;
 	width:140px;
 	background-color: grey;
 	padding:8px;
-	margin-top:-7px;
-	margin-bottom:-7px;
 	color:white;
 	text-align:center;
-	
 }
 
 
@@ -94,10 +91,14 @@
 	background-color:#999999;
 }
 
-
 .wrapper>div{
     display:inline-block;
    
+}
+
+.tunnitkeskellewrapper{
+	display:table-row;
+	margin-bottom:-20px;
 }
 
 .bold {

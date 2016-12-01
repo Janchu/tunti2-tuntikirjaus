@@ -63,9 +63,12 @@ a:hover, a:visited, a:link, a:active {
 
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
-			<div id="greeting"><a class="navbar-brand" style="margin-top:3px;"> <spring:message code="greeting" />
-				<sec:authentication property="principal.username" />
-			</a></div>
+			<div id="greeting">
+				<a class="navbar-brand" style="margin-top: 3px;"> <spring:message
+						code="greeting" /> <sec:authentication
+						property="principal.username" />
+				</a>
+			</div>
 
 			<ul class="nav navbar-nav navbar-left">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -77,10 +80,16 @@ a:hover, a:visited, a:link, a:active {
 
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav navbar-right">
-					
-					<li class="nav-item"><a href="?lang=fi"><spring:url value="/resources/images" var="images" /><img src="${images}/finflag.png" class="finflag2" width="28" height="auto"/></a></li>
-					<li class="nav-item"><a href="?lang=en"><spring:url value="/resources/images" var="images" /><img src="${images}/ukflag.png" class="ukflag2" width="28" height="auto"/></a></li>
-					<li class="nav-item" style="margin-top:3px;"><form:form
+
+					<li class="nav-item"><a href="?lang=fi"><spring:url
+								value="/resources/images" var="images" /><img
+							src="${images}/finflag.png" class="finflag2" width="28"
+							height="auto" /></a></li>
+					<li class="nav-item"><a href="?lang=en"><spring:url
+								value="/resources/images" var="images" /><img
+							src="${images}/ukflag.png" class="ukflag2" width="28"
+							height="auto" /></a></li>
+					<li class="nav-item" style="margin-top: 3px;"><form:form
 							action="${pageContext.request.contextPath}/logout" method="POST">
 							<button id="logout" type="submit" class="logout">
 								<i class="glyphicon glyphicon-log-out"></i>
@@ -117,13 +126,13 @@ a:hover, a:visited, a:link, a:active {
 					<!-- Päivämäärän valitseminen -->
 
 					<div class="form-group">
-						<form:label path="paivamaara"
-							class="col-sm-2 control-label">
+						<form:label path="paivamaara" class="col-sm-2 control-label">
 							<spring:message code="date" />:</form:label>
 						<div class="col-sm-2">
 							<div class="input-group date" id="syotaPaivamaara">
-								<form:input path="paivamaara" type="text" 
-									class="form-control" required="required"/>
+								<form:input path="paivamaara" type="text" class="form-control"
+									required="required" onfocus="this.blur()" readonly="true"
+									style="background-color:white;" />
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-calendar"></i></span>
 							</div>
@@ -135,13 +144,13 @@ a:hover, a:visited, a:link, a:active {
 					<!------ Tuntien määrä ------>
 
 					<div class="form-group">
-						<form:label path="tuntien_maara"
-							class="col-sm-2 control-label">
+						<form:label path="tuntien_maara" class="col-sm-2 control-label">
 							<spring:message code="hours" />:</form:label>
 						<div class="col-sm-2">
 							<div class="input-group bootstrap-timepicker timepicker">
 								<form:input path="tuntien_maara" type="text" id="syotaTunnit"
-									class="form-control" required="required"/>
+									class="form-control" required="required" onfocus="this.blur()"
+									readonly="true" style="background-color:white;" />
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-time"></i></span>
 							</div>
@@ -154,18 +163,18 @@ a:hover, a:visited, a:link, a:active {
 					<!----- Kuvaus ------->
 
 					<div class="form-group">
-						<form:label path="kuvaus"
-							class="col-sm-2 control-label">
+						<form:label path="kuvaus" class="col-sm-2 control-label">
 							<spring:message code="desc" />:</form:label>
 						<div class="col-sm-4">
-							<form:textarea path="kuvaus" class="form-control" rows="4" required="required"></form:textarea>
+							<form:textarea path="kuvaus" class="form-control" rows="4"
+								required="required"></form:textarea>
 						</div>
 						<form:errors path="kuvaus" style="color:red;" />
 					</div>
-					
-					
+
+
 					<!-- Submit-nappula -->
-					
+
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<button class="savebutton" onclick="myFunction2()" type="submit"
@@ -199,22 +208,24 @@ a:hover, a:visited, a:link, a:active {
 						<!--  wrapper laittaa käyttäjän nimen ja tämän tunnit kiinni toisiinsa -->
 
 
-						
+
 						<div class="wrapper">
-							<div class="left">
-								<a href="#<c:out value="${klista.etunimi}" />"
-									 data-toggle="collapse"><c:out
-										value="${klista.etunimi}" /> <c:out
-										value="${klista.sukunimi}" /></a>
-							</div>
-							<div class="right">
+							<div class="tunnitkeskellewrapper">
+								<div class="left">
+									<a href="#<c:out value="${klista.etunimi}" />"
+										data-toggle="collapse"><c:out value="${klista.etunimi}" />
+										<c:out value="${klista.sukunimi}" /></a>
+								</div>
+								<div class="right">
 									<fmt:formatNumber type="number" pattern="###.00"
-										value="${yhteensa}" />
+										minIntegerDigits="1" value="${yhteensa}" />
+								</div>
 							</div>
 						</div>
 						<br>
 
-						<div id="<c:out value="${klista.etunimi}" />" class="<c:if test="${klista.kayttajatunnus == principal.username}">collapse in</c:if><c:if test="${klista.kayttajatunnus != principal.username}">collapse</c:if>">
+						<div id="<c:out value="${klista.etunimi}" />"
+							class="<c:if test="${klista.kayttajatunnus == principal.username}">collapse in</c:if><c:if test="${klista.kayttajatunnus != principal.username}">collapse</c:if>">
 
 							<!----- Tuntitaulukko ----->
 
@@ -226,7 +237,9 @@ a:hover, a:visited, a:link, a:active {
 											<th class="col-sm-1"><spring:message code="date" /></th>
 											<th class="col-sm-1"><spring:message code="hours" /></th>
 											<th class="col-sm-3"><spring:message code="desc" /></th>
-											<c:if test="${klista.kayttajatunnus == principal.username}"><th class="col-sm-1"><spring:message code="del" /></th></c:if>
+											<c:if test="${klista.kayttajatunnus == principal.username}">
+												<th class="col-sm-1"><spring:message code="del" /></th>
+											</c:if>
 										</tr>
 									</thead>
 
@@ -244,7 +257,8 @@ a:hover, a:visited, a:link, a:active {
 														pattern="dd.MM.yyyy" /></td>
 												<td><c:set var="tuntienmaara"
 														value="${tunnit.tuntien_maara}" /> <fmt:formatNumber
-														type="number" pattern="##.00" value="${tuntienmaara}" />
+														type="number" pattern="##.00" minIntegerDigits="1"
+														value="${tuntienmaara}" />
 												<td><c:out value="${tunnit.kuvaus}" /></td>
 
 												<c:if test="${klista.kayttajatunnus == principal.username}">
@@ -270,7 +284,7 @@ a:hover, a:visited, a:link, a:active {
 													<spring:message code="total" />
 													:
 													<fmt:formatNumber type="number" pattern="###.00"
-														value="${yhteensa}" />
+														minIntegerDigits="1" value="${yhteensa}" />
 												</p></td>
 											<c:set var="kaikkiyhteensa"
 												value="${kaikkiyhteensa + yhteensa}" />
@@ -285,7 +299,7 @@ a:hover, a:visited, a:link, a:active {
 						:
 
 						<fmt:formatNumber type="number" pattern="###.00"
-							value="${kaikkiyhteensa}" />
+							minIntegerDigits="1" value="${kaikkiyhteensa}" />
 					</p>
 				</div>
 			</fieldset>
@@ -316,7 +330,7 @@ a:hover, a:visited, a:link, a:active {
 						<!--  wrapper laittaa käyttäjän nimen ja tämän tunnit kiinni toisiinsa -->
 
 
-						
+
 						<div class="wrapper">
 							<div class="left">
 								<a href="#<c:out value="${klista.etunimi}" />"
@@ -328,7 +342,7 @@ a:hover, a:visited, a:link, a:active {
 								<div id="kayttajantunnit">
 
 									<fmt:formatNumber type="number" pattern="###.00"
-										value="${yhteensa}" />
+										minIntegerDigits="1" value="${yhteensa}" />
 								</div>
 							</div>
 						</div>
@@ -364,22 +378,23 @@ a:hover, a:visited, a:link, a:active {
 														pattern="dd.MM.yyyy" /></td>
 												<td><c:set var="tuntienmaara"
 														value="${tunnit.tuntien_maara}" /> <fmt:formatNumber
-														type="number" pattern="##.00" value="${tuntienmaara}" />
+														type="number" pattern="##.00" minIntegerDigits="1"
+														value="${tuntienmaara}" />
 												<td><c:out value="${tunnit.kuvaus}" /></td>
 
-												
-													<td><form:form modelAttribute="kayttaja" method="post"
-															action="poista">
-															<form:input path="uusitunti.id" type="hidden"
-																value="${id}" />
-															<button type="submit" class="btn btn-danger"
-																aria-label="Left Align"
-																onclick="return confirm('<spring:message code="areusure" />')">
-																<span class="glyphicon glyphicon-remove"
-																	aria-hidden="true"></span>
-															</button>
-														</form:form></td>
-												
+
+												<td><form:form modelAttribute="kayttaja" method="post"
+														action="poista">
+														<form:input path="uusitunti.id" type="hidden"
+															value="${id}" />
+														<button type="submit" class="btn btn-danger"
+															aria-label="Left Align"
+															onclick="return confirm('<spring:message code="areusure" />')">
+															<span class="glyphicon glyphicon-remove"
+																aria-hidden="true"></span>
+														</button>
+													</form:form></td>
+
 											</tr>
 										</c:forEach>
 
@@ -390,7 +405,7 @@ a:hover, a:visited, a:link, a:active {
 													<spring:message code="total" />
 													:
 													<fmt:formatNumber type="number" pattern="###.00"
-														value="${yhteensa}" />
+														minIntegerDigits="1" value="${yhteensa}" />
 												</p></td>
 											<c:set var="kaikkiyhteensa"
 												value="${kaikkiyhteensa + yhteensa}" />
@@ -405,7 +420,7 @@ a:hover, a:visited, a:link, a:active {
 						:
 
 						<fmt:formatNumber type="number" pattern="###.00"
-							value="${kaikkiyhteensa}" />
+							minIntegerDigits="1" value="${kaikkiyhteensa}" />
 					</p>
 				</div>
 			</fieldset>
@@ -425,27 +440,27 @@ a:hover, a:visited, a:link, a:active {
 	<script type="text/javascript"
 		src="<c:url value="/resources/js/bootstrap-timepicker.min.js" />"></script>
 
-<c:if test="${pageContext.response.locale == 'fi'}">
-	<script type="text/javascript">
-		$('#syotaPaivamaara').datepicker({
-			language : 'fi',
-			format : 'yyyy-mm-dd',
-			weekStart : 1,
-			autoclose : true,
-			startDate : '1970-01-02'
-		}).datepicker("setDate", "0");
-	</script>
-</c:if>
-<c:if test="${pageContext.response.locale == 'en'}">
-	<script type="text/javascript">
-		$('#syotaPaivamaara').datepicker({
-			format : 'yyyy-mm-dd',
-			weekStart : 1,
-			autoclose : true,
-			startDate : '1970-01-02'
-		}).datepicker("setDate", "0");
-	</script>
-</c:if>
+	<c:if test="${pageContext.response.locale == 'fi'}">
+		<script type="text/javascript">
+			$('#syotaPaivamaara').datepicker({
+				language : 'fi',
+				format : 'yyyy-mm-dd',
+				weekStart : 1,
+				autoclose : true,
+				startDate : '1970-01-02'
+			}).datepicker("setDate", "0");
+		</script>
+	</c:if>
+	<c:if test="${pageContext.response.locale == 'en'}">
+		<script type="text/javascript">
+			$('#syotaPaivamaara').datepicker({
+				format : 'yyyy-mm-dd',
+				weekStart : 1,
+				autoclose : true,
+				startDate : '1970-01-02'
+			}).datepicker("setDate", "0");
+		</script>
+	</c:if>
 	<script type="text/javascript">
 		$('#syotaTunnit').timepicker({
 			showMeridian : false,
