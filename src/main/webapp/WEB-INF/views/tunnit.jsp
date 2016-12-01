@@ -148,7 +148,7 @@ a:hover, a:visited, a:link, a:active {
 							<spring:message code="hours" />:</form:label>
 						<div class="col-sm-2">
 							<div class="input-group bootstrap-timepicker timepicker">
-								<form:input path="tuntien_maara" type="text" id="syotaTunnit"
+								<form:input path="tuntien_maara" type="text" id="tuntien_maara"
 									class="form-control" required="required" onfocus="this.blur()"
 									readonly="true" style="background-color:white;" />
 								<span class="input-group-addon"><i
@@ -462,7 +462,7 @@ a:hover, a:visited, a:link, a:active {
 		</script>
 	</c:if>
 	<script type="text/javascript">
-		$('#syotaTunnit').timepicker({
+		$('#tuntien_maara').timepicker({
 			showMeridian : false,
 			maxHours : 13,
 			defaultTime : "0.00",
