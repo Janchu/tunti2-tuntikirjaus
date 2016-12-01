@@ -138,7 +138,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="pwd"><spring:message
+						<label class="control-label col-sm-2" for="salasana"><spring:message
 								code="password" /></label>
 						<div class="col-sm-4">
 							<input type="password" class="form-control" id="salasana"
