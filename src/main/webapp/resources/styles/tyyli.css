@@ -30,7 +30,14 @@
 @media screen and (max-width: 768px) {
     #greeting {
        margin-left:-20px;
+       margin-top:6px;
     }
+}
+
+@media screen and (max-width: 768px) {
+	.kirjautumiskentat {
+	margin-top:-50px;
+	}
 }
 
 @media screen and (max-width: 768px) {
