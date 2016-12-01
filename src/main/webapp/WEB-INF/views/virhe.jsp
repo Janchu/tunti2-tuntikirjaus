@@ -18,5 +18,7 @@
 
 <body>
 	<h3>Tapahtui virhe!</h3>
+	
+	<a href="${pageContext.request.contextPath}/logout">Kirjaudu ulos päästäksesi takaisin alkuun</a>
 </body>
 </html>
