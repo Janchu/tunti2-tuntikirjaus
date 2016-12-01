@@ -117,13 +117,13 @@ a:hover, a:visited, a:link, a:active {
 					<!-- Päivämäärän valitseminen -->
 
 					<div class="form-group">
-						<form:label path="paivamaara" for="syotaPaivamaara"
+						<form:label path="paivamaara"
 							class="col-sm-2 control-label">
 							<spring:message code="date" />:</form:label>
 						<div class="col-sm-2">
-							<div class="input-group date" id="datepicker">
-								<form:input path="paivamaara" type="text" id="syotaPaivamaara"
-									class="form-control" data-provide="datepicker" required="required"/>
+							<div class="input-group date" id="syotaPaivamaara">
+								<form:input path="paivamaara" type="text" 
+									class="form-control" required="required"/>
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-calendar"></i></span>
 							</div>
@@ -135,13 +135,13 @@ a:hover, a:visited, a:link, a:active {
 					<!------ Tuntien määrä ------>
 
 					<div class="form-group">
-						<form:label path="tuntien_maara" for="syotaTunnit"
+						<form:label path="tuntien_maara"
 							class="col-sm-2 control-label">
 							<spring:message code="hours" />:</form:label>
 						<div class="col-sm-2">
-							<div class="input-group">
+							<div class="input-group bootstrap-timepicker timepicker">
 								<form:input path="tuntien_maara" type="text" id="syotaTunnit"
-									class="form-control bootstrap-timepicker timepicker" required="required"/>
+									class="form-control" required="required"/>
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-time"></i></span>
 							</div>
@@ -154,7 +154,7 @@ a:hover, a:visited, a:link, a:active {
 					<!----- Kuvaus ------->
 
 					<div class="form-group">
-						<form:label path="kuvaus" for="syotaTunnit"
+						<form:label path="kuvaus"
 							class="col-sm-2 control-label">
 							<spring:message code="desc" />:</form:label>
 						<div class="col-sm-4">
