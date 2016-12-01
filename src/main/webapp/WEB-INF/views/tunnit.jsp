@@ -123,7 +123,7 @@ a:hover, a:visited, a:link, a:active {
 						<div class="col-sm-2">
 							<div class="input-group date" id="datepicker">
 								<form:input path="paivamaara" type="text" id="syotaPaivamaara"
-									class="form-control" data-provide="datepicker" required="required"/>
+									class="form-control" data-provide="datepicker" required="required" onfocus="this.blur()" readonly="true" style="background-color:white;"/>
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-calendar"></i></span>
 							</div>
@@ -141,7 +141,7 @@ a:hover, a:visited, a:link, a:active {
 						<div class="col-sm-2">
 							<div class="input-group">
 								<form:input path="tuntien_maara" type="text" id="syotaTunnit"
-									class="form-control bootstrap-timepicker timepicker" required="required"/>
+									class="form-control bootstrap-timepicker timepicker" required="required" onfocus="this.blur()" readonly="true" style="background-color:white;"/>
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-time"></i></span>
 							</div>
@@ -209,7 +209,7 @@ a:hover, a:visited, a:link, a:active {
 										value="${klista.sukunimi}" /></a>
 							</div>
 							<div class="right">
-									<fmt:formatNumber type="number" pattern="###.00"
+									<fmt:formatNumber type="number" pattern="###.00" minIntegerDigits="1"
 										value="${yhteensa}" />
 							</div>
 							</div>
@@ -246,7 +246,7 @@ a:hover, a:visited, a:link, a:active {
 														pattern="dd.MM.yyyy" /></td>
 												<td><c:set var="tuntienmaara"
 														value="${tunnit.tuntien_maara}" /> <fmt:formatNumber
-														type="number" pattern="##.00" value="${tuntienmaara}" />
+														type="number" pattern="##.00" minIntegerDigits="1" value="${tuntienmaara}" />
 												<td><c:out value="${tunnit.kuvaus}" /></td>
 
 												<c:if test="${klista.kayttajatunnus == principal.username}">
@@ -271,7 +271,7 @@ a:hover, a:visited, a:link, a:active {
 											<td><p class="bold">
 													<spring:message code="total" />
 													:
-													<fmt:formatNumber type="number" pattern="###.00"
+													<fmt:formatNumber type="number" pattern="###.00" minIntegerDigits="1"
 														value="${yhteensa}" />
 												</p></td>
 											<c:set var="kaikkiyhteensa"
@@ -286,7 +286,7 @@ a:hover, a:visited, a:link, a:active {
 						<spring:message code="alltotal" />
 						:
 
-						<fmt:formatNumber type="number" pattern="###.00"
+						<fmt:formatNumber type="number" pattern="###.00" minIntegerDigits="1"
 							value="${kaikkiyhteensa}" />
 					</p>
 				</div>
@@ -329,7 +329,7 @@ a:hover, a:visited, a:link, a:active {
 							<div class="right">
 								<div id="kayttajantunnit">
 
-									<fmt:formatNumber type="number" pattern="###.00"
+									<fmt:formatNumber type="number" pattern="###.00" minIntegerDigits="1"
 										value="${yhteensa}" />
 								</div>
 							</div>
@@ -366,7 +366,7 @@ a:hover, a:visited, a:link, a:active {
 														pattern="dd.MM.yyyy" /></td>
 												<td><c:set var="tuntienmaara"
 														value="${tunnit.tuntien_maara}" /> <fmt:formatNumber
-														type="number" pattern="##.00" value="${tuntienmaara}" />
+														type="number" pattern="##.00" minIntegerDigits="1" value="${tuntienmaara}" />
 												<td><c:out value="${tunnit.kuvaus}" /></td>
 
 												
@@ -391,7 +391,7 @@ a:hover, a:visited, a:link, a:active {
 											<td><p class="bold">
 													<spring:message code="total" />
 													:
-													<fmt:formatNumber type="number" pattern="###.00"
+													<fmt:formatNumber type="number" pattern="###.00" minIntegerDigits="1"
 														value="${yhteensa}" />
 												</p></td>
 											<c:set var="kaikkiyhteensa"
@@ -406,7 +406,7 @@ a:hover, a:visited, a:link, a:active {
 						<spring:message code="alltotal" />
 						:
 
-						<fmt:formatNumber type="number" pattern="###.00"
+						<fmt:formatNumber type="number" pattern="###.00" minIntegerDigits="1"
 							value="${kaikkiyhteensa}" />
 					</p>
 				</div>
