@@ -62,11 +62,15 @@
 }
 
 
+
+
 .right {
+	display:table-cell;
 	margin-left:-4px;
 	font-weight:bold;
 	color:grey;
 	text-align:center;
+	vertical-align: middle;
 	border-radius:0px 5px 5px 0px;
 	border:1px solid grey;
 	background-color:white;
@@ -77,6 +81,7 @@
 
 
 .left {
+	display:table-cell;
 	border-radius:5px 0px 0px 5px;
 	border:1px solid grey;
 	width:140px;
@@ -98,6 +103,11 @@
 .wrapper>div{
     display:inline-block;
    
+}
+
+.tunnitkeskellewrapper{
+	display:table-row;
+	
 }
 
 .bold {

@@ -201,6 +201,7 @@ a:hover, a:visited, a:link, a:active {
 
 						
 						<div class="wrapper">
+						<div class="tunnitkeskellewrapper">
 							<div class="left">
 								<a href="#<c:out value="${klista.etunimi}" />"
 									 data-toggle="collapse"><c:out
@@ -210,6 +211,7 @@ a:hover, a:visited, a:link, a:active {
 							<div class="right">
 									<fmt:formatNumber type="number" pattern="###.00"
 										value="${yhteensa}" />
+							</div>
 							</div>
 						</div>
 						<br>
