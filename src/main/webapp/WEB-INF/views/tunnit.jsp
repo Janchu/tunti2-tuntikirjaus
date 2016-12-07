@@ -23,7 +23,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tuntikirjanpitosovellus</title>
+<title><spring:message code="timetrackapp" /></title>
 
 
 <!-- Tyylitiedostot -->
@@ -332,6 +332,7 @@ a:hover, a:visited, a:link, a:active {
 
 
 						<div class="wrapper">
+						<div class="tunnitkeskellewrapper">
 							<div class="left">
 								<a href="#<c:out value="${klista.etunimi}" />"
 									class="namebutton" data-toggle="collapse"><c:out
@@ -344,6 +345,7 @@ a:hover, a:visited, a:link, a:active {
 									<fmt:formatNumber type="number" pattern="###.00"
 										minIntegerDigits="1" value="${yhteensa}" />
 								</div>
+							</div>
 							</div>
 						</div>
 						<br>
